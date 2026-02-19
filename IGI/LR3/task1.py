@@ -7,11 +7,11 @@ def solve_task1(x, eps = 1e-5) -> float:
 
     arg: float = 1 - x         # ln argument
 
-    if arg < 0: 
+    if arg < 0.0: 
         raise ValueError("ln arg less than 0")
 
-    while arg >= 2:      
-        arg /= 2
+    while arg >= 2.0:      
+        arg /= 2.0
         result += ln2
 
     adder: float = 1 - arg           # var that adding to result
