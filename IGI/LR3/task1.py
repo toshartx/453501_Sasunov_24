@@ -1,4 +1,4 @@
-import math
+from math import log
 
 def solve_task1(x, eps = 1e-5) -> float:
     result: float = 0.0
