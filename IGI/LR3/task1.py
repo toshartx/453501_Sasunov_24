@@ -3,7 +3,7 @@ from math import log
 def solve_task1(x, eps = 1e-5) -> float:
     result: float = 0.0
     n: int = 1       
-    ln2: float = math.log(2)   # iteration counter
+    ln2: float = log(2)   # iteration counter
 
     arg: float = 1 - x         # ln argument
 
@@ -22,4 +22,4 @@ def solve_task1(x, eps = 1e-5) -> float:
 
     return result, n
 
-
+print(solve_task1(-3.2))
