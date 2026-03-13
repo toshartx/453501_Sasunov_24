@@ -1,3 +1,6 @@
+# LR3.Task1
+# Counts f(x) = ln(1-x) with Taylor Series help
+# and print results in table
 from math import log
 
 def solve_task1(x, eps = 1e-5) -> float:
@@ -22,4 +25,9 @@ def solve_task1(x, eps = 1e-5) -> float:
 
     return result, n
 
-print(solve_task1(-3.2))
+def print_in_table(x, eps, result, n):
+    print(f"{'x':^10}", f"{'n':^10}", f"{'f(x)':^10}", f"{'math f(x)':^10}", f"{'eps':^10}", sep=" | ")
+    print(f"{x:^10.3f}", f"{n:^10}", f"{result:^10.3f}", f"{log(1-x):^10.3f}", f"{eps:^10}", sep=" | ")
+    
+# result, n = solve_task1(-7.21, 1e-6)
+# print_in_table(-7.21, 1e-6, result, n)
