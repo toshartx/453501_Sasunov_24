@@ -1,5 +1,3 @@
-from inputmodule import input_nums
-from inputmodule import gen_nums
 def solve_task2(nums) -> int:
     nums_in_range: int = 0
     for num in nums:
