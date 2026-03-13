@@ -6,6 +6,3 @@ def solve_task2(nums) -> int:
         if num in range(5, 25):
             nums_in_range += 1
     return nums_in_range
-
-nums = gen_nums()
-print(solve_task2(nums))
