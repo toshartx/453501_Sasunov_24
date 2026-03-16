@@ -18,4 +18,3 @@ def solve_task3(string: str):
 
     return spaces, apostrophes
 
-solve_task3("  ssd ' sa wq  ' ''")

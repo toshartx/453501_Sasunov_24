@@ -1,6 +1,6 @@
-def correct_input(datatype: type = str):
+def correct_input(prompt: str, datatype: type = str):
     while True:
-        inputed = input()
+        inputed = input(prompt)
         try:
             return datatype(inputed)
         except ValueError:
@@ -10,7 +10,7 @@ def correct_input(datatype: type = str):
 def input_nums():
     nums: list = []
     while True:
-        num = correct_input(int)
+        num = correct_input("", int)
         if num == 0:
             return nums
         nums.append(num)
@@ -18,5 +18,5 @@ def input_nums():
 def gen_nums():
     num = 1                     # ???
     while num != 0:
-        num = correct_input(int)
+        num = correct_input("", int)
         yield num

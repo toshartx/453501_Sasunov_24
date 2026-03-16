@@ -3,6 +3,6 @@ def solve_task4a(string: str) -> int:
 
     string.replace(",","")            # delete ,
     for word in string.split():        # splitting string
-        if word.count < 6:
+        if word.__len__() < 6:
             counter += 1
     return counter
