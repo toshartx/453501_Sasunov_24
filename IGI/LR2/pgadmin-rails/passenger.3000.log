@@ -1,0 +1,914 @@
+[ N 2026-03-17 16:56:58.5615 13/T1 age/Wat/WatchdogMain.cpp:1365 ]: Starting Passenger watchdog...
+[ N 2026-03-17 16:56:58.5704 17/T1 age/Cor/CoreMain.cpp:1284 ]: Starting Passenger core...
+[ N 2026-03-17 16:56:58.5705 17/T1 age/Cor/CoreMain.cpp:245 ]: Passenger core running in multi-application mode.
+[ W 2026-03-17 16:56:58.5932 17/T1 age/Cor/CoreMain.cpp:954 ]: WARNING: potential privilege escalation vulnerability detected. Phusion Passenger(R) is running as root, and part(s) of the Passenger root path (/usr/local/bundle/gems/passenger-6.1.2) can be changed by non-root user(s):
+
+ - /usr/local/bundle is not secure: it can be modified by group root
+
+Please either fix up the permissions for the insecure paths, or install Passenger in a different location that can only be modified by root.
+[ N 2026-03-17 16:56:58.5932 17/T1 age/Cor/CoreMain.cpp:962 ]: Passenger core online, PID 17
+App 72 output: ============================================================
+App 72 output: PG Admin - Database Management Tool
+App 72 output: ============================================================
+App 72 output: Starting with:
+App 72 output:   Ruby: 3.2.0
+App 72 output:   Rails: 7.0.10
+[ N 2026-03-17 16:57:01.2022 17/T6 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+App 72 output:   Passenger: Phusion Passenger(R) 6.1.2
+App 72 output: ============================================================
+App 72 output: ⚠️ Could not connect to PostgreSQL: There is an issue connecting to your database with your username/password, username: pgadmin.
+App 72 output: 
+App 72 output: Please check your database configuration to ensure the username/password are valid.
+App 72 output: Error: The application encountered the following error: undefined method `run' for main:Object (NoMethodError)
+App 72 output:     /app/app.rb:332:in `<top (required)>'
+App 72 output:     config.ru:2:in `require_relative'
+App 72 output:     config.ru:2:in `block in <main>'
+App 72 output:     /usr/local/bundle/gems/rack-2.2.22/lib/rack/builder.rb:125:in `instance_eval'
+App 72 output:     /usr/local/bundle/gems/rack-2.2.22/lib/rack/builder.rb:125:in `initialize'
+App 72 output:     config.ru:1:in `new'
+App 72 output:     config.ru:1:in `<main>'
+App 72 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:101:in `eval'
+App 72 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:101:in `preload_app'
+App 72 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:189:in `block in <module:App>'
+App 72 output:     /usr/local/bundle/gems/passenger-6.1.2/src/ruby_supportlib/phusion_passenger/loader_shared_helpers.rb:399:in `run_block_and_record_step_progress'
+App 72 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:188:in `<module:App>'
+App 72 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:30:in `<module:PhusionPassenger>'
+App 72 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:29:in `<main>'
+[ E 2026-03-17 16:57:01.7188 17/T10 age/Cor/App/Implementation.cpp:218 ]: Could not spawn process for application /app: The application encountered the following error: undefined method `run' for main:Object (NoMethodError)
+  Error ID: 33b3477a
+  Error details saved to: /tmp/passenger-error-j1gbBt.html
+
+[ E 2026-03-17 16:57:01.7202 17/T9 age/Cor/Con/CheckoutSession.cpp:368 ]: [Client 1-1] Cannot checkout session because a spawning error occurred. The identifier of the error is 33b3477a. Please see earlier logs for details about the error.
+App 121 output: ============================================================
+App 121 output: PG Admin - Database Management Tool
+App 121 output: ============================================================
+App 121 output: Starting with:
+App 121 output:   Ruby: 3.2.0
+App 121 output:   Rails: 7.0.10
+App 121 output:   Passenger: Phusion Passenger(R) 6.1.2
+App 121 output: ============================================================
+App 121 output: ⚠️ Could not connect to PostgreSQL: There is an issue connecting to your database with your username/password, username: pgadmin.
+App 121 output: 
+App 121 output: Please check your database configuration to ensure the username/password are valid.
+App 121 output: Error: The application encountered the following error: undefined method `run' for main:Object (NoMethodError)
+App 121 output:     /app/app.rb:332:in `<top (required)>'
+App 121 output:     config.ru:2:in `require_relative'
+App 121 output:     config.ru:2:in `block in <main>'
+App 121 output:     /usr/local/bundle/gems/rack-2.2.22/lib/rack/builder.rb:125:in `instance_eval'
+App 121 output:     /usr/local/bundle/gems/rack-2.2.22/lib/rack/builder.rb:125:in `initialize'
+App 121 output:     config.ru:1:in `new'
+App 121 output:     config.ru:1:in `<main>'
+App 121 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:101:in `eval'
+App 121 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:101:in `preload_app'
+App 121 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:189:in `block in <module:App>'
+App 121 output:     /usr/local/bundle/gems/passenger-6.1.2/src/ruby_supportlib/phusion_passenger/loader_shared_helpers.rb:399:in `run_block_and_record_step_progress'
+App 121 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:188:in `<module:App>'
+App 121 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:30:in `<module:PhusionPassenger>'
+App 121 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:29:in `<main>'
+[ E 2026-03-17 16:57:03.8212 17/T15 age/Cor/App/Implementation.cpp:218 ]: Could not spawn process for application /app: The application encountered the following error: undefined method `run' for main:Object (NoMethodError)
+  Error ID: 95989649
+  Error details saved to: /tmp/passenger-error-2JG9xv.html
+
+[ E 2026-03-17 16:57:03.8226 17/Tb age/Cor/Con/CheckoutSession.cpp:368 ]: [Client 2-1] Cannot checkout session because a spawning error occurred. The identifier of the error is 95989649. Please see earlier logs for details about the error.
+App 174 output: ============================================================
+App 174 output: PG Admin - Database Management Tool
+App 174 output: ============================================================
+App 174 output: Starting with:
+App 174 output:   Ruby: 3.2.0
+App 174 output:   Rails: 7.0.10
+App 174 output:   Passenger: Phusion Passenger(R) 6.1.2
+App 174 output: ============================================================
+App 174 output: ⚠️ Could not connect to PostgreSQL: There is an issue connecting to your database with your username/password, username: pgadmin.
+App 174 output: 
+App 174 output: Please check your database configuration to ensure the username/password are valid.
+App 174 output: Error: The application encountered the following error: undefined method `run' for main:Object (NoMethodError)
+App 174 output:     /app/app.rb:332:in `<top (required)>'
+App 174 output:     config.ru:2:in `require_relative'
+App 174 output:     config.ru:2:in `block in <main>'
+App 174 output:     /usr/local/bundle/gems/rack-2.2.22/lib/rack/builder.rb:125:in `instance_eval'
+App 174 output:     /usr/local/bundle/gems/rack-2.2.22/lib/rack/builder.rb:125:in `initialize'
+App 174 output:     config.ru:1:in `new'
+App 174 output:     config.ru:1:in `<main>'
+App 174 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:101:in `eval'
+App 174 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:101:in `preload_app'
+App 174 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:189:in `block in <module:App>'
+App 174 output:     /usr/local/bundle/gems/passenger-6.1.2/src/ruby_supportlib/phusion_passenger/loader_shared_helpers.rb:399:in `run_block_and_record_step_progress'
+App 174 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:188:in `<module:App>'
+App 174 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:30:in `<module:PhusionPassenger>'
+App 174 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:29:in `<main>'
+[ E 2026-03-17 16:57:04.8203 17/T1a age/Cor/App/Implementation.cpp:218 ]: Could not spawn process for application /app: The application encountered the following error: undefined method `run' for main:Object (NoMethodError)
+  Error ID: 950dea09
+  Error details saved to: /tmp/passenger-error-jQp5qs.html
+
+[ E 2026-03-17 16:57:04.8213 17/Td age/Cor/Con/CheckoutSession.cpp:368 ]: [Client 3-1] Cannot checkout session because a spawning error occurred. The identifier of the error is 950dea09. Please see earlier logs for details about the error.
+
+[ N 2026-03-17 16:59:22.2470 17/T9 age/Cor/CoreMain.cpp:659 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2026-03-17 16:59:22.2471 17/T1 age/Cor/CoreMain.cpp:1192 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2026-03-17 16:59:22.2471 17/T9 Ser/Server.h:895 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2026-03-17 16:59:22.2471 17/Td Ser/Server.h:895 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2026-03-17 16:59:22.2471 17/Tb Ser/Server.h:895 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2026-03-17 16:59:22.2471 17/T9 Ser/Server.h:552 ]: [ServerThr.1] Shutdown finished
+[ N 2026-03-17 16:59:22.2471 17/Td Ser/Server.h:552 ]: [ServerThr.3] Shutdown finished
+[ N 2026-03-17 16:59:22.2471 17/Tf Ser/Server.h:895 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2026-03-17 16:59:22.2471 17/Th Ser/Server.h:895 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2026-03-17 16:59:22.2472 17/Tb Ser/Server.h:552 ]: [ServerThr.2] Shutdown finished
+[ N 2026-03-17 16:59:22.2472 17/Tl Ser/Server.h:895 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2026-03-17 16:59:22.2472 17/Tn Ser/Server.h:895 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2026-03-17 16:59:22.2472 17/Tf Ser/Server.h:552 ]: [ServerThr.4] Shutdown finished
+[ N 2026-03-17 16:59:22.2472 17/Tj Ser/Server.h:895 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2026-03-17 16:59:22.2472 17/Tt Ser/Server.h:895 ]: [ServerThr.11] Freed 0 spare client objects
+[ N 2026-03-17 16:59:22.2472 17/Th Ser/Server.h:552 ]: [ServerThr.5] Shutdown finished
+[ N 2026-03-17 16:59:22.2472 17/Tv Ser/Server.h:895 ]: [ServerThr.12] Freed 0 spare client objects
+[ N 2026-03-17 16:59:22.2472 17/Tl Ser/Server.h:552 ]: [ServerThr.7] Shutdown finished
+[ N 2026-03-17 16:59:22.2472 17/Tp Ser/Server.h:895 ]: [ServerThr.9] Freed 0 spare client objects
+[ N 2026-03-17 16:59:22.2472 17/Tn Ser/Server.h:552 ]: [ServerThr.8] Shutdown finished
+[ N 2026-03-17 16:59:22.2472 17/Tj Ser/Server.h:552 ]: [ServerThr.6] Shutdown finished
+[ N 2026-03-17 16:59:22.2472 17/Tt Ser/Server.h:552 ]: [ServerThr.11] Shutdown finished
+[ N 2026-03-17 16:59:22.2473 17/Tv Ser/Server.h:552 ]: [ServerThr.12] Shutdown finished
+[ N 2026-03-17 16:59:22.2473 17/Tp Ser/Server.h:552 ]: [ServerThr.9] Shutdown finished
+[ N 2026-03-17 16:59:22.2473 17/Tr Ser/Server.h:895 ]: [ServerThr.10] Freed 0 spare client objects
+[ N 2026-03-17 16:59:22.2473 17/Tr Ser/Server.h:552 ]: [ServerThr.10] Shutdown finished
+[ N 2026-03-17 16:59:22.2474 17/Tx Ser/Server.h:895 ]: [ApiServer] Freed 0 spare client objects
+[ N 2026-03-17 16:59:22.2474 17/Tx Ser/Server.h:552 ]: [ApiServer] Shutdown finished
+[ N 2026-03-17 17:01:00.1027 67/T1 age/Wat/WatchdogMain.cpp:1365 ]: Starting Passenger watchdog...
+[ N 2026-03-17 17:01:00.1116 71/T1 age/Cor/CoreMain.cpp:1284 ]: Starting Passenger core...
+[ N 2026-03-17 17:01:00.1116 71/T1 age/Cor/CoreMain.cpp:245 ]: Passenger core running in multi-application mode.
+[ N 2026-03-17 17:01:00.1294 71/T1 age/Cor/CoreMain.cpp:962 ]: Passenger core online, PID 71
+App 122 output: ============================================================
+App 122 output: PG Admin - Database Management Tool
+App 122 output: ============================================================
+App 122 output: Starting with:
+App 122 output:   Ruby: 3.2.0
+App 122 output:   Rails: 7.0.10
+App 122 output:   Passenger: Phusion Passenger(R) 6.1.2
+App 122 output: ============================================================
+[ N 2026-03-17 17:01:02.6587 71/T6 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+App 122 output: ✅ Connected to PostgreSQL successfully
+App 122 output: Error: The application encountered the following error: undefined method `run' for main:Object (NoMethodError)
+App 122 output:     /app/app.rb:332:in `<top (required)>'
+App 122 output:     config.ru:2:in `require_relative'
+App 122 output:     config.ru:2:in `block in <main>'
+App 122 output:     /usr/local/bundle/gems/rack-2.2.22/lib/rack/builder.rb:125:in `instance_eval'
+App 122 output:     /usr/local/bundle/gems/rack-2.2.22/lib/rack/builder.rb:125:in `initialize'
+App 122 output:     config.ru:1:in `new'
+App 122 output:     config.ru:1:in `<main>'
+App 122 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:101:in `eval'
+App 122 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:101:in `preload_app'
+App 122 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:189:in `block in <module:App>'
+App 122 output:     /usr/local/bundle/gems/passenger-6.1.2/src/ruby_supportlib/phusion_passenger/loader_shared_helpers.rb:399:in `run_block_and_record_step_progress'
+App 122 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:188:in `<module:App>'
+App 122 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:30:in `<module:PhusionPassenger>'
+App 122 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:29:in `<main>'
+[ E 2026-03-17 17:01:02.8060 71/T10 age/Cor/App/Implementation.cpp:218 ]: Could not spawn process for application /app: The application encountered the following error: undefined method `run' for main:Object (NoMethodError)
+  Error ID: 3e8fc6b3
+  Error details saved to: /tmp/passenger-error-FFByzB.html
+
+[ E 2026-03-17 17:01:02.8073 71/T9 age/Cor/Con/CheckoutSession.cpp:368 ]: [Client 1-1] Cannot checkout session because a spawning error occurred. The identifier of the error is 3e8fc6b3. Please see earlier logs for details about the error.
+[ E 2026-03-17 17:01:02.8073 71/Tb age/Cor/Con/CheckoutSession.cpp:368 ]: [Client 2-1] Cannot checkout session because a spawning error occurred. The identifier of the error is 3e8fc6b3. Please see earlier logs for details about the error.
+
+[ N 2026-03-17 17:02:37.0567 71/T9 age/Cor/CoreMain.cpp:659 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2026-03-17 17:02:37.0567 71/T1 age/Cor/CoreMain.cpp:1192 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2026-03-17 17:02:37.0568 71/T9 Ser/Server.h:895 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2026-03-17 17:02:37.0568 71/Tb Ser/Server.h:895 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2026-03-17 17:02:37.0568 71/T9 Ser/Server.h:552 ]: [ServerThr.1] Shutdown finished
+[ N 2026-03-17 17:02:37.0568 71/Td Ser/Server.h:895 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2026-03-17 17:02:37.0568 71/Tf Ser/Server.h:895 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2026-03-17 17:02:37.0568 71/Tb Ser/Server.h:552 ]: [ServerThr.2] Shutdown finished
+[ N 2026-03-17 17:02:37.0568 71/Th Ser/Server.h:895 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2026-03-17 17:02:37.0568 71/Tl Ser/Server.h:895 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2026-03-17 17:02:37.0568 71/Tj Ser/Server.h:895 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2026-03-17 17:02:37.0568 71/Td Ser/Server.h:552 ]: [ServerThr.3] Shutdown finished
+[ N 2026-03-17 17:02:37.0568 71/Tp Ser/Server.h:895 ]: [ServerThr.9] Freed 0 spare client objects
+[ N 2026-03-17 17:02:37.0568 71/Tn Ser/Server.h:895 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2026-03-17 17:02:37.0568 71/Tf Ser/Server.h:552 ]: [ServerThr.4] Shutdown finished
+[ N 2026-03-17 17:02:37.0568 71/Tt Ser/Server.h:895 ]: [ServerThr.11] Freed 0 spare client objects
+[ N 2026-03-17 17:02:37.0568 71/Tv Ser/Server.h:895 ]: [ServerThr.12] Freed 0 spare client objects
+[ N 2026-03-17 17:02:37.0568 71/Tr Ser/Server.h:895 ]: [ServerThr.10] Freed 0 spare client objects
+[ N 2026-03-17 17:02:37.0568 71/Th Ser/Server.h:552 ]: [ServerThr.5] Shutdown finished
+[ N 2026-03-17 17:02:37.0569 71/Tl Ser/Server.h:552 ]: [ServerThr.7] Shutdown finished
+[ N 2026-03-17 17:02:37.0569 71/Tj Ser/Server.h:552 ]: [ServerThr.6] Shutdown finished
+[ N 2026-03-17 17:02:37.0569 71/Tp Ser/Server.h:552 ]: [ServerThr.9] Shutdown finished
+[ N 2026-03-17 17:02:37.0569 71/Tn Ser/Server.h:552 ]: [ServerThr.8] Shutdown finished
+[ N 2026-03-17 17:02:37.0569 71/Tt Ser/Server.h:552 ]: [ServerThr.11] Shutdown finished
+[ N 2026-03-17 17:02:37.0569 71/Tv Ser/Server.h:552 ]: [ServerThr.12] Shutdown finished
+[ N 2026-03-17 17:02:37.0569 71/Tr Ser/Server.h:552 ]: [ServerThr.10] Shutdown finished
+[ N 2026-03-17 17:02:37.0570 71/Tx Ser/Server.h:895 ]: [ApiServer] Freed 0 spare client objects
+[ N 2026-03-17 17:02:37.0570 71/Tx Ser/Server.h:552 ]: [ApiServer] Shutdown finished
+[ N 2026-03-17 17:03:55.7229 67/T1 age/Wat/WatchdogMain.cpp:1365 ]: Starting Passenger watchdog...
+[ N 2026-03-17 17:03:55.7314 71/T1 age/Cor/CoreMain.cpp:1284 ]: Starting Passenger core...
+[ N 2026-03-17 17:03:55.7315 71/T1 age/Cor/CoreMain.cpp:245 ]: Passenger core running in multi-application mode.
+[ N 2026-03-17 17:03:55.7476 71/T1 age/Cor/CoreMain.cpp:962 ]: Passenger core online, PID 71
+App 122 output: ============================================================
+App 122 output: PG Admin - Database Management Tool
+App 122 output: ============================================================
+App 122 output: Starting with:
+App 122 output:   Ruby: 3.2.0
+App 122 output:   Rails: 7.0.10
+App 122 output:   Passenger: Phusion Passenger(R) 6.1.2
+App 122 output: ============================================================
+App 122 output: ✅ Connected to PostgreSQL successfully
+App 122 output: Error: The application encountered the following error: undefined method `run' for main:Object (NoMethodError)
+App 122 output:     /app/app.rb:332:in `<top (required)>'
+App 122 output:     config.ru:2:in `require_relative'
+App 122 output:     config.ru:2:in `block in <main>'
+App 122 output:     /usr/local/bundle/gems/rack-2.2.22/lib/rack/builder.rb:125:in `instance_eval'
+App 122 output:     /usr/local/bundle/gems/rack-2.2.22/lib/rack/builder.rb:125:in `initialize'
+App 122 output:     config.ru:1:in `new'
+App 122 output:     config.ru:1:in `<main>'
+App 122 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:101:in `eval'
+App 122 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:101:in `preload_app'
+App 122 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:189:in `block in <module:App>'
+App 122 output:     /usr/local/bundle/gems/passenger-6.1.2/src/ruby_supportlib/phusion_passenger/loader_shared_helpers.rb:399:in `run_block_and_record_step_progress'
+App 122 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:188:in `<module:App>'
+App 122 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:30:in `<module:PhusionPassenger>'
+App 122 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:29:in `<main>'
+[ E 2026-03-17 17:03:56.7663 71/T10 age/Cor/App/Implementation.cpp:218 ]: Could not spawn process for application /app: The application encountered the following error: undefined method `run' for main:Object (NoMethodError)
+  Error ID: 8d571b73
+  Error details saved to: /tmp/passenger-error-NaZB5z.html
+
+[ E 2026-03-17 17:03:56.7678 71/T9 age/Cor/Con/CheckoutSession.cpp:368 ]: [Client 1-1] Cannot checkout session because a spawning error occurred. The identifier of the error is 8d571b73. Please see earlier logs for details about the error.
+[ N 2026-03-17 17:03:58.1745 71/T6 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+App 179 output: ============================================================
+App 179 output: PG Admin - Database Management Tool
+App 179 output: ============================================================
+App 179 output: Starting with:
+App 179 output:   Ruby: 3.2.0
+App 179 output:   Rails: 7.0.10
+App 179 output:   Passenger: Phusion Passenger(R) 6.1.2
+App 179 output: ============================================================
+App 179 output: ✅ Connected to PostgreSQL successfully
+App 179 output: Error: The application encountered the following error: undefined method `run' for main:Object (NoMethodError)
+App 179 output:     /app/app.rb:332:in `<top (required)>'
+App 179 output:     config.ru:2:in `require_relative'
+App 179 output:     config.ru:2:in `block in <main>'
+App 179 output:     /usr/local/bundle/gems/rack-2.2.22/lib/rack/builder.rb:125:in `instance_eval'
+App 179 output:     /usr/local/bundle/gems/rack-2.2.22/lib/rack/builder.rb:125:in `initialize'
+App 179 output:     config.ru:1:in `new'
+App 179 output:     config.ru:1:in `<main>'
+App 179 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:101:in `eval'
+App 179 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:101:in `preload_app'
+App 179 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:189:in `block in <module:App>'
+App 179 output:     /usr/local/bundle/gems/passenger-6.1.2/src/ruby_supportlib/phusion_passenger/loader_shared_helpers.rb:399:in `run_block_and_record_step_progress'
+App 179 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:188:in `<module:App>'
+App 179 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:30:in `<module:PhusionPassenger>'
+App 179 output:     /usr/local/bundle/gems/passenger-6.1.2/src/helper-scripts/rack-preloader.rb:29:in `<main>'
+[ E 2026-03-17 17:03:58.8435 71/T15 age/Cor/App/Implementation.cpp:218 ]: Could not spawn process for application /app: The application encountered the following error: undefined method `run' for main:Object (NoMethodError)
+  Error ID: 7a81b099
+  Error details saved to: /tmp/passenger-error-RC6Swx.html
+
+[ E 2026-03-17 17:03:58.8445 71/Tb age/Cor/Con/CheckoutSession.cpp:368 ]: [Client 2-1] Cannot checkout session because a spawning error occurred. The identifier of the error is 7a81b099. Please see earlier logs for details about the error.
+
+[ N 2026-03-17 17:05:20.6349 71/T9 age/Cor/CoreMain.cpp:659 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2026-03-17 17:05:20.6350 71/T1 age/Cor/CoreMain.cpp:1192 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2026-03-17 17:05:20.6350 71/Tb Ser/Server.h:895 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2026-03-17 17:05:20.6350 71/T9 Ser/Server.h:895 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2026-03-17 17:05:20.6350 71/Td Ser/Server.h:895 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2026-03-17 17:05:20.6350 71/Tf Ser/Server.h:895 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2026-03-17 17:05:20.6350 71/Th Ser/Server.h:895 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2026-03-17 17:05:20.6350 71/Tb Ser/Server.h:552 ]: [ServerThr.2] Shutdown finished
+[ N 2026-03-17 17:05:20.6350 71/Tj Ser/Server.h:895 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2026-03-17 17:05:20.6350 71/Tl Ser/Server.h:895 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2026-03-17 17:05:20.6350 71/T9 Ser/Server.h:552 ]: [ServerThr.1] Shutdown finished
+[ N 2026-03-17 17:05:20.6350 71/Td Ser/Server.h:552 ]: [ServerThr.3] Shutdown finished
+[ N 2026-03-17 17:05:20.6351 71/Tn Ser/Server.h:895 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2026-03-17 17:05:20.6351 71/Tf Ser/Server.h:552 ]: [ServerThr.4] Shutdown finished
+[ N 2026-03-17 17:05:20.6351 71/Th Ser/Server.h:552 ]: [ServerThr.5] Shutdown finished
+[ N 2026-03-17 17:05:20.6351 71/Tp Ser/Server.h:895 ]: [ServerThr.9] Freed 0 spare client objects
+[ N 2026-03-17 17:05:20.6351 71/Tj Ser/Server.h:552 ]: [ServerThr.6] Shutdown finished
+[ N 2026-03-17 17:05:20.6351 71/Tr Ser/Server.h:895 ]: [ServerThr.10] Freed 0 spare client objects
+[ N 2026-03-17 17:05:20.6351 71/Tl Ser/Server.h:552 ]: [ServerThr.7] Shutdown finished
+[ N 2026-03-17 17:05:20.6351 71/Tn Ser/Server.h:552 ]: [ServerThr.8] Shutdown finished
+[ N 2026-03-17 17:05:20.6351 71/Tp Ser/Server.h:552 ]: [ServerThr.9] Shutdown finished
+[ N 2026-03-17 17:05:20.6351 71/Tr Ser/Server.h:552 ]: [ServerThr.10] Shutdown finished
+[ N 2026-03-17 17:05:20.6352 71/Tt Ser/Server.h:895 ]: [ServerThr.11] Freed 0 spare client objects
+[ N 2026-03-17 17:05:20.6352 71/Tt Ser/Server.h:552 ]: [ServerThr.11] Shutdown finished
+[ N 2026-03-17 17:05:20.6352 71/Tv Ser/Server.h:895 ]: [ServerThr.12] Freed 0 spare client objects
+[ N 2026-03-17 17:05:20.6352 71/Tv Ser/Server.h:552 ]: [ServerThr.12] Shutdown finished
+[ N 2026-03-17 17:05:20.6352 71/Tx Ser/Server.h:895 ]: [ApiServer] Freed 0 spare client objects
+[ N 2026-03-17 17:05:20.6353 71/Tx Ser/Server.h:552 ]: [ApiServer] Shutdown finished
+[ N 2026-03-17 17:07:20.7851 67/T1 age/Wat/WatchdogMain.cpp:1365 ]: Starting Passenger watchdog...
+[ N 2026-03-17 17:07:20.7938 71/T1 age/Cor/CoreMain.cpp:1284 ]: Starting Passenger core...
+[ N 2026-03-17 17:07:20.7939 71/T1 age/Cor/CoreMain.cpp:245 ]: Passenger core running in multi-application mode.
+[ N 2026-03-17 17:07:20.8218 71/T1 age/Cor/CoreMain.cpp:962 ]: Passenger core online, PID 71
+App 122 output: ============================================================
+App 122 output: PG Admin - Database Management Tool
+App 122 output: ============================================================
+App 122 output: Starting with:
+App 122 output:   Ruby: 3.2.0
+App 122 output:   Rails: 7.0.10
+App 122 output:   Passenger: Phusion Passenger(R) 6.1.2
+App 122 output: ============================================================
+[ N 2026-03-17 17:07:23.2798 71/T6 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+App 122 output: ✅ Connected to PostgreSQL successfully
+App 172 output: [17:07:23] GET / (PID: 172)
+App 172 output: I, [2026-03-17T17:07:23.515734 #172]  INFO -- : Started GET "/" for 172.18.0.1 at 2026-03-17 17:07:23 +0000
+App 172 output: I, [2026-03-17T17:07:23.526733 #172]  INFO -- : Processing by DatabaseController#index as HTML
+App 191 output: [17:07:23] HEAD / (PID: 191)
+App 191 output: I, [2026-03-17T17:07:23.563860 #191]  INFO -- : Started HEAD "/" for 127.0.0.1 at 2026-03-17 17:07:23 +0000
+App 191 output: I, [2026-03-17T17:07:23.574084 #191]  INFO -- : Processing by DatabaseController#index as HTML
+App 172 output: I, [2026-03-17T17:07:23.707324 #172]  INFO -- :   Rendered html template (Duration: 0.0ms | Allocations: 11)
+App 172 output: I, [2026-03-17T17:07:23.707646 #172]  INFO -- : Completed 200 OK in 181ms (Views: 2.7ms | Allocations: 4987)
+App 172 output: 
+App 172 output: 
+App 191 output: I, [2026-03-17T17:07:23.755585 #191]  INFO -- :   Rendered html template (Duration: 0.0ms | Allocations: 11)
+App 191 output: I, [2026-03-17T17:07:23.755868 #191]  INFO -- : Completed 200 OK in 182ms (Views: 2.5ms | Allocations: 4974)
+App 191 output: 
+App 191 output: 
+App 172 output: [17:07:35] GET /databases/postgres (PID: 172)
+App 172 output: I, [2026-03-17T17:07:35.629383 #172]  INFO -- : Started GET "/databases/postgres" for 172.18.0.1 at 2026-03-17 17:07:35 +0000
+App 172 output: I, [2026-03-17T17:07:35.630296 #172]  INFO -- : Processing by DatabaseController#show_database as HTML
+App 172 output: I, [2026-03-17T17:07:35.630327 #172]  INFO -- :   Parameters: {"database"=>"postgres"}
+App 172 output: I, [2026-03-17T17:07:35.651688 #172]  INFO -- :   Rendered html template (Duration: 0.0ms | Allocations: 2)
+App 172 output: I, [2026-03-17T17:07:35.651830 #172]  INFO -- : Completed 200 OK in 21ms (Views: 0.3ms | Allocations: 3786)
+App 172 output: 
+App 172 output: 
+App 172 output: [17:07:37] GET / (PID: 172)
+App 172 output: I, [2026-03-17T17:07:37.832976 #172]  INFO -- : Started GET "/" for 172.18.0.1 at 2026-03-17 17:07:37 +0000
+App 172 output: I, [2026-03-17T17:07:37.833552 #172]  INFO -- : Processing by DatabaseController#index as HTML
+App 172 output: I, [2026-03-17T17:07:37.991339 #172]  INFO -- :   Rendered html template (Duration: 0.0ms | Allocations: 2)
+App 172 output: I, [2026-03-17T17:07:37.991559 #172]  INFO -- : Completed 200 OK in 158ms (Views: 0.4ms | Allocations: 149)
+App 172 output: 
+App 172 output: 
+App 172 output: [17:08:13] GET /databases/postgres (PID: 172)
+App 172 output: I, [2026-03-17T17:08:13.321627 #172]  INFO -- : Started GET "/databases/postgres" for 172.18.0.1 at 2026-03-17 17:08:13 +0000
+App 172 output: I, [2026-03-17T17:08:13.322326 #172]  INFO -- : Processing by DatabaseController#show_database as HTML
+App 172 output: I, [2026-03-17T17:08:13.322361 #172]  INFO -- :   Parameters: {"database"=>"postgres"}
+App 172 output: I, [2026-03-17T17:08:13.344296 #172]  INFO -- :   Rendered html template (Duration: 0.0ms | Allocations: 2)
+App 172 output: I, [2026-03-17T17:08:13.344460 #172]  INFO -- : Completed 200 OK in 22ms (Views: 0.3ms | Allocations: 3693)
+App 172 output: 
+App 172 output: 
+App 172 output: [17:08:23] GET /databases/postgres/query (PID: 172)
+App 172 output: I, [2026-03-17T17:08:23.009022 #172]  INFO -- : Started GET "/databases/postgres/query" for 172.18.0.1 at 2026-03-17 17:08:23 +0000
+App 172 output: I, [2026-03-17T17:08:23.009825 #172]  INFO -- : Processing by DatabaseController#query as HTML
+App 172 output: I, [2026-03-17T17:08:23.009854 #172]  INFO -- :   Parameters: {"database"=>"postgres"}
+App 172 output: I, [2026-03-17T17:08:23.010232 #172]  INFO -- :   Rendered html template (Duration: 0.0ms | Allocations: 2)
+App 172 output: I, [2026-03-17T17:08:23.010379 #172]  INFO -- : Completed 200 OK in 0ms (Views: 0.3ms | Allocations: 134)
+App 172 output: 
+App 172 output: 
+App 172 output: [17:08:26] GET /databases/postgres (PID: 172)
+App 172 output: I, [2026-03-17T17:08:26.208293 #172]  INFO -- : Started GET "/databases/postgres" for 172.18.0.1 at 2026-03-17 17:08:26 +0000
+App 172 output: I, [2026-03-17T17:08:26.208969 #172]  INFO -- : Processing by DatabaseController#show_database as HTML
+App 172 output: I, [2026-03-17T17:08:26.208997 #172]  INFO -- :   Parameters: {"database"=>"postgres"}
+App 172 output: I, [2026-03-17T17:08:26.231130 #172]  INFO -- :   Rendered html template (Duration: 0.0ms | Allocations: 2)
+App 172 output: I, [2026-03-17T17:08:26.231286 #172]  INFO -- : Completed 200 OK in 22ms (Views: 0.3ms | Allocations: 3693)
+App 172 output: 
+App 172 output: 
+App 172 output: [17:08:27] GET / (PID: 172)
+App 172 output: I, [2026-03-17T17:08:27.788665 #172]  INFO -- : Started GET "/" for 172.18.0.1 at 2026-03-17 17:08:27 +0000
+App 172 output: I, [2026-03-17T17:08:27.789332 #172]  INFO -- : Processing by DatabaseController#index as HTML
+App 172 output: I, [2026-03-17T17:08:27.952281 #172]  INFO -- :   Rendered html template (Duration: 0.1ms | Allocations: 2)
+App 172 output: I, [2026-03-17T17:08:27.952508 #172]  INFO -- : Completed 200 OK in 163ms (Views: 0.6ms | Allocations: 149)
+App 172 output: 
+App 172 output: 
+App 172 output: [17:09:07] GET /databases/postgres (PID: 172)
+App 172 output: I, [2026-03-17T17:09:07.112652 #172]  INFO -- : Started GET "/databases/postgres" for 172.18.0.1 at 2026-03-17 17:09:07 +0000
+App 172 output: I, [2026-03-17T17:09:07.113433 #172]  INFO -- : Processing by DatabaseController#show_database as HTML
+App 172 output: I, [2026-03-17T17:09:07.113469 #172]  INFO -- :   Parameters: {"database"=>"postgres"}
+App 172 output: I, [2026-03-17T17:09:07.136487 #172]  INFO -- :   Rendered html template (Duration: 0.0ms | Allocations: 2)
+App 172 output: I, [2026-03-17T17:09:07.136644 #172]  INFO -- : Completed 200 OK in 23ms (Views: 0.3ms | Allocations: 3693)
+App 172 output: 
+App 172 output: 
+App 172 output: [17:09:08] GET /databases/postgres/query (PID: 172)
+App 172 output: I, [2026-03-17T17:09:08.160389 #172]  INFO -- : Started GET "/databases/postgres/query" for 172.18.0.1 at 2026-03-17 17:09:08 +0000
+App 172 output: I, [2026-03-17T17:09:08.161116 #172]  INFO -- : Processing by DatabaseController#query as HTML
+App 172 output: I, [2026-03-17T17:09:08.161149 #172]  INFO -- :   Parameters: {"database"=>"postgres"}
+App 172 output: I, [2026-03-17T17:09:08.161450 #172]  INFO -- :   Rendered html template (Duration: 0.0ms | Allocations: 2)
+App 172 output: I, [2026-03-17T17:09:08.161602 #172]  INFO -- : Completed 200 OK in 0ms (Views: 0.2ms | Allocations: 130)
+App 172 output: 
+App 172 output: 
+App 172 output: [17:09:12] POST /databases/postgres/query (PID: 172)
+App 172 output: I, [2026-03-17T17:09:12.198876 #172]  INFO -- : Started POST "/databases/postgres/query" for 172.18.0.1 at 2026-03-17 17:09:12 +0000
+App 172 output: I, [2026-03-17T17:09:12.199751 #172]  INFO -- : Processing by DatabaseController#query as HTML
+App 172 output: I, [2026-03-17T17:09:12.199786 #172]  INFO -- :   Parameters: {"query"=>"CREATE TABLE IF NOT EXISTS users (\r\n    id SERIAL PRIMARY KEY,\r\n    name VARCHAR(100),\r\n    email VARCHAR(100),\r\n    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP\r\n);", "database"=>"postgres"}
+App 172 output: W, [2026-03-17T17:09:12.200091 #172]  WARN -- : Can't verify CSRF token authenticity.
+App 172 output: I, [2026-03-17T17:09:12.200501 #172]  INFO -- : Completed 422 Unprocessable Entity in 1ms (Allocations: 231)
+App 172 output: 
+App 172 output: 
+App 172 output: F, [2026-03-17T17:09:12.201213 #172] FATAL -- :   
+App 172 output: ActionController::InvalidAuthenticityToken (Can't verify CSRF token authenticity.):
+App 172 output:   
+App 172 output: config.ru:12:in `call'
+App 172 output: [17:09:16] POST /databases/postgres/query (PID: 172)
+App 172 output: I, [2026-03-17T17:09:16.221892 #172]  INFO -- : Started POST "/databases/postgres/query" for 172.18.0.1 at 2026-03-17 17:09:16 +0000
+App 172 output: I, [2026-03-17T17:09:16.222571 #172]  INFO -- : Processing by DatabaseController#query as HTML
+App 172 output: I, [2026-03-17T17:09:16.222604 #172]  INFO -- :   Parameters: {"query"=>"CREATE TABLE IF NOT EXISTS users (\r\n    id SERIAL PRIMARY KEY,\r\n    name VARCHAR(100),\r\n    email VARCHAR(100),\r\n    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP\r\n);", "database"=>"postgres"}
+App 172 output: W, [2026-03-17T17:09:16.222724 #172]  WARN -- : Can't verify CSRF token authenticity.
+App 172 output: I, [2026-03-17T17:09:16.222890 #172]  INFO -- : Completed 422 Unprocessable Entity in 0ms (Allocations: 128)
+App 172 output: 
+App 172 output: 
+App 172 output: F, [2026-03-17T17:09:16.223241 #172] FATAL -- :   
+App 172 output: ActionController::InvalidAuthenticityToken (Can't verify CSRF token authenticity.):
+App 172 output:   
+App 172 output: config.ru:12:in `call'
+App 172 output: [17:09:19] GET /databases/postgres/query (PID: 172)
+App 172 output: I, [2026-03-17T17:09:19.265997 #172]  INFO -- : Started GET "/databases/postgres/query" for 172.18.0.1 at 2026-03-17 17:09:19 +0000
+App 172 output: I, [2026-03-17T17:09:19.266626 #172]  INFO -- : Processing by DatabaseController#query as HTML
+App 172 output: I, [2026-03-17T17:09:19.266655 #172]  INFO -- :   Parameters: {"database"=>"postgres"}
+App 172 output: I, [2026-03-17T17:09:19.266994 #172]  INFO -- :   Rendered html template (Duration: 0.0ms | Allocations: 2)
+App 172 output: I, [2026-03-17T17:09:19.267122 #172]  INFO -- : Completed 200 OK in 0ms (Views: 0.3ms | Allocations: 132)
+App 172 output: 
+App 172 output: 
+App 172 output: [17:09:57] POST /databases/postgres/query (PID: 172)
+App 172 output: I, [2026-03-17T17:09:57.675082 #172]  INFO -- : Started POST "/databases/postgres/query" for 172.18.0.1 at 2026-03-17 17:09:57 +0000
+App 172 output: I, [2026-03-17T17:09:57.675782 #172]  INFO -- : Processing by DatabaseController#query as HTML
+App 172 output: I, [2026-03-17T17:09:57.675819 #172]  INFO -- :   Parameters: {"query"=>"CREATE TABLE IF NOT EXISTS users (\r\n    id SERIAL PRIMARY KEY,\r\n    name VARCHAR(100),\r\n    email VARCHAR(100),\r\n    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP\r\n);", "database"=>"postgres"}
+App 172 output: W, [2026-03-17T17:09:57.675963 #172]  WARN -- : Can't verify CSRF token authenticity.
+App 172 output: I, [2026-03-17T17:09:57.676191 #172]  INFO -- : Completed 422 Unprocessable Entity in 0ms (Allocations: 128)
+App 172 output: 
+App 172 output: 
+App 172 output: F, [2026-03-17T17:09:57.676737 #172] FATAL -- :   
+App 172 output: ActionController::InvalidAuthenticityToken (Can't verify CSRF token authenticity.):
+App 172 output:   
+App 172 output: config.ru:12:in `call'
+App 172 output: [17:11:06] POST /databases/postgres/query (PID: 172)
+App 172 output: I, [2026-03-17T17:11:06.646696 #172]  INFO -- : Started POST "/databases/postgres/query" for 172.18.0.1 at 2026-03-17 17:11:06 +0000
+App 172 output: I, [2026-03-17T17:11:06.647332 #172]  INFO -- : Processing by DatabaseController#query as HTML
+App 172 output: I, [2026-03-17T17:11:06.647383 #172]  INFO -- :   Parameters: {"query"=>"CREATE TABLE IF NOT EXISTS users (\r\n    id SERIAL PRIMARY KEY,\r\n    name VARCHAR(100),\r\n    email VARCHAR(100),\r\n    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP\r\n);", "database"=>"postgres"}
+App 172 output: W, [2026-03-17T17:11:06.647523 #172]  WARN -- : Can't verify CSRF token authenticity.
+App 172 output: I, [2026-03-17T17:11:06.647763 #172]  INFO -- : Completed 422 Unprocessable Entity in 0ms (Allocations: 128)
+App 172 output: 
+App 172 output: 
+App 172 output: F, [2026-03-17T17:11:06.648317 #172] FATAL -- :   
+App 172 output: ActionController::InvalidAuthenticityToken (Can't verify CSRF token authenticity.):
+App 172 output:   
+App 172 output: config.ru:12:in `call'
+App 172 output: [17:11:07] GET /databases/postgres/query (PID: 172)
+App 172 output: I, [2026-03-17T17:11:07.770543 #172]  INFO -- : Started GET "/databases/postgres/query" for 172.18.0.1 at 2026-03-17 17:11:07 +0000
+App 172 output: I, [2026-03-17T17:11:07.771273 #172]  INFO -- : Processing by DatabaseController#query as HTML
+App 172 output: I, [2026-03-17T17:11:07.771302 #172]  INFO -- :   Parameters: {"database"=>"postgres"}
+App 172 output: I, [2026-03-17T17:11:07.771605 #172]  INFO -- :   Rendered html template (Duration: 0.0ms | Allocations: 2)
+App 172 output: I, [2026-03-17T17:11:07.771751 #172]  INFO -- : Completed 200 OK in 0ms (Views: 0.3ms | Allocations: 129)
+App 172 output: 
+App 172 output: 
+App 172 output: [17:11:07] GET /favicon.ico (PID: 172)
+App 172 output: I, [2026-03-17T17:11:07.791114 #172]  INFO -- : Started GET "/favicon.ico" for 172.18.0.1 at 2026-03-17 17:11:07 +0000
+App 172 output: F, [2026-03-17T17:11:07.791548 #172] FATAL -- :   
+App 172 output: ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+App 172 output:   
+App 172 output: config.ru:12:in `call'
+
+[ N 2026-03-17 17:11:26.9662 71/T9 age/Cor/CoreMain.cpp:659 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2026-03-17 17:11:26.9663 71/T1 age/Cor/CoreMain.cpp:1192 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2026-03-17 17:11:26.9663 71/T1 age/Cor/CoreMain.cpp:1093 ]: Checking whether to disconnect long-running connections for process 172, application /app (development)
+[ N 2026-03-17 17:11:26.9664 71/T1 age/Cor/CoreMain.cpp:1093 ]: Checking whether to disconnect long-running connections for process 191, application /app (development)
+[ N 2026-03-17 17:11:26.9664 71/Tb Ser/Server.h:895 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2026-03-17 17:11:26.9664 71/T9 Ser/Server.h:895 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2026-03-17 17:11:26.9664 71/Th Ser/Server.h:895 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2026-03-17 17:11:26.9664 71/Td Ser/Server.h:895 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2026-03-17 17:11:26.9664 71/Tp Ser/Server.h:895 ]: [ServerThr.9] Freed 0 spare client objects
+[ N 2026-03-17 17:11:26.9664 71/Tf Ser/Server.h:895 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2026-03-17 17:11:26.9664 71/Tj Ser/Server.h:895 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2026-03-17 17:11:26.9664 71/Tl Ser/Server.h:895 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2026-03-17 17:11:26.9665 71/Tj Ser/Server.h:552 ]: [ServerThr.6] Shutdown finished
+[ N 2026-03-17 17:11:26.9664 71/Tn Ser/Server.h:895 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2026-03-17 17:11:26.9664 71/Tr Ser/Server.h:895 ]: [ServerThr.10] Freed 0 spare client objects
+[ N 2026-03-17 17:11:26.9665 71/Tb Ser/Server.h:552 ]: [ServerThr.2] Shutdown finished
+[ N 2026-03-17 17:11:26.9665 71/Tt Ser/Server.h:895 ]: [ServerThr.11] Freed 0 spare client objects
+[ N 2026-03-17 17:11:26.9665 71/T9 Ser/Server.h:552 ]: [ServerThr.1] Shutdown finished
+[ N 2026-03-17 17:11:26.9665 71/Th Ser/Server.h:552 ]: [ServerThr.5] Shutdown finished
+[ N 2026-03-17 17:11:26.9665 71/Td Ser/Server.h:552 ]: [ServerThr.3] Shutdown finished
+[ N 2026-03-17 17:11:26.9665 71/Tp Ser/Server.h:552 ]: [ServerThr.9] Shutdown finished
+[ N 2026-03-17 17:11:26.9665 71/Tf Ser/Server.h:552 ]: [ServerThr.4] Shutdown finished
+[ N 2026-03-17 17:11:26.9665 71/Tl Ser/Server.h:552 ]: [ServerThr.7] Shutdown finished
+[ N 2026-03-17 17:11:26.9665 71/Tn Ser/Server.h:552 ]: [ServerThr.8] Shutdown finished
+[ N 2026-03-17 17:11:26.9665 71/Tr Ser/Server.h:552 ]: [ServerThr.10] Shutdown finished
+[ N 2026-03-17 17:11:26.9665 71/Tt Ser/Server.h:552 ]: [ServerThr.11] Shutdown finished
+[ N 2026-03-17 17:11:26.9666 71/Tv Ser/Server.h:895 ]: [ServerThr.12] Freed 0 spare client objects
+[ N 2026-03-17 17:11:26.9666 71/Tv Ser/Server.h:552 ]: [ServerThr.12] Shutdown finished
+[ N 2026-03-17 17:11:26.9667 71/Tx Ser/Server.h:895 ]: [ApiServer] Freed 0 spare client objects
+[ N 2026-03-17 17:11:26.9667 71/Tx Ser/Server.h:552 ]: [ApiServer] Shutdown finished
+[ N 2026-03-17 17:11:26.9668 71/T1 age/Cor/CoreMain.cpp:1093 ]: Checking whether to disconnect long-running connections for process 172, application /app (development)
+[ N 2026-03-17 17:11:26.9668 71/T1 age/Cor/CoreMain.cpp:1093 ]: Checking whether to disconnect long-running connections for process 191, application /app (development)
+[ N 2026-03-17 17:15:02.4674 67/T1 age/Wat/WatchdogMain.cpp:1365 ]: Starting Passenger watchdog...
+[ N 2026-03-17 17:15:02.4762 71/T1 age/Cor/CoreMain.cpp:1284 ]: Starting Passenger core...
+[ N 2026-03-17 17:15:02.4762 71/T1 age/Cor/CoreMain.cpp:245 ]: Passenger core running in multi-application mode.
+[ N 2026-03-17 17:15:02.4966 71/T1 age/Cor/CoreMain.cpp:962 ]: Passenger core online, PID 71
+[ N 2026-03-17 17:15:04.8936 71/T6 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+App 126 output: ============================================================
+App 126 output: PG Admin - Database Management Tool
+App 126 output: ============================================================
+App 126 output: Starting with:
+App 126 output:   Ruby: 3.2.0
+App 126 output:   Rails: 7.0.10
+App 126 output:   Passenger: Phusion Passenger(R) 6.1.2
+App 126 output: ============================================================
+App 126 output: ✅ Connected to PostgreSQL successfully
+App 172 output: [17:15:05] HEAD / (PID: 172)
+App 172 output: I, [2026-03-17T17:15:05.588785 #172]  INFO -- : Started HEAD "/" for 127.0.0.1 at 2026-03-17 17:15:05 +0000
+App 172 output: I, [2026-03-17T17:15:05.598679 #172]  INFO -- : Processing by DatabaseController#index as HTML
+App 172 output: I, [2026-03-17T17:15:05.762931 #172]  INFO -- :   Rendered html template (Duration: 0.0ms | Allocations: 11)
+App 172 output: I, [2026-03-17T17:15:05.763208 #172]  INFO -- : Completed 200 OK in 164ms (Views: 2.6ms | Allocations: 4939)
+App 172 output: 
+App 172 output: 
+App 172 output: [17:15:07] GET /databases/postgres/query (PID: 172)
+App 172 output: I, [2026-03-17T17:15:07.424115 #172]  INFO -- : Started GET "/databases/postgres/query" for 172.18.0.1 at 2026-03-17 17:15:07 +0000
+App 172 output: I, [2026-03-17T17:15:07.424957 #172]  INFO -- : Processing by DatabaseController#query as HTML
+App 172 output: I, [2026-03-17T17:15:07.424990 #172]  INFO -- :   Parameters: {"database"=>"postgres"}
+App 172 output: I, [2026-03-17T17:15:07.427755 #172]  INFO -- : Completed 500 Internal Server Error in 3ms (Allocations: 459)
+App 172 output: 
+App 172 output: 
+App 172 output: F, [2026-03-17T17:15:07.428580 #172] FATAL -- :   
+App 172 output: NoMethodError (undefined method `hidden_field_tag' for #<DatabaseController:0x00000000003390>):
+App 172 output:   
+App 172 output: app.rb:288:in `query_html'
+App 172 output: app.rb:97:in `query'
+App 172 output: config.ru:12:in `call'
+App 172 output: [17:15:08] GET /databases/postgres/query (PID: 172)
+App 172 output: I, [2026-03-17T17:15:08.133490 #172]  INFO -- : Started GET "/databases/postgres/query" for 172.18.0.1 at 2026-03-17 17:15:08 +0000
+App 172 output: I, [2026-03-17T17:15:08.134271 #172]  INFO -- : Processing by DatabaseController#query as HTML
+App 172 output: I, [2026-03-17T17:15:08.134300 #172]  INFO -- :   Parameters: {"database"=>"postgres"}
+App 172 output: I, [2026-03-17T17:15:08.134794 #172]  INFO -- : Completed 500 Internal Server Error in 0ms (Allocations: 185)
+App 172 output: 
+App 172 output: 
+App 172 output: F, [2026-03-17T17:15:08.135262 #172] FATAL -- :   
+App 172 output: NoMethodError (undefined method `hidden_field_tag' for #<DatabaseController:0x000000000033e0>):
+App 172 output:   
+App 172 output: app.rb:288:in `query_html'
+App 172 output: app.rb:97:in `query'
+App 172 output: config.ru:12:in `call'
+App 172 output: [17:15:08] GET /databases/postgres/query (PID: 172)
+App 172 output: I, [2026-03-17T17:15:08.828363 #172]  INFO -- : Started GET "/databases/postgres/query" for 172.18.0.1 at 2026-03-17 17:15:08 +0000
+App 172 output: I, [2026-03-17T17:15:08.829036 #172]  INFO -- : Processing by DatabaseController#query as HTML
+App 172 output: I, [2026-03-17T17:15:08.829066 #172]  INFO -- :   Parameters: {"database"=>"postgres"}
+App 172 output: I, [2026-03-17T17:15:08.829559 #172]  INFO -- : Completed 500 Internal Server Error in 0ms (Allocations: 185)
+App 172 output: 
+App 172 output: 
+App 172 output: F, [2026-03-17T17:15:08.829895 #172] FATAL -- :   
+App 172 output: NoMethodError (undefined method `hidden_field_tag' for #<DatabaseController:0x00000000003430>):
+App 172 output:   
+App 172 output: app.rb:288:in `query_html'
+App 172 output: app.rb:97:in `query'
+App 172 output: config.ru:12:in `call'
+App 172 output: [17:15:09] GET /databases/postgres/query (PID: 172)
+App 172 output: I, [2026-03-17T17:15:09.803037 #172]  INFO -- : Started GET "/databases/postgres/query" for 172.18.0.1 at 2026-03-17 17:15:09 +0000
+App 172 output: I, [2026-03-17T17:15:09.803630 #172]  INFO -- : Processing by DatabaseController#query as HTML
+App 172 output: I, [2026-03-17T17:15:09.803659 #172]  INFO -- :   Parameters: {"database"=>"postgres"}
+App 172 output: I, [2026-03-17T17:15:09.804089 #172]  INFO -- : Completed 500 Internal Server Error in 0ms (Allocations: 185)
+App 172 output: 
+App 172 output: 
+App 172 output: F, [2026-03-17T17:15:09.804406 #172] FATAL -- :   
+App 172 output: NoMethodError (undefined method `hidden_field_tag' for #<DatabaseController:0x00000000003480>):
+App 172 output:   
+App 172 output: app.rb:288:in `query_html'
+App 172 output: app.rb:97:in `query'
+App 172 output: config.ru:12:in `call'
+App 172 output: [17:15:10] GET /databases/postgres/query (PID: 172)
+App 172 output: I, [2026-03-17T17:15:10.317968 #172]  INFO -- : Started GET "/databases/postgres/query" for 172.18.0.1 at 2026-03-17 17:15:10 +0000
+App 172 output: I, [2026-03-17T17:15:10.318617 #172]  INFO -- : Processing by DatabaseController#query as HTML
+App 172 output: I, [2026-03-17T17:15:10.318645 #172]  INFO -- :   Parameters: {"database"=>"postgres"}
+App 172 output: I, [2026-03-17T17:15:10.319091 #172]  INFO -- : Completed 500 Internal Server Error in 0ms (Allocations: 185)
+App 172 output: 
+App 172 output: 
+App 172 output: F, [2026-03-17T17:15:10.319404 #172] FATAL -- :   
+App 172 output: NoMethodError (undefined method `hidden_field_tag' for #<DatabaseController:0x000000000034d0>):
+App 172 output:   
+App 172 output: app.rb:288:in `query_html'
+App 172 output: app.rb:97:in `query'
+App 172 output: config.ru:12:in `call'
+App 172 output: [17:15:10] GET /databases/postgres/query (PID: 172)
+App 172 output: I, [2026-03-17T17:15:10.941138 #172]  INFO -- : Started GET "/databases/postgres/query" for 172.18.0.1 at 2026-03-17 17:15:10 +0000
+App 172 output: I, [2026-03-17T17:15:10.941746 #172]  INFO -- : Processing by DatabaseController#query as HTML
+App 172 output: I, [2026-03-17T17:15:10.941774 #172]  INFO -- :   Parameters: {"database"=>"postgres"}
+App 172 output: I, [2026-03-17T17:15:10.942223 #172]  INFO -- : Completed 500 Internal Server Error in 0ms (Allocations: 185)
+App 172 output: 
+App 172 output: 
+App 172 output: F, [2026-03-17T17:15:10.942549 #172] FATAL -- :   
+App 172 output: NoMethodError (undefined method `hidden_field_tag' for #<DatabaseController:0x00000000003520>):
+App 172 output:   
+App 172 output: app.rb:288:in `query_html'
+App 172 output: app.rb:97:in `query'
+App 172 output: config.ru:12:in `call'
+App 172 output: [17:15:11] GET /databases/postgres/query (PID: 172)
+App 172 output: I, [2026-03-17T17:15:11.628046 #172]  INFO -- : Started GET "/databases/postgres/query" for 172.18.0.1 at 2026-03-17 17:15:11 +0000
+App 172 output: I, [2026-03-17T17:15:11.628761 #172]  INFO -- : Processing by DatabaseController#query as HTML
+App 172 output: I, [2026-03-17T17:15:11.628799 #172]  INFO -- :   Parameters: {"database"=>"postgres"}
+App 172 output: I, [2026-03-17T17:15:11.629278 #172]  INFO -- : Completed 500 Internal Server Error in 0ms (Allocations: 185)
+App 172 output: 
+App 172 output: 
+App 172 output: F, [2026-03-17T17:15:11.629677 #172] FATAL -- :   
+App 172 output: NoMethodError (undefined method `hidden_field_tag' for #<DatabaseController:0x00000000003570>):
+App 172 output:   
+App 172 output: app.rb:288:in `query_html'
+App 172 output: app.rb:97:in `query'
+App 172 output: config.ru:12:in `call'
+App 172 output: [17:15:11] GET /databases/postgres/query (PID: 172)
+App 172 output: I, [2026-03-17T17:15:11.829473 #172]  INFO -- : Started GET "/databases/postgres/query" for 172.18.0.1 at 2026-03-17 17:15:11 +0000
+App 172 output: I, [2026-03-17T17:15:11.830076 #172]  INFO -- : Processing by DatabaseController#query as HTML
+App 172 output: I, [2026-03-17T17:15:11.830104 #172]  INFO -- :   Parameters: {"database"=>"postgres"}
+App 172 output: I, [2026-03-17T17:15:11.830588 #172]  INFO -- : Completed 500 Internal Server Error in 0ms (Allocations: 185)
+App 172 output: 
+App 172 output: 
+App 172 output: F, [2026-03-17T17:15:11.830933 #172] FATAL -- :   
+App 172 output: NoMethodError (undefined method `hidden_field_tag' for #<DatabaseController:0x000000000035c0>):
+App 172 output:   
+App 172 output: app.rb:288:in `query_html'
+App 172 output: app.rb:97:in `query'
+App 172 output: config.ru:12:in `call'
+App 172 output: [17:15:12] GET /databases/postgres/query (PID: 172)
+App 172 output: I, [2026-03-17T17:15:12.213431 #172]  INFO -- : Started GET "/databases/postgres/query" for 172.18.0.1 at 2026-03-17 17:15:12 +0000
+App 172 output: I, [2026-03-17T17:15:12.214194 #172]  INFO -- : Processing by DatabaseController#query as HTML
+App 172 output: I, [2026-03-17T17:15:12.214231 #172]  INFO -- :   Parameters: {"database"=>"postgres"}
+App 172 output: I, [2026-03-17T17:15:12.214815 #172]  INFO -- : Completed 500 Internal Server Error in 1ms (Allocations: 185)
+App 172 output: 
+App 172 output: 
+App 172 output: F, [2026-03-17T17:15:12.215163 #172] FATAL -- :   
+App 172 output: NoMethodError (undefined method `hidden_field_tag' for #<DatabaseController:0x00000000003610>):
+App 172 output:   
+App 172 output: app.rb:288:in `query_html'
+App 172 output: app.rb:97:in `query'
+App 172 output: config.ru:12:in `call'
+App 172 output: [17:15:12] GET /databases/postgres/query (PID: 172)
+App 172 output: I, [2026-03-17T17:15:12.596241 #172]  INFO -- : Started GET "/databases/postgres/query" for 172.18.0.1 at 2026-03-17 17:15:12 +0000
+App 172 output: I, [2026-03-17T17:15:12.596874 #172]  INFO -- : Processing by DatabaseController#query as HTML
+App 172 output: I, [2026-03-17T17:15:12.596904 #172]  INFO -- :   Parameters: {"database"=>"postgres"}
+App 172 output: I, [2026-03-17T17:15:12.597352 #172]  INFO -- : Completed 500 Internal Server Error in 0ms (Allocations: 185)
+App 172 output: 
+App 172 output: 
+App 172 output: F, [2026-03-17T17:15:12.597754 #172] FATAL -- :   
+App 172 output: NoMethodError (undefined method `hidden_field_tag' for #<DatabaseController:0x00000000003660>):
+App 172 output:   
+App 172 output: app.rb:288:in `query_html'
+App 172 output: app.rb:97:in `query'
+App 172 output: config.ru:12:in `call'
+App 172 output: [17:15:12] GET /databases/postgres/query (PID: 172)
+App 172 output: I, [2026-03-17T17:15:12.995804 #172]  INFO -- : Started GET "/databases/postgres/query" for 172.18.0.1 at 2026-03-17 17:15:12 +0000
+App 172 output: I, [2026-03-17T17:15:12.996480 #172]  INFO -- : Processing by DatabaseController#query as HTML
+App 172 output: I, [2026-03-17T17:15:12.996514 #172]  INFO -- :   Parameters: {"database"=>"postgres"}
+App 172 output: I, [2026-03-17T17:15:12.996967 #172]  INFO -- : Completed 500 Internal Server Error in 0ms (Allocations: 185)
+App 172 output: 
+App 172 output: 
+App 172 output: F, [2026-03-17T17:15:12.997321 #172] FATAL -- :   
+App 172 output: NoMethodError (undefined method `hidden_field_tag' for #<DatabaseController:0x000000000036b0>):
+App 172 output:   
+App 172 output: app.rb:288:in `query_html'
+App 172 output: app.rb:97:in `query'
+App 172 output: config.ru:12:in `call'
+
+[ N 2026-03-17 17:16:23.9024 71/T9 age/Cor/CoreMain.cpp:659 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2026-03-17 17:16:23.9024 71/T1 age/Cor/CoreMain.cpp:1192 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2026-03-17 17:16:23.9024 71/T1 age/Cor/CoreMain.cpp:1093 ]: Checking whether to disconnect long-running connections for process 172, application /app (development)
+[ N 2026-03-17 17:16:23.9025 71/T9 Ser/Server.h:895 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2026-03-17 17:16:23.9025 71/Tb Ser/Server.h:895 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2026-03-17 17:16:23.9025 71/Td Ser/Server.h:895 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2026-03-17 17:16:23.9025 71/Tj Ser/Server.h:895 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2026-03-17 17:16:23.9025 71/Tl Ser/Server.h:895 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2026-03-17 17:16:23.9025 71/Th Ser/Server.h:895 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2026-03-17 17:16:23.9025 71/Tf Ser/Server.h:895 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2026-03-17 17:16:23.9025 71/Tn Ser/Server.h:895 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2026-03-17 17:16:23.9025 71/Tr Ser/Server.h:895 ]: [ServerThr.10] Freed 0 spare client objects
+[ N 2026-03-17 17:16:23.9025 71/T9 Ser/Server.h:552 ]: [ServerThr.1] Shutdown finished
+[ N 2026-03-17 17:16:23.9025 71/Tt Ser/Server.h:895 ]: [ServerThr.11] Freed 0 spare client objects
+[ N 2026-03-17 17:16:23.9026 71/Tb Ser/Server.h:552 ]: [ServerThr.2] Shutdown finished
+[ N 2026-03-17 17:16:23.9026 71/Tp Ser/Server.h:895 ]: [ServerThr.9] Freed 0 spare client objects
+[ N 2026-03-17 17:16:23.9026 71/Td Ser/Server.h:552 ]: [ServerThr.3] Shutdown finished
+[ N 2026-03-17 17:16:23.9026 71/Tj Ser/Server.h:552 ]: [ServerThr.6] Shutdown finished
+[ N 2026-03-17 17:16:23.9026 71/Tl Ser/Server.h:552 ]: [ServerThr.7] Shutdown finished
+[ N 2026-03-17 17:16:23.9026 71/Th Ser/Server.h:552 ]: [ServerThr.5] Shutdown finished
+[ N 2026-03-17 17:16:23.9026 71/Tf Ser/Server.h:552 ]: [ServerThr.4] Shutdown finished
+[ N 2026-03-17 17:16:23.9026 71/Tn Ser/Server.h:552 ]: [ServerThr.8] Shutdown finished
+[ N 2026-03-17 17:16:23.9026 71/Tr Ser/Server.h:552 ]: [ServerThr.10] Shutdown finished
+[ N 2026-03-17 17:16:23.9026 71/Tt Ser/Server.h:552 ]: [ServerThr.11] Shutdown finished
+[ N 2026-03-17 17:16:23.9026 71/Tp Ser/Server.h:552 ]: [ServerThr.9] Shutdown finished
+[ N 2026-03-17 17:16:23.9027 71/Tv Ser/Server.h:895 ]: [ServerThr.12] Freed 0 spare client objects
+[ N 2026-03-17 17:16:23.9027 71/Tv Ser/Server.h:552 ]: [ServerThr.12] Shutdown finished
+[ N 2026-03-17 17:16:23.9028 71/Tx Ser/Server.h:895 ]: [ApiServer] Freed 0 spare client objects
+[ N 2026-03-17 17:16:23.9028 71/Tx Ser/Server.h:552 ]: [ApiServer] Shutdown finished
+[ N 2026-03-17 17:16:23.9029 71/T1 age/Cor/CoreMain.cpp:1093 ]: Checking whether to disconnect long-running connections for process 172, application /app (development)
+[ N 2026-03-17 17:16:48.2864 67/T1 age/Wat/WatchdogMain.cpp:1365 ]: Starting Passenger watchdog...
+[ N 2026-03-17 17:16:48.2949 71/T1 age/Cor/CoreMain.cpp:1284 ]: Starting Passenger core...
+[ N 2026-03-17 17:16:48.2949 71/T1 age/Cor/CoreMain.cpp:245 ]: Passenger core running in multi-application mode.
+[ N 2026-03-17 17:16:48.3158 71/T1 age/Cor/CoreMain.cpp:962 ]: Passenger core online, PID 71
+App 122 output: ============================================================
+App 122 output: PG Admin - Database Management Tool
+App 122 output: ============================================================
+App 122 output: Starting with:
+App 122 output:   Ruby: 3.2.0
+App 122 output:   Rails: 7.0.10
+App 122 output:   Passenger: Phusion Passenger(R) 6.1.2
+App 122 output: ============================================================
+[ N 2026-03-17 17:16:50.7734 71/T6 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+App 122 output: ✅ Connected to PostgreSQL successfully
+App 172 output: [17:16:50] GET /databases/postgres/query (PID: 172)
+App 172 output: I, [2026-03-17T17:16:50.864785 #172]  INFO -- : Started GET "/databases/postgres/query" for 172.18.0.1 at 2026-03-17 17:16:50 +0000
+App 172 output: I, [2026-03-17T17:16:50.875413 #172]  INFO -- : Processing by DatabaseController#query as HTML
+App 172 output: I, [2026-03-17T17:16:50.875452 #172]  INFO -- :   Parameters: {"database"=>"postgres"}
+App 172 output: I, [2026-03-17T17:16:50.877666 #172]  INFO -- :   Rendered html template (Duration: 0.0ms | Allocations: 11)
+App 172 output: I, [2026-03-17T17:16:50.877857 #172]  INFO -- : Completed 200 OK in 2ms (Views: 2.1ms | Allocations: 1549)
+App 172 output: 
+App 172 output: 
+App 172 output: [17:16:50] HEAD / (PID: 172)
+App 172 output: I, [2026-03-17T17:16:50.879294 #172]  INFO -- : Started HEAD "/" for 127.0.0.1 at 2026-03-17 17:16:50 +0000
+App 172 output: I, [2026-03-17T17:16:50.880038 #172]  INFO -- : Processing by DatabaseController#index as HTML
+App 172 output: I, [2026-03-17T17:16:51.058360 #172]  INFO -- :   Rendered html template (Duration: 0.0ms | Allocations: 2)
+App 172 output: I, [2026-03-17T17:16:51.058607 #172]  INFO -- : Completed 200 OK in 178ms (Views: 0.5ms | Allocations: 3524)
+App 172 output: 
+App 172 output: 
+App 172 output: [17:16:52] GET /databases/postgres (PID: 172)
+App 172 output: I, [2026-03-17T17:16:52.817491 #172]  INFO -- : Started GET "/databases/postgres" for 172.18.0.1 at 2026-03-17 17:16:52 +0000
+App 172 output: I, [2026-03-17T17:16:52.818385 #172]  INFO -- : Processing by DatabaseController#show_database as HTML
+App 172 output: I, [2026-03-17T17:16:52.818419 #172]  INFO -- :   Parameters: {"database"=>"postgres"}
+App 172 output: I, [2026-03-17T17:16:52.841527 #172]  INFO -- :   Rendered html template (Duration: 0.0ms | Allocations: 2)
+App 172 output: I, [2026-03-17T17:16:52.841658 #172]  INFO -- : Completed 200 OK in 23ms (Views: 0.3ms | Allocations: 3756)
+App 172 output: 
+App 172 output: 
+App 172 output: [17:16:54] GET /databases/postgres/query (PID: 172)
+App 172 output: I, [2026-03-17T17:16:54.674959 #172]  INFO -- : Started GET "/databases/postgres/query" for 172.18.0.1 at 2026-03-17 17:16:54 +0000
+App 172 output: I, [2026-03-17T17:16:54.675592 #172]  INFO -- : Processing by DatabaseController#query as HTML
+App 172 output: I, [2026-03-17T17:16:54.675620 #172]  INFO -- :   Parameters: {"database"=>"postgres"}
+App 172 output: I, [2026-03-17T17:16:54.675862 #172]  INFO -- :   Rendered html template (Duration: 0.0ms | Allocations: 2)
+App 172 output: I, [2026-03-17T17:16:54.675970 #172]  INFO -- : Completed 200 OK in 0ms (Views: 0.2ms | Allocations: 115)
+App 172 output: 
+App 172 output: 
+App 172 output: [17:17:07] POST /databases/postgres/query (PID: 172)
+App 172 output: I, [2026-03-17T17:17:07.799118 #172]  INFO -- : Started POST "/databases/postgres/query" for 172.18.0.1 at 2026-03-17 17:17:07 +0000
+App 172 output: I, [2026-03-17T17:17:07.799900 #172]  INFO -- : Processing by DatabaseController#query as HTML
+App 172 output: I, [2026-03-17T17:17:07.799932 #172]  INFO -- :   Parameters: {"query"=>"CREATE TABLE IF NOT EXISTS users (\r\n    id SERIAL PRIMARY KEY,\r\n    name VARCHAR(100),\r\n    email VARCHAR(100),\r\n    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP\r\n);", "database"=>"postgres"}
+App 172 output: I, [2026-03-17T17:17:07.827358 #172]  INFO -- :   Rendered html template (Duration: 0.0ms | Allocations: 2)
+App 172 output: I, [2026-03-17T17:17:07.827517 #172]  INFO -- : Completed 200 OK in 28ms (Views: 0.3ms | Allocations: 3688)
+App 172 output: 
+App 172 output: 
+App 172 output: [17:17:46] POST /databases/postgres/query (PID: 172)
+App 172 output: I, [2026-03-17T17:17:46.804343 #172]  INFO -- : Started POST "/databases/postgres/query" for 172.18.0.1 at 2026-03-17 17:17:46 +0000
+App 172 output: I, [2026-03-17T17:17:46.804988 #172]  INFO -- : Processing by DatabaseController#query as HTML
+App 172 output: I, [2026-03-17T17:17:46.805028 #172]  INFO -- :   Parameters: {"query"=>"INSERT INTO users (name, email) VALUES \r\n    ('John Doe', 'john@example.com'),\r\n    ('Jane Smith', 'jane@example.com'),\r\n    ('Bob Johnson', 'bob@example.com');", "database"=>"postgres"}
+App 172 output: I, [2026-03-17T17:17:46.829018 #172]  INFO -- :   Rendered html template (Duration: 0.0ms | Allocations: 2)
+App 172 output: I, [2026-03-17T17:17:46.829183 #172]  INFO -- : Completed 200 OK in 24ms (Views: 0.3ms | Allocations: 3681)
+App 172 output: 
+App 172 output: 
+App 172 output: [17:17:51] GET /databases/postgres (PID: 172)
+App 172 output: I, [2026-03-17T17:17:51.121497 #172]  INFO -- : Started GET "/databases/postgres" for 172.18.0.1 at 2026-03-17 17:17:51 +0000
+App 172 output: I, [2026-03-17T17:17:51.122224 #172]  INFO -- : Processing by DatabaseController#show_database as HTML
+App 172 output: I, [2026-03-17T17:17:51.122257 #172]  INFO -- :   Parameters: {"database"=>"postgres"}
+App 172 output: I, [2026-03-17T17:17:51.144729 #172]  INFO -- :   Rendered html template (Duration: 0.0ms | Allocations: 2)
+App 172 output: I, [2026-03-17T17:17:51.144869 #172]  INFO -- : Completed 200 OK in 23ms (Views: 0.3ms | Allocations: 3682)
+App 172 output: 
+App 172 output: 
+App 172 output: [17:17:52] GET /databases/postgres/tables/users (PID: 172)
+App 172 output: I, [2026-03-17T17:17:52.197164 #172]  INFO -- : Started GET "/databases/postgres/tables/users" for 172.18.0.1 at 2026-03-17 17:17:52 +0000
+App 172 output: I, [2026-03-17T17:17:52.197980 #172]  INFO -- : Processing by DatabaseController#show_table as HTML
+App 172 output: I, [2026-03-17T17:17:52.198023 #172]  INFO -- :   Parameters: {"database"=>"postgres", "table"=>"users"}
+App 172 output: I, [2026-03-17T17:17:52.223361 #172]  INFO -- :   Rendered html template (Duration: 0.0ms | Allocations: 2)
+App 172 output: I, [2026-03-17T17:17:52.223495 #172]  INFO -- : Completed 200 OK in 25ms (Views: 0.3ms | Allocations: 4182)
+App 172 output: 
+App 172 output: 
+App 172 output: [17:17:58] GET /databases/postgres (PID: 172)
+App 172 output: I, [2026-03-17T17:17:58.916517 #172]  INFO -- : Started GET "/databases/postgres" for 172.18.0.1 at 2026-03-17 17:17:58 +0000
+App 172 output: I, [2026-03-17T17:17:58.917288 #172]  INFO -- : Processing by DatabaseController#show_database as HTML
+App 172 output: I, [2026-03-17T17:17:58.917316 #172]  INFO -- :   Parameters: {"database"=>"postgres"}
+App 172 output: I, [2026-03-17T17:17:58.939497 #172]  INFO -- :   Rendered html template (Duration: 0.0ms | Allocations: 2)
+App 172 output: I, [2026-03-17T17:17:58.939634 #172]  INFO -- : Completed 200 OK in 22ms (Views: 0.3ms | Allocations: 3682)
+App 172 output: 
+App 172 output: 
+App 172 output: [17:18:14] GET /databases/postgres/tables/users (PID: 172)
+App 172 output: I, [2026-03-17T17:18:14.673569 #172]  INFO -- : Started GET "/databases/postgres/tables/users" for 172.18.0.1 at 2026-03-17 17:18:14 +0000
+App 172 output: I, [2026-03-17T17:18:14.674177 #172]  INFO -- : Processing by DatabaseController#show_table as HTML
+App 172 output: I, [2026-03-17T17:18:14.674206 #172]  INFO -- :   Parameters: {"database"=>"postgres", "table"=>"users"}
+App 172 output: I, [2026-03-17T17:18:14.701339 #172]  INFO -- :   Rendered html template (Duration: 0.0ms | Allocations: 2)
+App 172 output: I, [2026-03-17T17:18:14.701467 #172]  INFO -- : Completed 200 OK in 27ms (Views: 0.3ms | Allocations: 3999)
+App 172 output: 
+App 172 output: 
+App 172 output: [17:18:42] GET /databases/postgres/tables/users (PID: 172)
+App 172 output: I, [2026-03-17T17:18:42.954937 #172]  INFO -- : Started GET "/databases/postgres/tables/users" for 172.18.0.1 at 2026-03-17 17:18:42 +0000
+App 172 output: I, [2026-03-17T17:18:42.955730 #172]  INFO -- : Processing by DatabaseController#show_table as HTML
+App 172 output: I, [2026-03-17T17:18:42.955762 #172]  INFO -- :   Parameters: {"database"=>"postgres", "table"=>"users"}
+App 172 output: I, [2026-03-17T17:18:42.980173 #172]  INFO -- :   Rendered html template (Duration: 0.0ms | Allocations: 2)
+App 172 output: I, [2026-03-17T17:18:42.980301 #172]  INFO -- : Completed 200 OK in 24ms (Views: 0.3ms | Allocations: 3985)
+App 172 output: 
+App 172 output: 
+App 172 output: [17:18:44] GET /databases/postgres (PID: 172)
+App 172 output: I, [2026-03-17T17:18:44.701822 #172]  INFO -- : Started GET "/databases/postgres" for 172.18.0.1 at 2026-03-17 17:18:44 +0000
+App 172 output: I, [2026-03-17T17:18:44.702594 #172]  INFO -- : Processing by DatabaseController#show_database as HTML
+App 172 output: I, [2026-03-17T17:18:44.702625 #172]  INFO -- :   Parameters: {"database"=>"postgres"}
+App 172 output: I, [2026-03-17T17:18:44.723788 #172]  INFO -- :   Rendered html template (Duration: 0.0ms | Allocations: 2)
+App 172 output: I, [2026-03-17T17:18:44.723927 #172]  INFO -- : Completed 200 OK in 21ms (Views: 0.3ms | Allocations: 3682)
+App 172 output: 
+App 172 output: 
+App 172 output: [17:18:45] GET /databases/postgres/tables/users (PID: 172)
+App 172 output: I, [2026-03-17T17:18:45.857233 #172]  INFO -- : Started GET "/databases/postgres/tables/users" for 172.18.0.1 at 2026-03-17 17:18:45 +0000
+App 172 output: I, [2026-03-17T17:18:45.857757 #172]  INFO -- : Processing by DatabaseController#show_table as HTML
+App 172 output: I, [2026-03-17T17:18:45.857782 #172]  INFO -- :   Parameters: {"database"=>"postgres", "table"=>"users"}
+App 172 output: I, [2026-03-17T17:18:45.879538 #172]  INFO -- :   Rendered html template (Duration: 0.0ms | Allocations: 2)
+App 172 output: I, [2026-03-17T17:18:45.879667 #172]  INFO -- : Completed 200 OK in 22ms (Views: 0.3ms | Allocations: 3985)
+App 172 output: 
+App 172 output: 
+App 172 output: [17:19:40] GET /databases/postgres/tables/users (PID: 172)
+App 172 output: I, [2026-03-17T17:19:40.661455 #172]  INFO -- : Started GET "/databases/postgres/tables/users" for 172.18.0.1 at 2026-03-17 17:19:40 +0000
+App 172 output: I, [2026-03-17T17:19:40.662043 #172]  INFO -- : Processing by DatabaseController#show_table as HTML
+App 172 output: I, [2026-03-17T17:19:40.662077 #172]  INFO -- :   Parameters: {"database"=>"postgres", "table"=>"users"}
+App 172 output: I, [2026-03-17T17:19:40.685058 #172]  INFO -- :   Rendered html template (Duration: 0.0ms | Allocations: 2)
+App 172 output: I, [2026-03-17T17:19:40.685170 #172]  INFO -- : Completed 200 OK in 23ms (Views: 0.2ms | Allocations: 3985)
+App 172 output: 
+App 172 output: 
+App 172 output: [17:19:41] GET /databases/postgres (PID: 172)
+App 172 output: I, [2026-03-17T17:19:41.993906 #172]  INFO -- : Started GET "/databases/postgres" for 172.18.0.1 at 2026-03-17 17:19:41 +0000
+App 172 output: I, [2026-03-17T17:19:41.994581 #172]  INFO -- : Processing by DatabaseController#show_database as HTML
+App 172 output: I, [2026-03-17T17:19:41.994611 #172]  INFO -- :   Parameters: {"database"=>"postgres"}
+App 172 output: I, [2026-03-17T17:19:42.021100 #172]  INFO -- :   Rendered html template (Duration: 0.0ms | Allocations: 2)
+App 172 output: I, [2026-03-17T17:19:42.021222 #172]  INFO -- : Completed 200 OK in 27ms (Views: 0.2ms | Allocations: 3683)
+App 172 output: 
+App 172 output: 
+[ N 2026-03-17 17:21:50.9221 71/T5 age/Cor/CoreMain.cpp:1093 ]: Checking whether to disconnect long-running connections for process 191, application /app (development)
+
+[ N 2026-03-17 18:00:32.0725 71/T9 age/Cor/CoreMain.cpp:659 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2026-03-17 18:00:32.0725 71/T1 age/Cor/CoreMain.cpp:1192 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2026-03-17 18:00:32.0725 71/T1 age/Cor/CoreMain.cpp:1093 ]: Checking whether to disconnect long-running connections for process 172, application /app (development)
+[ N 2026-03-17 18:00:32.0726 71/T9 Ser/Server.h:895 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2026-03-17 18:00:32.0726 71/Tb Ser/Server.h:895 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2026-03-17 18:00:32.0726 71/T9 Ser/Server.h:552 ]: [ServerThr.1] Shutdown finished
+[ N 2026-03-17 18:00:32.0726 71/Tb Ser/Server.h:552 ]: [ServerThr.2] Shutdown finished
+[ N 2026-03-17 18:00:32.0727 71/Td Ser/Server.h:895 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2026-03-17 18:00:32.0727 71/Th Ser/Server.h:895 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2026-03-17 18:00:32.0727 71/Tj Ser/Server.h:895 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2026-03-17 18:00:32.0727 71/Tl Ser/Server.h:895 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2026-03-17 18:00:32.0727 71/Td Ser/Server.h:552 ]: [ServerThr.3] Shutdown finished
+[ N 2026-03-17 18:00:32.0727 71/Tp Ser/Server.h:895 ]: [ServerThr.9] Freed 0 spare client objects
+[ N 2026-03-17 18:00:32.0727 71/Tf Ser/Server.h:895 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2026-03-17 18:00:32.0727 71/Th Ser/Server.h:552 ]: [ServerThr.5] Shutdown finished
+[ N 2026-03-17 18:00:32.0727 71/Tj Ser/Server.h:552 ]: [ServerThr.6] Shutdown finished
+[ N 2026-03-17 18:00:32.0727 71/Tl Ser/Server.h:552 ]: [ServerThr.7] Shutdown finished
+[ N 2026-03-17 18:00:32.0727 71/Tp Ser/Server.h:552 ]: [ServerThr.9] Shutdown finished
+[ N 2026-03-17 18:00:32.0727 71/Tf Ser/Server.h:552 ]: [ServerThr.4] Shutdown finished
+[ N 2026-03-17 18:00:32.0727 71/Tn Ser/Server.h:895 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2026-03-17 18:00:32.0727 71/Tn Ser/Server.h:552 ]: [ServerThr.8] Shutdown finished
+[ N 2026-03-17 18:00:32.0727 71/Tr Ser/Server.h:895 ]: [ServerThr.10] Freed 0 spare client objects
+[ N 2026-03-17 18:00:32.0728 71/Tr Ser/Server.h:552 ]: [ServerThr.10] Shutdown finished
+[ N 2026-03-17 18:00:32.0728 71/Tt Ser/Server.h:895 ]: [ServerThr.11] Freed 0 spare client objects
+[ N 2026-03-17 18:00:32.0728 71/Tt Ser/Server.h:552 ]: [ServerThr.11] Shutdown finished
+[ N 2026-03-17 18:00:32.0728 71/Tv Ser/Server.h:895 ]: [ServerThr.12] Freed 0 spare client objects
+[ N 2026-03-17 18:00:32.0728 71/Tv Ser/Server.h:552 ]: [ServerThr.12] Shutdown finished
+[ N 2026-03-17 18:00:32.0729 71/Tx Ser/Server.h:895 ]: [ApiServer] Freed 0 spare client objects
+[ N 2026-03-17 18:00:32.0729 71/Tx Ser/Server.h:552 ]: [ApiServer] Shutdown finished
+[ N 2026-03-17 18:00:32.0730 71/T1 age/Cor/CoreMain.cpp:1093 ]: Checking whether to disconnect long-running connections for process 172, application /app (development)
+[ N 2026-03-18 09:28:00.7279 13/T1 age/Wat/WatchdogMain.cpp:1365 ]: Starting Passenger watchdog...
+[ N 2026-03-18 09:28:00.7424 17/T1 age/Cor/CoreMain.cpp:1284 ]: Starting Passenger core...
+[ N 2026-03-18 09:28:00.7427 17/T1 age/Cor/CoreMain.cpp:245 ]: Passenger core running in multi-application mode.
+[ N 2026-03-18 09:28:00.7789 17/T1 age/Cor/CoreMain.cpp:962 ]: Passenger core online, PID 17
+[ E 2026-03-18 09:28:02.7906 17/T6 age/Cor/SecurityUpdateChecker.h:506 ]: Security update check failed: Couldn't resolve host name while connecting to https://securitycheck.phusionpassenger.com/v1/check.json (check your DNS) (next check in 24 hours)
+App 72 output: ============================================================
+App 72 output: PG Admin - Database Management Tool
+App 72 output: ============================================================
+App 72 output: Starting with:
+App 72 output:   Ruby: 3.2.0
+App 72 output:   Rails: 7.0.10
+App 72 output:   Passenger: Phusion Passenger(R) 6.1.2
+App 72 output: ============================================================
+App 72 output: ✅ Connected to PostgreSQL successfully
+App 118 output: [09:28:04] HEAD / (PID: 118)
+App 118 output: I, [2026-03-18T09:28:04.833159 #118]  INFO -- : Started HEAD "/" for 127.0.0.1 at 2026-03-18 09:28:04 +0000
+App 118 output: I, [2026-03-18T09:28:04.848641 #118]  INFO -- : Processing by DatabaseController#index as HTML
+App 118 output: I, [2026-03-18T09:28:05.108633 #118]  INFO -- :   Rendered html template (Duration: 0.0ms | Allocations: 11)
+App 118 output: I, [2026-03-18T09:28:05.109050 #118]  INFO -- : Completed 200 OK in 260ms (Views: 9.2ms | Allocations: 4939)
+App 118 output: 
+App 118 output: 
+
+[ N 2026-03-18 09:32:53.1261 17/T9 age/Cor/CoreMain.cpp:659 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ N 2026-03-18 09:32:53.1262 17/T1 age/Cor/CoreMain.cpp:1192 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ N 2026-03-18 09:32:53.1263 17/T1 age/Cor/CoreMain.cpp:1093 ]: Checking whether to disconnect long-running connections for process 118, application /app (development)
+[ N 2026-03-18 09:32:53.1265 17/Th Ser/Server.h:895 ]: [ServerThr.5] Freed 0 spare client objects
+[ N 2026-03-18 09:32:53.1265 17/Td Ser/Server.h:895 ]: [ServerThr.3] Freed 0 spare client objects
+[ N 2026-03-18 09:32:53.1265 17/Tl Ser/Server.h:895 ]: [ServerThr.7] Freed 0 spare client objects
+[ N 2026-03-18 09:32:53.1266 17/Td Ser/Server.h:552 ]: [ServerThr.3] Shutdown finished
+[ N 2026-03-18 09:32:53.1266 17/Tl Ser/Server.h:552 ]: [ServerThr.7] Shutdown finished
+[ N 2026-03-18 09:32:53.1265 17/Tj Ser/Server.h:895 ]: [ServerThr.6] Freed 0 spare client objects
+[ N 2026-03-18 09:32:53.1266 17/T9 Ser/Server.h:895 ]: [ServerThr.1] Freed 0 spare client objects
+[ N 2026-03-18 09:32:53.1265 17/Tb Ser/Server.h:895 ]: [ServerThr.2] Freed 0 spare client objects
+[ N 2026-03-18 09:32:53.1266 17/Tb Ser/Server.h:552 ]: [ServerThr.2] Shutdown finished
+[ N 2026-03-18 09:32:53.1266 17/T9 Ser/Server.h:552 ]: [ServerThr.1] Shutdown finished
+[ N 2026-03-18 09:32:53.1265 17/Tn Ser/Server.h:895 ]: [ServerThr.8] Freed 0 spare client objects
+[ N 2026-03-18 09:32:53.1266 17/Tn Ser/Server.h:552 ]: [ServerThr.8] Shutdown finished
+[ N 2026-03-18 09:32:53.1266 17/Tj Ser/Server.h:552 ]: [ServerThr.6] Shutdown finished
+[ N 2026-03-18 09:32:53.1267 17/Tp Ser/Server.h:895 ]: [ServerThr.9] Freed 0 spare client objects
+[ N 2026-03-18 09:32:53.1267 17/Tp Ser/Server.h:552 ]: [ServerThr.9] Shutdown finished
+[ N 2026-03-18 09:32:53.1267 17/Tr Ser/Server.h:895 ]: [ServerThr.10] Freed 0 spare client objects
+[ N 2026-03-18 09:32:53.1267 17/Tr Ser/Server.h:552 ]: [ServerThr.10] Shutdown finished
+[ N 2026-03-18 09:32:53.1265 17/Th Ser/Server.h:552 ]: [ServerThr.5] Shutdown finished
+[ N 2026-03-18 09:32:53.1268 17/Tx Ser/Server.h:895 ]: [ApiServer] Freed 0 spare client objects
+[ N 2026-03-18 09:32:53.1269 17/Tx Ser/Server.h:552 ]: [ApiServer] Shutdown finished
+[ N 2026-03-18 09:32:53.1269 17/Tv Ser/Server.h:895 ]: [ServerThr.12] Freed 0 spare client objects
+[ N 2026-03-18 09:32:53.1269 17/Tv Ser/Server.h:552 ]: [ServerThr.12] Shutdown finished
+[ N 2026-03-18 09:32:53.1275 17/Tf Ser/Server.h:895 ]: [ServerThr.4] Freed 0 spare client objects
+[ N 2026-03-18 09:32:53.1275 17/Tf Ser/Server.h:552 ]: [ServerThr.4] Shutdown finished
+[ N 2026-03-18 09:32:53.1275 17/Tt Ser/Server.h:895 ]: [ServerThr.11] Freed 0 spare client objects
+[ N 2026-03-18 09:32:53.1275 17/Tt Ser/Server.h:552 ]: [ServerThr.11] Shutdown finished
+[ N 2026-03-18 09:32:53.1276 17/T1 age/Cor/CoreMain.cpp:1093 ]: Checking whether to disconnect long-running connections for process 118, application /app (development)
+[ N 2026-03-18 17:34:32.8684 13/T1 age/Wat/WatchdogMain.cpp:1365 ]: Starting Passenger watchdog...
+[ N 2026-03-18 17:34:32.8780 17/T1 age/Cor/CoreMain.cpp:1284 ]: Starting Passenger core...
+[ N 2026-03-18 17:34:32.8783 17/T1 age/Cor/CoreMain.cpp:245 ]: Passenger core running in multi-application mode.
+[ N 2026-03-18 17:34:32.9030 17/T1 age/Cor/CoreMain.cpp:962 ]: Passenger core online, PID 17
+[ N 2026-03-18 17:34:35.4336 17/T6 age/Cor/SecurityUpdateChecker.h:519 ]: Security update check: no update found (next check in 24 hours)
+App 72 output: ============================================================
+App 72 output: PG Admin - Database Management Tool
+App 72 output: ============================================================
+App 72 output: Starting with:
+App 72 output:   Ruby: 3.2.0
+App 72 output:   Rails: 7.0.10
+App 72 output:   Passenger: Phusion Passenger(R) 6.1.2
+App 72 output: ============================================================
+App 72 output: ✅ Connected to PostgreSQL successfully
+App 118 output: [17:34:36] HEAD / (PID: 118)
+App 118 output: I, [2026-03-18T17:34:36.228331 #118]  INFO -- : Started HEAD "/" for 127.0.0.1 at 2026-03-18 17:34:36 +0000
+App 118 output: I, [2026-03-18T17:34:36.238842 #118]  INFO -- : Processing by DatabaseController#index as HTML
+App 118 output: I, [2026-03-18T17:34:36.408517 #118]  INFO -- :   Rendered html template (Duration: 0.0ms | Allocations: 11)
+App 118 output: I, [2026-03-18T17:34:36.408849 #118]  INFO -- : Completed 200 OK in 170ms (Views: 7.9ms | Allocations: 4939)
+App 118 output: 
+App 118 output: 

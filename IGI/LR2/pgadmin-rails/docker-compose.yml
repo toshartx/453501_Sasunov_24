@@ -1,0 +1,50 @@
+# docker-compose.yml
+name: pgadmin
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: pgadmin_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: postgres  # изменено с password на postgres
+      POSTGRES_USER: postgres       # изменено с pgadmin на postgres
+      POSTGRES_DB: postgres         # можно оставить postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - pgadmin_network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]  # изменено на postgres
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    container_name: pgadmin_app
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/postgres  # изменено
+      RAILS_ENV: development
+      PASSENGER_APP_ENV: development
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - bundle_data:/usr/local/bundle
+    networks:
+      - pgadmin_network
+
+networks:
+  pgadmin_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  bundle_data:
