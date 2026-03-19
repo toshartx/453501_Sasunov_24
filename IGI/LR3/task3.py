@@ -7,6 +7,7 @@ def decor(func):
 
 @decor
 def solve_task3(string: str):
+    """Counts spaces and apostrophes in string parameter."""
     spaces = 0
     apostrophes = 0
 

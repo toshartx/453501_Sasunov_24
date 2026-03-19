@@ -1,4 +1,6 @@
-def correct_input(prompt: str, datatype: type = str):
+def correct_input(prompt: str = '', datatype: type = str):
+    """Provides correct input function specifying the required datatype.\n
+       You can also optionally specify a message to accompany the input."""
     while True:
         inputed = input(prompt)
         try:
@@ -8,6 +10,7 @@ def correct_input(prompt: str, datatype: type = str):
             continue
 
 def input_nums():
+    """Provides list of ints input."""
     nums: list = []
     while True:
         num = correct_input("", int)
@@ -16,6 +19,7 @@ def input_nums():
         nums.append(num)
 
 def gen_nums():
+    """Provides enumerable ints collection input."""
     num = 1                     # ???
     while num != 0:
         num = correct_input("", int)

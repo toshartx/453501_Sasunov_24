@@ -1,4 +1,5 @@
 def solve_task4a(string: str) -> int:
+    """Counts words with length less than 6."""
     counter: int = 0
 
     string.replace(",","")            # delete ,
