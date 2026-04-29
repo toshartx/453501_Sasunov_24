@@ -88,12 +88,12 @@ class UniversityController():
         
 
         
-unvsty = UniversityController()
-unvsty.csv_deserialize()
-unvsty.pickle_serialize()
-unvsty.pickle_deserialize()
-print(unvsty.count_destitute_students())
-print(unvsty.experience_bigger_than())
-print(unvsty.ended_technicume())
-print(unvsty.language_groups())
+# unvsty = UniversityController()
+# unvsty.csv_deserialize()
+# unvsty.pickle_serialize()
+# unvsty.pickle_deserialize()
+# print(unvsty.count_destitute_students())
+# print(unvsty.experience_bigger_than())
+# print(unvsty.ended_technicume())
+# print(unvsty.language_groups())
 
