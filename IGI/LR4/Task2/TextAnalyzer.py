@@ -42,7 +42,7 @@ class TextAnalyzer:
         sentences = re.split(r'[.!?]+', self.text)
         sentences = [s.strip() for s in sentences if s.strip()]
         
-        all_words = re.findall(r'\b\w+\b', self.text)
+        all_words = re.findall(r'\b\w+\'?\b', self.text)
         total_chars = sum(len(word) for word in all_words)
         avg_sentence_length = total_chars / total_sentences if total_sentences > 0 else 0
         
@@ -55,23 +55,21 @@ class TextAnalyzer:
         }
     
     def analyze_words(self) -> None:
-        words = re.findall(r"\b\w+\b", self.text)
+        words = re.findall(r"\b\w+\'?[a-zA-Z]+\b", self.text)
         avg_world_length = round(sum(len(word) for word in words) / len(words), 2)
         self.results['avg_words_length'] = avg_world_length                # print
 
     def analyze_smiles(self) -> None:
-        smiles = re.findall(r"[:;]-*[()\[\]]+", self.text)
-        # Фильтруем только смайлики с одинаковыми скобками
-        valid_smiles = []
-        for smile in smiles:
-            brackets = re.findall(r'[()\[\]]', smile)
-            if brackets and all(b == brackets[0] for b in brackets):
-                valid_smiles.append(smile)
-        self.results['smiles_count'] = len(valid_smiles)
-        self.results['smiles_list'] = valid_smiles
+        pattern = r'[:;]-*([()\[\]])\1*'
+    
+        matches = re.finditer(pattern, self.text)
+        smiles = [m.group() for m in matches]  
+        
+        self.results['smiles_count'] = len(smiles)
+        self.results['smiles_list'] = smiles
         
     def print_words_start_with_lower(self) -> None:
-        words = re.findall(r"\b[a-z]\w*\b", self.text)
+        words = re.findall(r"\b[a-z]\w*\'?[a-zA-Z]+\b", self.text)
         self.results['lowercase_words'] = words
 
     def print_puncts(self) -> None:
@@ -98,7 +96,7 @@ class TextAnalyzer:
 
     def find_words_with_identical_letters(self, c: int = 2):
         """Finds words with `c` identical letters and their IDs"""
-        all_words = re.findall(r"\b\w+\b", self.text)
+        all_words = re.findall(r"\b[a-zA-Z]+'?[a-zA-Z]+\b", self.text)
         words = []
         for i, word in enumerate(all_words):
             if re.search(r"(.)\1", word):
@@ -108,7 +106,7 @@ class TextAnalyzer:
 
     def print_sorted_words(self):
         """Prints words sorted in alphabet"""
-        all_words = re.findall(r"\b[a-zA-Z]+\b", self.text)
+        all_words = re.findall(r"\b[a-zA-Z]+'?[a-zA-Z]+\b", self.text)
         sorted_words = sorted(set(all_words), key=lambda x: x.lower())
         self.results['sorted_words'] = sorted_words
 
