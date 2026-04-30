@@ -1,1 +1,17 @@
-This sentence ends:)). The ;---( third onee: is about to stop! Another one begins. aaragachi! :-----)
+Hello! How are you? I am learning Python.
+    
+This is a very interesting programming language. It allows you to solve many problems!
+    
+Do you know what regular expressions are? They are very powerful tools.
+    
+Smileys: :-) :))) ;-) ;-----] :-[ ;]]]]] :)))) ;))) :---)
+    
+Double letters examples: book, letter, happy, funny, success, coffee.
+    
+More words: computer, programming, alphabet, bubble, beautiful.
+    
+MAC addresses: aE:dC:cA:56:76:54 and 01:23:45:67:89:Az.
+    
+Invalid smileys: ;--, :, ), ].
+    
+Let's finish the text analysis. Good luck!

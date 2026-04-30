@@ -1,0 +1,99 @@
+================================================================================
+РЕЗУЛЬТАТЫ АНАЛИЗА ТЕКСТА
+Дата и время анализа: 2026-04-30 00:34:50
+================================================================================
+
+1. АНАЛИЗ ПРЕДЛОЖЕНИЙ:
+   - Общее количество предложений: 13
+   - Повествовательных (.): 8
+   - Вопросительных (?): 2
+   - Побудительных (!): 3
+   - Средняя длина предложения: 27.54 символов
+
+2. АНАЛИЗ СЛОВ:
+   - Средняя длина слова: 4.71 символов
+   - Слова, начинающиеся со строчной буквы: are, you, am, learning, is, a, very, interesting, programming, language, allows, you, to, solve, many, problems, you, know, what, regular
+   - Количество слов, начинающихся с согласной: 55
+   - Слова, начинающиеся с согласной: hello, how, learning, python, this, very, programming, language, to, solve, many, problems, do, know, what, regular, they, very, powerful, tools
+
+3. СМАЙЛИКИ:
+   - Количество смайликов: 9
+   - Найденные смайлики: :-), :))), ;-), ;-----], :-[, ;]]]]], :)))), ;))), :---)
+
+4. ЗНАКИ ПРЕПИНАНИЯ:
+   - Последовательность: ! -> ? -> . -> . -> ! -> ? -> . -> : -> : -> , -> , -> , -> , -> , -> . -> : -> , -> , -> , -> , -> . -> : -> : -> : -> : -> : -> : -> : -> : -> : -> : -> : -> . -> : -> , -> , -> , -> . -> . -> !
+
+5. ПРОВЕРКА MAC-АДРЕСА:
+   - Адрес: aE:dC:cA:56:76:54
+   - Статус: КОРРЕКТНЫЙ
+
+6. СЛОВА С ДВУМЯ ОДИНАКОВЫМИ БУКВАМИ ПОДРЯД:
+   - Порядковый номер Hello: 0
+   - Порядковый номер programming: 13
+   - Порядковый номер allows: 16
+   - Порядковый номер expressions: 27
+   - Порядковый номер tools: 33
+   - Порядковый номер letters: 36
+   - Порядковый номер book: 38
+   - Порядковый номер letter: 39
+   - Порядковый номер happy: 40
+   - Порядковый номер funny: 41
+   - Порядковый номер success: 42
+   - Порядковый номер coffee: 43
+   - Порядковый номер programming: 47
+   - Порядковый номер bubble: 49
+   - Порядковый номер addresses: 52
+   - Порядковый номер Good: 74
+
+7. СЛОВА В АЛФАВИТНОМ ПОРЯДКЕ:
+   a
+   addresses
+   aE
+   allows
+   alphabet
+   am
+   analysis
+   and
+   are
+   Az
+   beautiful
+   book
+   bubble
+   cA
+   coffee
+   computer
+   dC
+   Do
+   Double
+   examples
+   expressions
+   finish
+   funny
+   Good
+   happy
+   Hello
+   How
+   I
+   interesting
+   Invalid
+   is
+   It
+   know
+   language
+   learning
+   Let
+   letter
+   letters
+   luck
+   MAC
+   many
+   More
+   powerful
+   problems
+   programming
+   Python
+   regular
+   s
+   Smileys
+   smileys
+   ... и еще 12 слов
