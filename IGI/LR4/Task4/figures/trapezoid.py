@@ -4,9 +4,9 @@ import matplotlib.patches as patches
 from matplotlib.patches import Polygon
 from abc import ABC, abstractmethod
 from .abstract_figure import GeometricFigure
-from .color import FigureColor
+from .color import FigureColorMixin
 
-class IsoscelesTrapezoid(GeometricFigure):
+class IsoscelesTrapezoid(GeometricFigure, FigureColorMixin):
     """
     Класс равнобедренной трапеции
     
@@ -20,11 +20,10 @@ class IsoscelesTrapezoid(GeometricFigure):
     # Поле данных класса (название фигуры)
     _figure_name = "Равнобедренная трапеция"
     
-    def __init__(self, a: float, b: float, angle: float, color: str):
+    def __init__(self, a: float, b: float, angle: float):
         self._a = a 
         self._b = b 
         self._angle = angle
-        self._color_obj = FigureColor(color)  
         
         self._c = self._calculate_top_base()
         
@@ -78,7 +77,7 @@ class IsoscelesTrapezoid(GeometricFigure):
                     b=self._b,
                     height=self._height,
                     angle=self._angle,
-                    color=self._color_obj.color,
+                    color=self.color,
                     area=self.calculate_area()
                 ))
     
@@ -101,7 +100,7 @@ class IsoscelesTrapezoid(GeometricFigure):
         
         return [(x1, y1), (x2, y2), (x3, y3), (x4, y4)]
     
-    def draw(self, text_label: str = None, save_filename: str = "output/trapezoid.png"):
+    def draw(self, text_label: str = '', save_filename: str = "output/trapezoid.png"):
         """
         Построение и отображение фигуры
         
@@ -114,7 +113,7 @@ class IsoscelesTrapezoid(GeometricFigure):
         vertices = self.get_vertices()
         
         trapezoid = Polygon(vertices, closed=True, 
-                           facecolor=self._color_obj.color, 
+                           facecolor=self.color, 
                            edgecolor='black', 
                            linewidth=2,
                            alpha=0.7)

@@ -1,4 +1,4 @@
-from figures.trapezoid import IsoscelesTrapezoid
+from Task4.figures.trapezoid import IsoscelesTrapezoid
 
 def validate_positive(value: float, name: str) -> bool:
     """
@@ -130,8 +130,9 @@ def main():
         a=params['a'],
         b=params['b'],
         angle=params['angle'],
-        color=params['color']
     )
+
+    trapezoid.color = params['color']
     
     # Вывод параметров фигуры
     print("\n" + "="*60)

@@ -1,8 +1,5 @@
-class FigureColor:
+class FigureColorMixin:
     """Класс для хранения цвета геометрической фигуры"""
-    
-    def __init__(self, color: str):
-        self._color = color
     
     @property
     def color(self) -> str:
