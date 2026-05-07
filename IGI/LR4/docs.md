@@ -587,3 +587,484 @@ print(arr_clean)
 # Удаление NaN
 arr_no_nan = arr[~np.isnan(arr)]       # [1., 2., 4., 6.]
 ```
+
+## pandas
+
+```py
+# ============================================================================
+# PANDAS ШПАРГАЛКА - полный блок кода с комментариями
+# ============================================================================
+
+import pandas as pd
+import numpy as np
+
+# ============================================================================
+# 1. СОЗДАНИЕ SERIES И DATAFRAME
+# ============================================================================
+
+# 1.1 Series - одномерный массив с индексами
+s1 = pd.Series([1, 2, 3, 4, 5])
+s2 = pd.Series([1, 2, 3, 4, 5], index=['a', 'b', 'c', 'd', 'e'])
+s3 = pd.Series({'a': 1, 'b': 2, 'c': 3})  # из словаря
+s4 = pd.Series([1, 2, 3], dtype=float)     # с типом данных
+
+# 1.2 DataFrame - двумерная таблица
+# Из списка списков
+df1 = pd.DataFrame([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
+
+# Из словаря (ключи = названия столбцов)
+df2 = pd.DataFrame({
+    'Name': ['Alice', 'Bob', 'Charlie'],
+    'Age': [25, 30, 35],
+    'City': ['New York', 'London', 'Paris']
+})
+
+# Из списка словарей
+df3 = pd.DataFrame([
+    {'Name': 'Alice', 'Age': 25, 'City': 'NY'},
+    {'Name': 'Bob', 'Age': 30, 'City': 'London'},
+    {'Name': 'Charlie', 'Age': 35, 'City': 'Paris'}
+])
+
+# С указанием индексов строк
+df4 = pd.DataFrame(df2.values, index=['row1', 'row2', 'row3'], columns=df2.columns)
+
+# 1.3 Функции создания DataFrame заданного вида
+df_zeros = pd.DataFrame(np.zeros((3, 4)))           # из numpy
+df_ones = pd.DataFrame(np.ones((2, 3)))             # из numpy
+df_range = pd.DataFrame({'A': range(5), 'B': range(5, 10)})
+df_random = pd.DataFrame(np.random.rand(3, 4))      # случайные числа
+
+# 1.4 Просмотр информации
+print(df2.head(2))       # первые 2 строки
+print(df2.tail(2))       # последние 2 строки
+print(df2.info())        # информация о DataFrame
+print(df2.describe())    # статистика по числовым столбцам
+print(df2.shape)         # (3, 3) - строки, столбцы
+print(df2.columns)       # Index(['Name', 'Age', 'City'])
+print(df2.index)         # RangeIndex(start=0, stop=3, step=1)
+print(df2.dtypes)        # типы данных каждого столбца
+
+# ============================================================================
+# 2. ИНДЕКСАЦИЯ И СРЕЗЫ
+# ============================================================================
+
+df = pd.DataFrame({
+    'A': [1, 2, 3, 4, 5],
+    'B': [10, 20, 30, 40, 50],
+    'C': [100, 200, 300, 400, 500]
+})
+
+# 2.1 Выбор столбцов
+print(df['A'])           # один столбец -> Series
+print(df[['A', 'C']])    # несколько столбцов -> DataFrame
+print(df.A)              # то же что df['A'] (если имя без пробелов)
+
+# 2.2 Выбор строк по индексу
+print(df.loc[2])         # строка с индексом 2
+print(df.loc[1:3])       # строки с 1 по 3 (включительно)
+print(df.iloc[0])        # первая строка (по позиции)
+print(df.iloc[1:3])      # строки 1 и 2 (по позиции)
+
+# 2.3 Условная выборка
+print(df[df['A'] > 3])           # строки где A > 3
+print(df[(df['A'] > 2) & (df['B'] < 40)])  # комбинированное условие
+print(df[df['C'].isin([200, 400])])        # in условие
+
+# 2.4 loc и iloc (основные методы индексации)
+print(df.loc[0:2, 'A':'B'])      # строки 0-2, столбцы A-B
+print(df.iloc[0:2, 0:2])         # строки 0-1, столбцы 0-1
+print(df.loc[df['A'] > 2, ['A', 'C']])  # условие + нужные столбцы
+
+# 2.5 Атрибуты Series и DataFrame
+print(s1.values)         # массив значений [1 2 3 4 5]
+print(s1.index)          # индексы
+print(s1.name = 'my_series')  # задать имя
+print(df.values)         # numpy массив из DataFrame
+
+# ============================================================================
+# 3. ОПЕРАЦИИ С ДАННЫМИ
+# ============================================================================
+
+# 3.1 Арифметические операции (поэлементно)
+df = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]})
+print(df + 10)           # прибавить ко всем элементам
+print(df * 2)            # умножить все элементы на 2
+print(df ** 2)           # возвести в квадрат
+
+# Между DataFrame
+df2 = pd.DataFrame({'A': [10, 20, 30], 'B': [40, 50, 60]})
+print(df + df2)          # сложение поэлементно
+
+# С Series (broadcast)
+s = pd.Series([1, 2], index=['A', 'B'])
+print(df + s)            # Series выравнивается по индексам
+
+# 3.2 Работа с пропущенными данными (NaN)
+df_nan = pd.DataFrame({
+    'A': [1, 2, np.nan, 4],
+    'B': [5, np.nan, np.nan, 8],
+    'C': [9, 10, 11, 12]
+})
+
+print(df_nan.isna())             # проверка на NaN
+print(df_nan.isnull())           # то же самое
+print(df_nan.dropna())           # удалить строки с NaN
+print(df_nan.dropna(axis=1))     # удалить столбцы с NaN
+print(df_nan.fillna(0))          # заполнить NaN нулями
+print(df_nan.fillna(df_nan.mean()))  # заполнить средним
+print(df_nan.interpolate())      # интерполяция
+
+# 3.3 Универсальные функции (можно применять к столбцам)
+print(df.apply(np.sum))                     # сумма по столбцам
+print(df.apply(lambda x: x.max() - x.min())) # размах по столбцам
+print(df['A'].apply(lambda x: x * 2))        # применить к столбцу
+
+# 3.4 map и applymap
+print(df['A'].map({1: 'one', 2: 'two', 3: 'three'}))  # замена по словарю
+print(df.applymap(lambda x: x * 10))                   # применить ко всем элементам
+
+# 3.5 Добавление и удаление столбцов
+df['D'] = [7, 8, 9]                    # добавить столбец
+df['E'] = df['A'] + df['B']            # новый столбец из вычислений
+df.insert(1, 'New', [100, 200, 300])   # вставить на позицию 1
+df.drop('D', axis=1, inplace=True)     # удалить столбец
+df.drop(0, axis=0, inplace=True)       # удалить строку
+
+# 3.6 Фильтрация и сортировка
+df_sorted = df.sort_values(by='A')              # сортировка по столбцу A
+df_sorted = df.sort_values(by=['A', 'B'])       # по нескольким столбцам
+df_sorted = df.sort_index(ascending=False)      # сортировка по индексу
+
+# 3.7 Группировка
+df_group = pd.DataFrame({
+    'Category': ['A', 'A', 'B', 'B', 'C'],
+    'Value': [10, 20, 30, 40, 50],
+    'Score': [1, 2, 3, 4, 5]
+})
+
+grouped = df_group.groupby('Category')
+print(grouped.sum())           # сумма по группам
+print(grouped.mean())          # среднее по группам
+print(grouped.agg(['sum', 'mean', 'count']))  # несколько агрегаций
+
+# ============================================================================
+# 4. СТАТИСТИЧЕСКИЕ ФУНКЦИИ
+# ============================================================================
+
+df_stats = pd.DataFrame({
+    'A': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    'B': [10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+    'C': [5, 3, 8, 2, 9, 1, 7, 4, 6, 10]
+})
+
+# 4.1 mean() - среднее арифметическое
+print(df_stats.mean())           # среднее по каждому столбцу
+print(df_stats.mean(axis=1))     # среднее по строкам
+print(df_stats['A'].mean())      # среднее одного столбца
+
+# 4.2 median() - медиана
+print(df_stats.median())
+print(df_stats['B'].median())
+
+# 4.3 corr() - коэффициент корреляции
+print(df_stats.corr())           # матрица корреляций
+print(df_stats['A'].corr(df_stats['B']))  # корреляция между A и B
+
+# 4.4 var() - дисперсия
+print(df_stats.var())            # дисперсия по столбцам
+print(df_stats['A'].var())       # дисперсия одного столбца
+
+# 4.5 std() - стандартное отклонение
+print(df_stats.std())
+print(df_stats['C'].std())
+
+# 4.6 Другие статистические функции
+print(df_stats.sum())            # сумма
+print(df_stats.min())            # минимум
+print(df_stats.max())            # максимум
+print(df_stats.count())          # количество ненулевых значений
+print(df_stats.describe())       # все основные статистики сразу
+
+# Квартили и процентили
+print(df_stats.quantile(0.25))   # 1-й квартиль
+print(df_stats.quantile([0.25, 0.5, 0.75]))  # все квартили
+
+# Кумулятивные функции
+print(df_stats.cumsum())         # кумулятивная сумма
+print(df_stats.cumprod())        # кумулятивное произведение
+print(df_stats.cummax())         # кумулятивный максимум
+print(df_stats.cummin())         # кумулятивный минимум
+
+# ============================================================================
+# 5. ОБЪЕДИНЕНИЕ И СОЕДИНЕНИЕ ДАННЫХ
+# ============================================================================
+
+# 5.1 concat - объединение
+df_a = pd.DataFrame({'A': [1, 2, 3], 'B': [4, 5, 6]})
+df_b = pd.DataFrame({'A': [7, 8, 9], 'B': [10, 11, 12]})
+
+print(pd.concat([df_a, df_b]))               # по вертикали (строки)
+print(pd.concat([df_a, df_b], axis=1))       # по горизонтали (столбцы)
+print(pd.concat([df_a, df_b], ignore_index=True))  # сбросить индексы
+
+# 5.2 merge - соединение по ключу
+left = pd.DataFrame({
+    'key': ['A', 'B', 'C'],
+    'value_left': [1, 2, 3]
+})
+right = pd.DataFrame({
+    'key': ['A', 'B', 'D'],
+    'value_right': [4, 5, 6]
+})
+
+print(pd.merge(left, right, on='key'))                # inner join
+print(pd.merge(left, right, on='key', how='left'))    # left join
+print(pd.merge(left, right, on='key', how='right'))   # right join
+print(pd.merge(left, right, on='key', how='outer'))   # outer join
+
+# 5.3 join - соединение по индексу
+df1 = pd.DataFrame({'A': [1, 2, 3]}, index=['X', 'Y', 'Z'])
+df2 = pd.DataFrame({'B': [4, 5, 6]}, index=['X', 'Y', 'W'])
+print(df1.join(df2, how='inner'))
+
+# ============================================================================
+# 6. РАБОТА С CSV ФАЙЛАМИ
+# ============================================================================
+
+# 6.1 Чтение CSV
+# df_csv = pd.read_csv('file.csv')
+# df_csv = pd.read_csv('file.csv', sep=';')                    # другой разделитель
+# df_csv = pd.read_csv('file.csv', encoding='utf-8')           # кодировка
+# df_csv = pd.read_csv('file.csv', index_col=0)                # первый столбец как индекс
+# df_csv = pd.read_csv('file.csv', header=None)                # без заголовка
+# df_csv = pd.read_csv('file.csv', nrows=100)                  # только 100 строк
+
+# 6.2 Запись в CSV
+# df.to_csv('output.csv', index=False)          # без индексов
+# df.to_csv('output.csv', encoding='utf-8')     # с кодировкой
+# df.to_csv('output.csv', sep=';')              # другой разделитель
+
+# ============================================================================
+# 7. БЫСТРЫЕ ПРИМЕРЫ ДЛЯ ПОВСЕДНЕВНЫХ ЗАДАЧ
+# ============================================================================
+
+# 7.1 Создание тестовых данных
+df_test = pd.DataFrame({
+    'date': pd.date_range('2024-01-01', periods=10),
+    'value': np.random.randn(10),
+    'category': ['A', 'B', 'A', 'B', 'C', 'C', 'A', 'B', 'C', 'A']
+})
+
+# 7.2 Установка и сброс индекса
+df_test.set_index('date', inplace=True)      # установить дату как индекс
+df_test.reset_index(inplace=True)            # сбросить индекс
+
+# 7.3 Переименование столбцов
+df_renamed = df_test.rename(columns={'value': 'score', 'category': 'group'})
+
+# 7.4 Обработка дубликатов
+df_dup = pd.DataFrame({'A': [1, 1, 2, 2, 3], 'B': [1, 2, 3, 4, 5]})
+print(df_dup.duplicated())          # проверка на дубликаты
+print(df_dup.drop_duplicates())     # удалить дубликаты
+print(df_dup.drop_duplicates(subset=['A']))  # по столбцу A
+
+# 7.5 Pivot tables (сводные таблицы)
+df_pivot = pd.DataFrame({
+    'Date': ['2024-01-01', '2024-01-01', '2024-01-02', '2024-01-02'],
+    'Product': ['A', 'B', 'A', 'B'],
+    'Sales': [100, 200, 150, 250]
+})
+pivot = df_pivot.pivot(index='Date', columns='Product', values='Sales')
+print(pivot)
+
+# 7.6 Работа с временными рядами
+df_time = pd.DataFrame({
+    'date': pd.date_range('2024-01-01', periods=100),
+    'value': np.random.randn(100)
+})
+df_time.set_index('date', inplace=True)
+print(df_time.resample('ME').mean())        # помесячная агрегация
+print(df_time.rolling(window=7).mean())     # скользящее среднее за 7 дней
+
+# 7.7 Замена значений
+df_replace = pd.DataFrame({'A': [1, 2, 3, 4, 5], 'B': ['x', 'y', 'z', 'x', 'y']})
+df_replace['A'] = df_replace['A'].replace({1: 10, 2: 20, 3: 30})
+df_replace['B'] = df_replace['B'].replace({'x': 'X', 'y': 'Y', 'z': 'Z'})
+
+# 7.8 Работа с категориями
+df_cat = pd.DataFrame({'grade': ['A', 'B', 'C', 'A', 'B']})
+df_cat['grade'] = pd.Categorical(df_cat['grade'], categories=['A', 'B', 'C'], ordered=True)
+
+# 7.9 Query метод
+df_query = pd.DataFrame({'A': [1, 2, 3, 4], 'B': [5, 6, 7, 8], 'C': [9, 10, 11, 12]})
+print(df_query.query('A > 2 and B < 8'))
+print(df_query.query('C in [9, 11]'))
+
+# 7.10 Memory optimization
+print(df_query.memory_usage(deep=True))    # использование памяти
+df_optimized = df_query.astype({'A': 'int8', 'B': 'int8', 'C': 'int8'})
+
+# ============================================================================
+# 8. РАБОТА С ТЕКСТОВЫМИ ДАННЫМИ
+# ============================================================================
+
+df_text = pd.DataFrame({
+    'text': ['Hello World', 'Python Pandas', 'Data Analysis', 'Machine Learning'],
+    'number': [1, 2, 3, 4]
+})
+
+print(df_text['text'].str.lower())           # в нижний регистр
+print(df_text['text'].str.upper())           # в верхний регистр
+print(df_text['text'].str.contains('Python'))  # содержит подстроку
+print(df_text['text'].str.replace(' ', '_'))   # замена
+print(df_text['text'].str.split(' '))        # разделение
+print(df_text['text'].str.len())             # длина строк
+
+# ============================================================================
+# 9. ПОЛЕЗНЫЕ ФУНКЦИИ
+# ============================================================================
+
+# 9.1 sample - случайная выборка
+print(df_test.sample(n=3))              # 3 случайные строки
+print(df_test.sample(frac=0.5))         # 50% строк
+
+# 9.2 nlargest и nsmallest
+print(df_stats.nlargest(3, 'A'))        # 3 наибольших по столбцу A
+print(df_stats.nsmallest(3, 'B'))       # 3 наименьших по столбцу B
+
+# 9.3 value_counts - подсчет уникальных значений
+print(df_test['category'].value_counts())        # частоты
+print(df_test['category'].value_counts(normalize=True))  # в долях
+
+# 9.4 unique и nunique
+print(df_test['category'].unique())      # уникальные значения
+print(df_test['category'].nunique())     # количество уникальных
+
+# 9.5 rank - ранжирование
+print(df_stats['A'].rank())              # ранги
+print(df_stats['A'].rank(ascending=False))  # обратный порядок
+
+# 9.6 diff и pct_change
+print(df_stats['A'].diff())              # разница с предыдущим
+print(df_stats['A'].pct_change())        # процентное изменение
+
+# 9.7 where - условная замена
+print(df_stats['A'].where(df_stats['A'] > 5, 0))  # >5 оставить, иначе 0
+
+# 9.8 clip - ограничение значений
+print(df_stats['A'].clip(3, 8))          # значения от 3 до 8
+
+# ============================================================================
+# 10. ПРИМЕРЫ РАБОТЫ С РЕАЛЬНЫМИ ДАННЫМИ
+# ============================================================================
+
+# 10.1 Загрузка и быстрый анализ
+def quick_analysis(df):
+    """Быстрый анализ DataFrame"""
+    print(f"Shape: {df.shape}")
+    print(f"Columns: {list(df.columns)}")
+    print(f"Missing values:\n{df.isna().sum()}")
+    print(f"Data types:\n{df.dtypes}")
+    print(f"Statistics:\n{df.describe()}")
+    return df.info()
+
+# 10.2 Очистка данных
+def clean_dataframe(df):
+    """Очистка DataFrame"""
+    # Удаление дубликатов
+    df = df.drop_duplicates()
+    
+    # Удаление столбцов со всеми NaN
+    df = df.dropna(axis=1, how='all')
+    
+    # Заполнение NaN
+    for col in df.select_dtypes(include=[np.number]).columns:
+        df[col] = df[col].fillna(df[col].median())
+    
+    for col in df.select_dtypes(include=['object']).columns:
+        df[col] = df[col].fillna('Unknown')
+    
+    return df
+
+# 10.3 Агрегация по группам
+def aggregate_by_group(df, group_col, agg_cols):
+    """Агрегация по группе"""
+    return df.groupby(group_col)[agg_cols].agg(['mean', 'median', 'std', 'count'])
+
+# 10.4 Фильтрация выбросов
+def remove_outliers(df, column, n_std=3):
+    """Удаление выбросов по n стандартных отклонений"""
+    mean = df[column].mean()
+    std = df[column].std()
+    return df[(df[column] >= mean - n_std * std) & (df[column] <= mean + n_std * std)]
+
+# ============================================================================
+# 11. ПРОИЗВОДИТЕЛЬНОСТЬ
+# ============================================================================
+
+# 11.1 Использование eval (быстрее чем query)
+df_eval = pd.DataFrame({'A': np.random.rand(1000), 'B': np.random.rand(1000)})
+result = df_eval.eval('A > 0.5 and B < 0.5')
+
+# 11.2 Использование векторизации вместо циклов
+# Медленно:
+# for i in range(len(df)):
+#     df.loc[i, 'new'] = df.loc[i, 'A'] + df.loc[i, 'B']
+
+# Быстро (векторизовано):
+df_eval['new'] = df_eval['A'] + df_eval['B']
+
+# 11.3 Выбор типа данных для экономии памяти
+df_mem = pd.DataFrame({
+    'int64_default': np.random.randint(0, 100, 1000),
+    'int8_optimized': np.random.randint(0, 100, 1000, dtype=np.int8)
+})
+print(df_mem.memory_usage(deep=True))
+
+# ============================================================================
+# 12. КРАТКАЯ ШПАРГАЛКА (САМОЕ ВАЖНОЕ)
+# ============================================================================
+
+# Создание
+df = pd.DataFrame({'col1': [1, 2, 3], 'col2': [4, 5, 6]})
+
+# Просмотр
+df.head()       # первые 5 строк
+df.info()       # информация
+df.describe()   # статистика
+
+# Выборка
+df['col1']                 # один столбец
+df[['col1', 'col2']]       # несколько столбцов
+df.loc[0]                  # строка по индексу
+df.iloc[0]                 # первая строка
+df[df['col1'] > 2]         # фильтрация
+
+# Изменение
+df['new'] = df['col1'] * 2   # новый столбец
+df.drop('new', axis=1)       # удалить столбец
+df.rename(columns={'col1': 'new_name'})  # переименовать
+
+# Объединение
+pd.concat([df1, df2])        # объединить строки
+pd.merge(df1, df2, on='key')  # соединить по ключу
+
+# Статистика
+df.mean()        # среднее
+df.median()      # медиана
+df.std()         # стандартное отклонение
+df.var()         # дисперсия
+df.corr()        # корреляции
+
+# Группировка
+df.groupby('col').mean()
+
+# Пропуски
+df.isna().sum()      # количество NaN
+df.fillna(0)         # заполнить NaN
+df.dropna()          # удалить NaN
+
+# Сохранение
+df.to_csv('file.csv', index=False)
+```

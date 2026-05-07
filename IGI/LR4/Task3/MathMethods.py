@@ -280,7 +280,7 @@ class SeriesAnalyzer:
 def main():
     X_START = -0.8      
     X_END = 0.8         
-    X_STEP = 0.2        
+    X_STEP = 0.1        
     N_TERMS = 500        
     
     analyzer = SeriesAnalyzer(X_START, X_END, X_STEP, N_TERMS)

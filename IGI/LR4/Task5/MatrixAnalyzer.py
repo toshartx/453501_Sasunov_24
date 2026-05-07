@@ -35,11 +35,5 @@ class MatrixAnalyzer:
         coef = np.corrcoef(col_1, col_2)
         print("Матрица коэффицентов корреляции между выбранными столбцами:\n", np.round(coef,2))
 
-def main():
-    ma = MatrixAnalyzer()
-    ma.change_maxes_in(0,4)
-    ma.correlation_coef(0,4)
 
-if __name__ == "__main__":
-    main()
 

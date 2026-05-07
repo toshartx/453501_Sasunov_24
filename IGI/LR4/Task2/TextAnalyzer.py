@@ -192,16 +192,21 @@ class TextAnalyzer:
         
         print(f"\n✅ Файл {os.path.basename(self.output_file)} заархивирован в {archive_name}")
 
-ta = TextAnalyzer()
-ta.read_text()
-ta.analyze_sentences()
-ta.analyze_words()
-ta.analyze_smiles()
-ta.print_words_start_with_lower()
-ta.print_puncts()
-ta.validate_mac_address()
-ta.count_words_start_with_consonant()
-ta.find_words_with_identical_letters()
-ta.print_sorted_words()
-ta.save_results_to_file()
-ta.archive_results()
+
+def main():
+    ta = TextAnalyzer()
+    ta.read_text()
+    ta.analyze_sentences()
+    ta.analyze_words()
+    ta.analyze_smiles()
+    ta.print_words_start_with_lower()
+    ta.print_puncts()
+    ta.validate_mac_address()
+    ta.count_words_start_with_consonant()
+    ta.find_words_with_identical_letters()
+    ta.print_sorted_words()
+    ta.save_results_to_file()
+    ta.archive_results()
+
+if __name__ == '__main__':
+    main()

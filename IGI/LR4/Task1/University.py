@@ -33,6 +33,15 @@ class UniversityController():
         """Adding student to dictionary"""
         self.__dictionary[surname] = info
 
+    def get_studentinfo_by_name(self) -> StudentInfo:
+        while True:
+            name = input("Введите фамилию студента: ")
+            try:
+                return self.__dictionary[name]
+            except KeyError:
+                print("Такого студента нет в базе")
+                
+
     def count_destitute_students(self) -> int:
         destitutes = [student for student in self.__dictionary.values() if student.is_needed() == False]
         return len(destitutes)
@@ -81,19 +90,43 @@ class UniversityController():
     def pickle_deserialize(self) -> None:
         with open(file="Task1/data/students.bin", mode="rb") as f:
             self.__dictionary = pickle.load(f)
-                
-                
-
-
+            
         
+           
+def main():
+    controller = UniversityController() 
 
-        
-# unvsty = UniversityController()
-# unvsty.csv_deserialize()
-# unvsty.pickle_serialize()
-# unvsty.pickle_deserialize()
-# print(unvsty.count_destitute_students())
-# print(unvsty.experience_bigger_than())
-# print(unvsty.ended_technicume())
-# print(unvsty.language_groups())
+    while True:
+        serializer = input("Введите способ десериализации\n     1 - csv\n     2 - pickle \n")
+        if serializer == '1':
+            try:
+                controller.csv_deserialize()
+            except:
+                print("Ошибка CSV-десериализации")
+            else:
+                print("CSV десериализация прошла успешно!")
+                
+            break
+        elif serializer == '2':
+            try:
+                controller.pickle_deserialize()
+            except Exception as e:
+                print(f"Ошибка десериализации pickle {e}")
+            else:
+                print("pickle десериализация прошла успешно!")
+
+            break
+        else:
+            print('Нет указанного способа десериализации!')
+    
+    print(f"{20 * '-'} ЗАДАНИЕ {20 * '-'}")
+    print('Нуждающиеся в общежитии: ', controller.count_destitute_students())
+    print('Опыт работы больше 2 лет: ', controller.experience_bigger_than())
+    print('Закончили техникум: ', controller.ended_technicume())
+    print('Языковые группы: ', controller.language_groups())
+    print(f"{20 * '-'} Ввод фамилии с клавиатуры {20 * '-'}")
+    print(controller.get_studentinfo_by_name())
+
+if __name__ == "__main__":
+    main()
 
