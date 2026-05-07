@@ -1,0 +1,27 @@
+# __pycache__ - не добавлять в индекс
+__pycache__/
+*.pyc
+
+# Файлы данных (если не хотите их в репозитории)
+Task1/data/*.bin
+Task1/data/*.csv
+Task2/data/
+Task3/data/
+Task4/data/
+Task5/data/
+Task6/data/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Virtual environment
+venv/
+env/
+
+# Logs
+*.log
