@@ -40,11 +40,14 @@ class RegistrationForm(UserCreationForm):
         user.email = self.cleaned_data['email']
         if commit:
             user.save()
-            Client.objects.create(
+            # Проверяем, существует ли уже клиент (на случай, если сигнал уже создал)
+            Client.objects.update_or_create(
                 user=user,
-                phone=self.cleaned_data['phone'],
-                birth_date=self.cleaned_data['birth_date'],
-                address=self.cleaned_data['address']
+                defaults={
+                    'phone': self.cleaned_data['phone'],
+                    'birth_date': self.cleaned_data['birth_date'],
+                    'address': self.cleaned_data['address']
+                }
             )
         return user
 

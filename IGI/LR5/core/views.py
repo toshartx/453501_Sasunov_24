@@ -91,9 +91,8 @@ def promocodes(request):
     })
 
 
-from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, authenticate, logout
 from .forms import RegistrationForm, LoginForm
 
 def register(request):
@@ -102,8 +101,9 @@ def register(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
+            # Автоматически входим после регистрации
             login(request, user)
-            return redirect('core:home')
+            return redirect('core:home')  # Перенаправляем на главную
     else:
         form = RegistrationForm()
     return render(request, 'core/register.html', {'form': form})
