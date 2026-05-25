@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Employee, ProductType, Product, Client, Order, OrderItem
+from .models import Employee, ProductType, Product, Client, Order, OrderItem, News
 
 @admin.register(Employee)
 class EmployeeAdmin(admin.ModelAdmin):
@@ -54,3 +54,49 @@ class NewsAdmin(admin.ModelAdmin):
     search_fields = ('title', 'summary')
     list_editable = ('is_published',)
     readonly_fields = ('published_date',)
+
+from .models import CompanyHistory, CompanyRequisite
+
+@admin.register(CompanyHistory)
+class CompanyHistoryAdmin(admin.ModelAdmin):
+    list_display = ('year', 'event', 'order')
+    list_editable = ('order',)
+    search_fields = ('year', 'event')
+
+@admin.register(CompanyRequisite)
+class CompanyRequisiteAdmin(admin.ModelAdmin):
+    list_display = ('name', 'value', 'order')
+    list_editable = ('order',)
+    search_fields = ('name',)
+
+from .models import Glossary
+
+@admin.register(Glossary)
+class GlossaryAdmin(admin.ModelAdmin):
+    list_display = ('question', 'added_date', 'is_published')
+    list_filter = ('is_published', 'added_date')
+    search_fields = ('question', 'answer')
+    list_editable = ('is_published',)
+    readonly_fields = ('added_date',)
+
+from .models import Contact, Vacancy, Review, PromoCode
+
+@admin.register(Contact)
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ('name', 'position', 'phone', 'email', 'order')
+    list_editable = ('order',)
+
+@admin.register(Vacancy)
+class VacancyAdmin(admin.ModelAdmin):
+    list_display = ('title', 'salary', 'published_date', 'is_active')
+    list_editable = ('is_active',)
+
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ('client_name', 'rating', 'created_date', 'is_published')
+    list_editable = ('is_published',)
+
+@admin.register(PromoCode)
+class PromoCodeAdmin(admin.ModelAdmin):
+    list_display = ('code', 'discount_percent', 'valid_from', 'valid_to', 'is_active')
+    list_editable = ('is_active',)

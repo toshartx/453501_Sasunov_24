@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Вакансии{% endblock %}
+
+{% block content %}
+<h1>Вакансии</h1>
+
+{% if vacancies %}
+    {% for vacancy in vacancies %}
+        <div style="border-bottom: 1px solid #ccc; margin-bottom: 20px; padding-bottom: 10px;">
+            <h2>{{ vacancy.title }}</h2>
+            <p><strong>Зарплата:</strong> {{ vacancy.salary|default:"не указана" }}</p>
+            <p><strong>Описание:</strong></p>
+            <p>{{ vacancy.description|linebreaks }}</p>
+            <p><small>Опубликовано: {{ vacancy.published_date|date:"d/m/Y" }}</small></p>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>Актуальных вакансий нет.</p>
+{% endif %}
+{% endblock %}

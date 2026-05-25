@@ -81,9 +81,9 @@ class Product(models.Model):
 class Client(models.Model):
     """Клиент"""
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='Пользователь')
-    phone = models.CharField(max_length=20, validators=[phone_validator], verbose_name='Телефон')
-    birth_date = models.DateField(verbose_name='Дата рождения')
-    address = models.TextField(verbose_name='Адрес доставки')
+    phone = models.CharField(max_length=20, validators=[phone_validator], blank=True, null=True, verbose_name='Телефон')
+    birth_date = models.DateField(blank=True, null=True, verbose_name='Дата рождения')
+    address = models.TextField(blank=True, null=True, verbose_name='Адрес доставки')
     loyalty_discount = models.IntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(100)], verbose_name='Скидка %')
     
     def __str__(self):
@@ -99,6 +99,21 @@ class Client(models.Model):
     class Meta:
         verbose_name = 'Клиент'
         verbose_name_plural = 'Клиенты'
+
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+@receiver(post_save, sender=User)
+def create_user_client(sender, instance, created, **kwargs):
+    """Автоматически создаёт Client при создании User"""
+    if created:
+        Client.objects.get_or_create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_client(sender, instance, **kwargs):
+    """Сохраняет Client при сохранении User"""
+    if hasattr(instance, 'client'):
+        instance.client.save()
 
 
 class Order(models.Model):
@@ -168,3 +183,116 @@ class News(models.Model):
         verbose_name = 'Новость'
         verbose_name_plural = 'Новости'
         ordering = ['-published_date']
+
+class CompanyHistory(models.Model):
+    """История компании по годам"""
+    year = models.PositiveIntegerField(verbose_name='Год')
+    event = models.TextField(verbose_name='Событие')
+    order = models.PositiveIntegerField(default=0, verbose_name='Порядок')
+
+    class Meta:
+        ordering = ['order', 'year']
+        verbose_name = 'История компании'
+        verbose_name_plural = 'История компании'
+
+    def __str__(self):
+        return f"{self.year} - {self.event[:50]}"
+
+
+class CompanyRequisite(models.Model):
+    """Реквизиты компании"""
+    name = models.CharField(max_length=200, verbose_name='Название реквизита')
+    value = models.TextField(verbose_name='Значение')
+    order = models.PositiveIntegerField(default=0, verbose_name='Порядок')
+
+    class Meta:
+        ordering = ['order']
+        verbose_name = 'Реквизит'
+        verbose_name_plural = 'Реквизиты'
+
+    def __str__(self):
+        return self.name
+
+class Glossary(models.Model):
+    """Словарь терминов (вопрос-ответ)"""
+    question = models.CharField(max_length=255, verbose_name='Вопрос')
+    answer = models.TextField(verbose_name='Ответ')
+    added_date = models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления')
+    is_published = models.BooleanField(default=True, verbose_name='Опубликовано')
+
+    class Meta:
+        verbose_name = 'Термин'
+        verbose_name_plural = 'Словарь терминов'
+        ordering = ['-added_date']
+
+    def __str__(self):
+        return self.question
+
+class Contact(models.Model):
+    """Контакты - сотрудники"""
+    name = models.CharField(max_length=150, verbose_name='ФИО')
+    position = models.CharField(max_length=100, verbose_name='Должность')
+    phone = models.CharField(max_length=20, validators=[phone_validator], verbose_name='Телефон')
+    email = models.EmailField(verbose_name='Email')
+    description = models.TextField(blank=True, verbose_name='Описание работ')
+    photo = models.ImageField(upload_to='contacts/', blank=True, null=True, verbose_name='Фото')
+    order = models.PositiveIntegerField(default=0, verbose_name='Порядок')
+
+    class Meta:
+        ordering = ['order', 'name']
+        verbose_name = 'Контакт'
+        verbose_name_plural = 'Контакты'
+
+    def __str__(self):
+        return f"{self.name} - {self.position}"
+
+class Vacancy(models.Model):
+    """Вакансии"""
+    title = models.CharField(max_length=150, verbose_name='Название вакансии')
+    description = models.TextField(verbose_name='Описание')
+    salary = models.CharField(max_length=100, blank=True, verbose_name='Зарплата')
+    published_date = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')
+    is_active = models.BooleanField(default=True, verbose_name='Актуально')
+
+    class Meta:
+        verbose_name = 'Вакансия'
+        verbose_name_plural = 'Вакансии'
+        ordering = ['-published_date']
+
+    def __str__(self):
+        return self.title
+
+class Review(models.Model):
+    """Отзывы"""
+    RATING_CHOICES = [(i, str(i)) for i in range(1, 6)]
+    
+    client_name = models.CharField(max_length=100, verbose_name='Имя')
+    rating = models.IntegerField(choices=RATING_CHOICES, verbose_name='Оценка')
+    text = models.TextField(verbose_name='Текст отзыва')
+    created_date = models.DateTimeField(auto_now_add=True, verbose_name='Дата')
+    is_published = models.BooleanField(default=True, verbose_name='Опубликовано')
+
+    class Meta:
+        verbose_name = 'Отзыв'
+        verbose_name_plural = 'Отзывы'
+        ordering = ['-created_date']
+
+    def __str__(self):
+        return f"{self.client_name} - {self.rating}★"
+
+class PromoCode(models.Model):
+    """Промокоды и купоны"""
+    code = models.CharField(max_length=50, unique=True, verbose_name='Код')
+    discount_percent = models.PositiveIntegerField(verbose_name='Скидка %')
+    valid_from = models.DateTimeField(verbose_name='Действует с')
+    valid_to = models.DateTimeField(verbose_name='Действует до')
+    is_active = models.BooleanField(default=True, verbose_name='Активен')
+    description = models.CharField(max_length=200, blank=True, verbose_name='Описание')
+
+    class Meta:
+        verbose_name = 'Промокод'
+        verbose_name_plural = 'Промокоды'
+        ordering = ['-valid_to']
+
+    def __str__(self):
+        return f"{self.code} - {self.discount_percent}%"

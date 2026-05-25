@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная - Кондитерская{% endblock %}
+
+{% block content %}
+<h1>Добро пожаловать в нашу кондитерскую!</h1>
+
+{% if latest_news %}
+<section>
+    <h2>Последняя новость</h2>
+    <article>
+        <h3>{{ latest_news.title }}</h3>
+        {% if latest_news.image %}
+            <img src="{{ latest_news.image.url }}" alt="{{ latest_news.title }}" width="300">
+        {% endif %}
+        <p><strong>Опубликовано:</strong> {{ latest_news.published_date|date:"d/m/Y H:i" }}</p>
+        <p>{{ latest_news.summary }}</p>
+        <a href="#">Читать далее →</a>
+    </article>
+</section>
+{% else %}
+<p>Новостей пока нет. Зайдите в админ-панель и добавьте первую новость.</p>
+{% endif %}
+{% endblock %}

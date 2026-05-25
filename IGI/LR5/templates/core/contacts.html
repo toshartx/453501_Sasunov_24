@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Контакты{% endblock %}
+
+{% block content %}
+<h1>Наши сотрудники</h1>
+
+{% if employees %}
+    <div class="employees">
+        {% for emp in employees %}
+            <div style="border: 1px solid #ccc; margin: 10px; padding: 10px; display: inline-block; width: 250px; vertical-align: top;">
+                {% if emp.photo %}
+                    <img src="{{ emp.photo.url }}" alt="{{ emp.name }}" width="200">
+                {% else %}
+                    <div style="width: 200px; height: 200px; background: #eee; text-align: center; line-height: 200px;">Нет фото</div>
+                {% endif %}
+                <h3>{{ emp.name }}</h3>
+                <p><strong>{{ emp.position }}</strong></p>
+                <p>📞 {{ emp.phone }}</p>
+                <p>✉️ {{ emp.email }}</p>
+                <p>{{ emp.description }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>Сотрудники пока не добавлены.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}О компании{% endblock %}
+
+{% block content %}
+<h1>О компании</h1>
+
+<section>
+    <h2>Наша история</h2>
+    {% if history %}
+        <ul>
+        {% for item in history %}
+            <li><strong>{{ item.year }}</strong> — {{ item.event }}</li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>История компании пока не добавлена.</p>
+    {% endif %}
+</section>
+
+<section>
+    <h2>Реквизиты</h2>
+    {% if requisites %}
+        <table border="1" cellpadding="8" cellspacing="0">
+            {% for req in requisites %}
+            <tr>
+                <th style="text-align:left">{{ req.name }}</th>
+                <td>{{ req.value }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>Реквизиты компании пока не добавлены.</p>
+    {% endif %}
+</section>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}Отзывы{% endblock %}
+
+{% block content %}
+<h1>Отзывы наших клиентов</h1>
+
+<!-- Форма добавления отзыва -->
+<div style="background: #f5f5f5; padding: 20px; margin-bottom: 30px;">
+    <h2>Оставить отзыв</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            <label>Имя:</label><br>
+            {{ form.client_name }}
+        </div>
+        <div>
+            <label>Оценка:</label><br>
+            {{ form.rating }}
+        </div>
+        <div>
+            <label>Отзыв:</label><br>
+            {{ form.text }}
+        </div>
+        <button type="submit" style="margin-top: 10px;">Отправить</button>
+    </form>
+</div>
+
+<!-- Список отзывов -->
+<h2>Все отзывы</h2>
+{% if reviews %}
+    {% for review in reviews %}
+        <div style="border: 1px solid #ddd; margin: 10px 0; padding: 15px; border-radius: 5px;">
+            <p><strong>{{ review.client_name }}</strong> 
+               <span style="color: orange;">★ {{ review.rating }}/5</span>
+               <small style="color: gray;"> — {{ review.created_date|date:"d/m/Y" }}</small>
+            </p>
+            <p>{{ review.text|linebreaks }}</p>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>Пока нет отзывов. Будьте первым!</p>
+{% endif %}
+{% endblock %}
