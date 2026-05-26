@@ -89,14 +89,7 @@ if DEBUG:
     }
 else:
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.getenv('DB_NAME', 'confectionery_db'),
-            'USER': os.getenv('DB_USER', 'confectionery_user'),
-            'PASSWORD': os.getenv('DB_PASSWORD', 'confectionery_pass'),
-            'HOST': os.getenv('DB_HOST', 'localhost'),
-            'PORT': os.getenv('DB_PORT', '5432'),
-        }
+        'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
     }
 
 
