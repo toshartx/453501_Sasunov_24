@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}Поиск рецептов{% endblock %}
+
+{% block content %}
+<h1>🍰 Поиск рецептов десертов</h1>
+
+<form method="get">
+    <table cellpadding="10">
+        <tr>
+            <td><input type="text" name="q" placeholder="Например: cake, cookie, chocolate..." value="{{ search_query }}" size="40" required></td>
+            <td><button type="submit">Искать</button></td>
+        </tr>
+    </table>
+</form>
+
+{% if recipes_data %}
+    {% if recipes_data.recipes %}
+        <p>Найдено рецептов: {{ recipes_data.count }}</p>
+        <div style="display: flex; flex-wrap: wrap;">
+            {% for recipe in recipes_data.recipes %}
+                <div style="border: 1px solid #ddd; margin: 10px; padding: 15px; width: 300px; border-radius: 10px;">
+                    <h3>{{ recipe.name }}</h3>
+                    <img src="{{ recipe.image }}" alt="{{ recipe.name }}" style="width: 100%; border-radius: 8px;">
+                    <p><strong>Категория:</strong> {{ recipe.category }}</p>
+                    <p><strong>Кухня:</strong> {{ recipe.area }}</p>
+                    <details>
+                        <summary>Ингредиенты ({{ recipe.ingredients|length }})</summary>
+                        <ul>
+                            {% for ingredient in recipe.ingredients|slice:":10" %}
+                                <li>{{ ingredient }}</li>
+                            {% endfor %}
+                        </ul>
+                    </details>
+                    <details>
+                        <summary>Приготовление</summary>
+                        <p>{{ recipe.instructions|truncatewords:50 }}</p>
+                    </details>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>Рецепты по запросу "{{ search_query }}" не найдены. Попробуйте другое название.</p>
+    {% endif %}
+{% endif %}
+
+<p style="margin-top: 20px;"><small>Данные предоставлены <a href="https://www.themealdb.com/" target="_blank">TheMealDB</a></small></p>
+{% endblock %}

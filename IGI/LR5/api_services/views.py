@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .services import WeatherService, RecipeService
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def weather(request):
     """Страница с прогнозом погоды"""
     weather_data = None
@@ -13,7 +15,7 @@ def weather(request):
     
     return render(request, 'api_services/weather.html', {'weather': weather_data})
 
-
+@login_required
 def recipes(request):
     """Страница поиска рецептов"""
     recipes_data = None

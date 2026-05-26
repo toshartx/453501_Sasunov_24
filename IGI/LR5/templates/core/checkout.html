@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %}Оформление заказа{% endblock %}
+
+{% block content %}
+<h1>Оформление заказа</h1>
+
+<h2>Ваш заказ</h2>
+<table border="1" cellpadding="8" cellspacing="0" width="100%">
+    <thead>
+        <tr bgcolor="#f0f0f0">
+            <th>Товар</th>
+            <th>Цена</th>
+            <th>Количество</th>
+            <th>Сумма</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in cart.items.all %}
+        <tr>
+            <td>{{ item.product.name }}</td>
+            <td>{{ item.product.price }} руб.</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.total }} руб.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr bgcolor="#e0e0e0">
+            <td colspan="3"><strong>Итого:</strong></td>
+            <td><strong>{{ cart.total }} руб.</strong></td>
+        </tr>
+    </tfoot>
+</table>
+
+<form method="post">
+    {% csrf_token %}
+    
+    <h2>Способ получения</h2>
+    <label>
+        <input type="radio" name="delivery_type" value="pickup" checked> Самовывоз
+    </label>
+    
+    <div id="pickup_points">
+        <h3>Точки самовывоза</h3>
+        <select name="pickup_point">
+            {% for point in pickup_points %}
+                <option value="{{ point.id }}">{{ point.name }} - {{ point.address }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    
+    <h3>Дата получения</h3>
+    <input type="date" name="delivery_date" min="{% now 'Y-m-d' %}" required>
+    
+    <p style="margin-top: 20px;">
+        <button type="submit">Подтвердить заказ</button>
+        <a href="{% url 'core:cart_view' %}">Вернуться в корзину</a>
+    </p>
+</form>
+{% endblock %}

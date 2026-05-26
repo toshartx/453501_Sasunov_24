@@ -10,49 +10,52 @@
         <nav>
             <table width="100%" cellpadding="10">
                 <tr>
-                    <td align="center">
-                        <a href="{% url 'core:home' %}">Главная</a>
-                    </td>
-                    <td align="center">
-                        <a href="{% url 'core:about' %}">О компании</a>
-                    </td>
-                    <td align="center">
-                        <a href="{% url 'core:news_list' %}">Новости</a>
-                    </td>
-                    <td align="center">
-                        <a href="{% url 'core:glossary_list' %}">Словарь терминов</a>
-                    </td>
-                    <td align="center">
-                        <a href="{% url 'core:contacts' %}">Контакты</a>
-                    </td>
-                    <td align="center">
-                        <a href="{% url 'core:privacy' %}">Политика</a>
-                    </td>
-                    <td align="center">
-                        <a href="{% url 'core:vacancies' %}">Вакансии</a>
-                    </td>
-                    <td align="center">
-                        <a href="{% url 'core:reviews' %}">Отзывы</a>
-                    </td>
-                    <td align="center">
-                        <a href="{% url 'core:promocodes' %}">Промокоды</a>
-                    </td>
-                    <td align="center">
-                        <a href="/admin/">Админка</a>
-                    </td>
-                    <td align="center">
-                        {% if user.is_authenticated %}
-                            <a href="{% url 'core:profile' %}">{{ user.username }}</a>
-                        {% endif %}
-                    </td>
-                    <td align="center">
-                        {% if user.is_authenticated %}
-                            <a href="{% url 'core:logout' %}">Выход</a>
-                        {% else %}
-                            <a href="{% url 'core:login' %}">Вход</a>
-                        {% endif %}
-                    </td>
-                </tr>
+
+                <td align="center"><a href="{% url 'core:home' %}">Главная</a></td>
+                <td align="center"><a href="{% url 'core:catalog' %}">Каталог</a></td>
+                <td align="center"><a href="{% url 'core:news_list' %}">Новости</a></td>
+                <td align="center"><a href="{% url 'core:glossary_list' %}">Словарь</a></td>
+                <td align="center"><a href="{% url 'core:contacts' %}">Контакты</a></td>
+                <td align="center"><a href="{% url 'core:vacancies' %}">Вакансии</a></td>
+                <td align="center"><a href="{% url 'core:reviews' %}">Отзывы</a></td>
+                <td align="center"><a href="{% url 'core:promocodes' %}">Промокоды</a></td>
+                <!-- Только для сотрудников и суперпользователя -->
+                {% if user.is_authenticated and user.employee or user.is_superuser %}
+                    <td align="center"><a href="{% url 'core:statistics' %}">Статистика</a></td>
+                {% endif %}
+
+                <!-- Для авторизованных (все) -->
+                {% if user.is_authenticated %}
+                    <td align="center"><a href="{% url 'core:profile' %}">Личный кабинет</a></td>
+                    <td align="center"><a href="/api/weather/">Погода</a></td>
+                    <td align="center"><a href="/api/recipes/">Рецепты</a></td>
+                {% endif %}
+
+                <!-- Только для клиентов (у которых есть client) -->
+                {% if user.is_authenticated and user.client %}
+                    <td align="center"><a href="{% url 'core:cart_view' %}">🛒 Корзина</a></td>
+                {% endif %}
+
+                <!-- Только для сотрудников (у которых есть employee) -->
+                {% if user.is_authenticated and user.employee %}
+                    <td align="center"><a href="{% url 'core:employee_dashboard' %}">Панель сотрудника</a></td>
+                {% endif %}
+
+                <!-- Только для суперпользователя -->
+                {% if user.is_superuser %}
+                    <td align="center"><a href="{% url 'core:admin_products' %}">Управление товарами</a></td>
+                    <td align="center"><a href="{% url 'core:admin_orders' %}">Управление заказами</a></td>
+                    <td align="center"><a href="{% url 'core:admin_clients' %}">Управление клиентами</a></td>
+                    <td align="center"><a href="/admin/">Админка Django</a></td>
+                {% endif %}
+
+                <!-- Вход/выход -->
+                {% if user.is_authenticated %}
+                    <td align="center"><a href="{% url 'core:logout' %}">Выход ({{ user.username }})</a></td>
+                {% else %}
+                    <td align="center"><a href="{% url 'core:login' %}">Вход</a></td>
+                    <td align="center"><a href="{% url 'core:register' %}">Регистрация</a></td>
+                {% endif %}
             </table>
             <hr>
         </nav>

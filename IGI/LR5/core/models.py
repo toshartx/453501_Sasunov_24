@@ -21,17 +21,34 @@ class Employee(models.Model):
     
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name='Пользователь')
     position = models.CharField(max_length=50, choices=POSITION_CHOICES, verbose_name='Должность')
-    phone = models.CharField(max_length=20, validators=[phone_validator], verbose_name='Телефон')
-    birth_date = models.DateField(verbose_name='Дата рождения')
     hire_date = models.DateField(auto_now_add=True, verbose_name='Дата приёма')
     photo = models.ImageField(upload_to='employees/', blank=True, null=True, verbose_name='Фото')
+    show_on_contacts = models.BooleanField(default=True, verbose_name='Показывать на странице контактов')
     
     def __str__(self):
         return f"{self.user.get_full_name()} - {self.get_position_display()}"
     
+    @property
+    def phone(self):
+        """Получить телефон из связанного клиента"""
+        if hasattr(self.user, 'client') and self.user.client.phone:
+            return self.user.client.phone
+        return 'не указан'
+    
+    @property
+    def birth_date(self):
+        """Получить дату рождения из связанного клиента"""
+        if hasattr(self.user, 'client') and self.user.client.birth_date:
+            return self.user.client.birth_date
+        return None
+    
+    @property
     def age(self):
-        today = date.today()
-        return today.year - self.birth_date.year - ((today.month, today.day) < (self.birth_date.month, self.birth_date.day))
+        """Вычислить возраст"""
+        if self.birth_date:
+            today = date.today()
+            return today.year - self.birth_date.year - ((today.month, today.day) < (self.birth_date.month, self.birth_date.day))
+        return None
     
     class Meta:
         verbose_name = 'Сотрудник'
@@ -102,19 +119,6 @@ class Client(models.Model):
 
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-
-@receiver(post_save, sender=User)
-def create_user_client(sender, instance, created, **kwargs):
-    """Автоматически создаёт Client при создании User"""
-    if created:
-        Client.objects.get_or_create(user=instance)
-
-@receiver(post_save, sender=User)
-def save_user_client(sender, instance, **kwargs):
-    """Сохраняет Client при сохранении User"""
-    if hasattr(instance, 'client'):
-        instance.client.save()
-
 
 class Order(models.Model):
     """Заказ"""
@@ -296,3 +300,48 @@ class PromoCode(models.Model):
 
     def __str__(self):
         return f"{self.code} - {self.discount_percent}%"
+
+class Cart(models.Model):
+    """Корзина покупок"""
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='cart', verbose_name='Пользователь')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"Корзина {self.user.username}"
+
+    def total(self):
+        return sum(item.total() for item in self.items.all())
+
+    def total_quantity(self):
+        return sum(item.quantity for item in self.items.all())
+
+
+class CartItem(models.Model):
+    """Товар в корзине"""
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE, related_name='items', verbose_name='Корзина')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Товар')
+    quantity = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1)], verbose_name='Количество')
+
+    def __str__(self):
+        return f"{self.product.name} x{self.quantity}"
+
+    def total(self):
+        return self.quantity * self.product.price
+
+class PickupPoint(models.Model):
+    """Точка самовывоза"""
+    name = models.CharField(max_length=100, verbose_name='Название')
+    address = models.TextField(verbose_name='Адрес')
+    working_hours = models.CharField(max_length=100, verbose_name='Часы работы', blank=True)
+    phone = models.CharField(max_length=20, blank=True, verbose_name='Телефон')
+    is_active = models.BooleanField(default=True, verbose_name='Активна')
+    order = models.PositiveIntegerField(default=0, verbose_name='Порядок')
+
+    class Meta:
+        ordering = ['order', 'name']
+        verbose_name = 'Точка самовывоза'
+        verbose_name_plural = 'Точки самовывоза'
+
+    def __str__(self):
+        return self.name

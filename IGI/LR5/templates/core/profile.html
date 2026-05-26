@@ -5,27 +5,64 @@
 {% block content %}
 <h1>Личный кабинет</h1>
 
-{% if client %}
-    <p><strong>Имя:</strong> {{ client.user.get_full_name|default:client.user.username }}</p>
-    <p><strong>Телефон:</strong> {{ client.phone|default:"не указан" }}</p>
-    <p><strong>Email:</strong> {{ client.user.email|default:"не указан" }}</p>
-    <p><strong>Адрес:</strong> {{ client.address|default:"не указан" }}</p>
-    <p><strong>Скидка:</strong> {{ client.loyalty_discount }}%</p>
-
-    <h2>Мои заказы</h2>
-    {% if orders %}
-        {% for order in orders %}
-            <div style="border: 1px solid #ccc; margin: 10px 0; padding: 10px;">
-                <p><strong>Заказ #{{ order.id }}</strong> от {{ order.order_date|date:"d/m/Y" }}</p>
-                <p>Статус: {{ order.get_status_display }}</p>
-                <p>Сумма: {{ order.total_amount }} руб.</p>
-            </div>
-        {% endfor %}
+{% if user.client %}
+    <h2>👤 Клиент</h2>
+    <p><strong>Имя:</strong> {{ user.client.user.get_full_name|default:user.username }}</p>
+    <p><strong>Телефон:</strong> {{ user.client.phone|default:"не указан" }}</p>
+    <p><strong>Email:</strong> {{ user.email|default:"не указан" }}</p>
+    <p><strong>Адрес:</strong> {{ user.client.address|default:"не указан" }}</p>
+    <p><strong>Скидка:</strong> {{ user.client.loyalty_discount }}%</p>
+    
+    <h3>📦 Мои заказы</h3>
+    {% if user.client.orders.all %}
+        <table border="1" cellpadding="8">
+            <tr><th>№</th><th>Дата</th><th>Статус</th><th>Сумма</th></tr>
+            {% for order in user.client.orders.all %}
+            <tr>
+                <td>#{{ order.id }}</td>
+                <td>{{ order.order_date|date:"d/m/Y" }}</td>
+                <td>{{ order.get_status_display }}</td>
+                <td>{{ order.total_amount }} руб.</td>
+            </tr>
+            {% endfor %}
+        </table>
     {% else %}
         <p>У вас пока нет заказов.</p>
     {% endif %}
+
+{% elif user.employee %}
+    <h2>👔 Сотрудник</h2>
+    <p><strong>Имя:</strong> {{ user.employee.user.get_full_name|default:user.username }}</p>
+    <p><strong>Должность:</strong> {{ user.employee.get_position_display }}</p>
+    <p><strong>Телефон:</strong> {{ user.employee.phone }}</p>
+    <p><strong>Дата рождения:</strong> {{ user.employee.birth_date|date:"d/m/Y" }}</p>
+    <p><strong>Работает с:</strong> {{ user.employee.hire_date|date:"d/m/Y" }}</p>
+    
+    <h3>📋 Заказы, которые я обрабатывал</h3>
+    {% if user.employee.orders.all %}
+        <table border="1" cellpadding="8">
+            <tr><th>№</th><th>Клиент</th><th>Дата</th><th>Статус</th><th>Сумма</th></tr>
+            {% for order in user.employee.orders.all %}
+            <tr>
+                <td>#{{ order.id }}</td>
+                <td>{{ order.client.user.get_full_name }}</td>
+                <td>{{ order.order_date|date:"d/m/Y" }}</td>
+                <td>{{ order.get_status_display }}</td>
+                <td>{{ order.total_amount }} руб.</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>У вас пока нет обработанных заказов.</p>
+    {% endif %}
+
 {% else %}
-    <p>Вы вошли как администратор. У вас нет клиентского профиля.</p>
-    <p><a href="/admin/">Перейти в админ-панель</a></p>
+    <p>Вы вошли как <strong>{{ user.username }}</strong>.</p>
+    <p>У вас нет профиля клиента или сотрудника.</p>
+    {% if user.is_superuser %}
+        <p><a href="/admin/">Перейти в админ-панель</a></p>
+    {% endif %}
 {% endif %}
+
+<p style="margin-top: 20px;"><a href="{% url 'core:home' %}">← На главную</a></p>
 {% endblock %}

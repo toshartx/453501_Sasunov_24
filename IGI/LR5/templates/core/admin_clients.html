@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}Управление клиентами{% endblock %}
+
+{% block content %}
+<h1>Управление клиентами</h1>
+
+<table border="1" cellpadding="8" cellspacing="0" width="100%">
+    <thead>
+        <tr bgcolor="#f0f0f0">
+            <th>ID</th>
+            <th>Имя</th>
+            <th>Телефон</th>
+            <th>Email</th>
+            <th>Адрес</th>
+            <th>Скидка</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for client in clients %}
+        <tr>
+            <td>{{ client.id }}</td>
+            <td>{{ client.user.get_full_name|default:client.user.username }}</td>
+            <td>{{ client.phone|default:"—" }}</td>
+            <td>{{ client.user.email|default:"—" }}</td>
+            <td>{{ client.address|default:"—"|truncatewords:5 }}</td>
+            <td>{{ client.loyalty_discount }}%</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Редактирование заказа #{{ order.id }}{% endblock %}
+
+{% block content %}
+<h1>Редактирование заказа #{{ order.id }}</h1>
+
+<p><strong>Клиент:</strong> {{ order.client.user.get_full_name|default:order.client.user.username }}</p>
+<p><strong>Дата заказа:</strong> {{ order.order_date|date:"d/m/Y H:i" }}</p>
+<p><strong>Дата доставки:</strong> {{ order.delivery_date|date:"d/m/Y" }}</p>
+<p><strong>Сумма:</strong> {{ order.total_amount }} руб.</p>
+
+<form method="post">
+    {% csrf_token %}
+    <label>Статус:</label>
+    <select name="status">
+        <option value="new" {% if order.status == 'new' %}selected{% endif %}>Новый</option>
+        <option value="processing" {% if order.status == 'processing' %}selected{% endif %}>В обработке</option>
+        <option value="delivering" {% if order.status == 'delivering' %}selected{% endif %}>Доставляется</option>
+        <option value="completed" {% if order.status == 'completed' %}selected{% endif %}>Выполнен</option>
+        <option value="cancelled" {% if order.status == 'cancelled' %}selected{% endif %}>Отменён</option>
+    </select>
+    <button type="submit">Сохранить</button>
+    <a href="{% url 'core:admin_orders' %}">Назад</a>
+</form>
+{% endblock %}

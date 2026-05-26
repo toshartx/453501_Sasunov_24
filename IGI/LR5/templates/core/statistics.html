@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+
+{% block title %}Статистика{% endblock %}
+
+{% block content %}
+<h1>📊 Статистика кондитерской</h1>
+<!-- График продаж -->
+<h2>📈 Динамика продаж за последние 6 месяцев</h2>
+
+{% if monthly_data %}
+    <table border="1" cellpadding="8" cellspacing="0" width="100%">
+        <thead>
+            <tr bgcolor="#f0f0f0">
+                <th>Месяц</th>
+                <th>Выручка (руб.)</th>
+                <th>Визуализация</th>
+            </td>
+        </thead>
+        <tbody>
+            {% for item in monthly_data %}
+            <tr>
+                <td>{{ item.month }}</td>
+                <td>{{ item.revenue|floatformat:0 }} руб.</td>
+                <td>
+                    <div style="background-color: #4CAF50; height: 25px; width: {% widthratio item.revenue 5000 100 %}px; max-width: 350px; min-width: 5px; border-radius: 3px;">
+                    </div>
+                    <span style="font-size: 11px;">{% widthratio item.revenue 5000 100 %}% от макс. 5000 руб.</span>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <small>* Максимальная шкала — 5000 руб.</small>
+{% else %}
+    <p>Нет данных о продажах за последние 6 месяцев.</p>
+{% endif %}
+<!-- Основные метрики -->
+<h2>📈 Основные показатели</h2>
+<table border="1" cellpadding="8" cellspacing="0" width="100%">
+    <tr><th>Показатель</th><th>Значение</th></tr>
+    <tr><td>Всего заказов</td><td>{{ total_orders }}</td></tr>
+    <tr><td>Всего клиентов</td><td>{{ total_customers }}</td></tr>
+    <tr><td>Общая сумма продаж</td><td>{{ total_sales }} руб.</td></tr>
+    <tr><td>Средний чек</td><td>{{ avg_check }} руб.</td></tr>
+</table>
+
+<!-- Статистика по суммам продаж -->
+<h2>💰 Статистика по суммам продаж</h2>
+<table border="1" cellpadding="8" cellspacing="0" width="100%">
+    <tr><th>Показатель</th><th>Значение</th></tr>
+    <tr><td>Средняя сумма заказа</td><td>{{ avg_sale }} руб.</td></tr>
+    <tr><td>Медианная сумма заказа</td><td>{{ median_sale }} руб.</td></tr>
+    <tr><td>Модальная сумма заказа</td><td>{{ mode_sale }}</td></tr>
+</table>
+
+<!-- Статистика по возрасту клиентов -->
+<h2>👥 Статистика по возрасту клиентов</h2>
+<table border="1" cellpadding="8" cellspacing="0" width="100%">
+    <tr><th>Показатель</th><th>Значение</th></tr>
+    <tr><td>Средний возраст</td><td>{{ avg_age }} лет</td></tr>
+    <tr><td>Медианный возраст</td><td>{{ median_age }} лет</td></tr>
+</table>
+
+<!-- Какой тип товаров наиболее популярен -->
+<h2>🏆 Самый популярный тип товаров</h2>
+<table border="1" cellpadding="8" cellspacing="0" width="100%">
+    <tr><th>Тип товара</th><th>Продано (шт)</th></tr>
+    <tr><td>{{ most_popular_type.name|default:"Нет данных" }}</td>
+        <td>{{ most_popular_type_sold }}</td>
+    </tr>
+</table>
+
+<!-- Какой тип товаров приносит наибольшую прибыль -->
+<h2>💰 Самый прибыльный тип товаров</h2>
+<table border="1" cellpadding="8" cellspacing="0" width="100%">
+    <tr><th>Тип товара</th><th>Прибыль (руб.)</th></tr>
+    <tr><td>{{ most_profitable_type.name|default:"Нет данных" }}</td>
+        <td>{{ most_profitable_type_revenue }}</td>
+    </tr>
+</table>
+
+<!-- Топ-5 товаров по прибыли -->
+<h2>⭐ Топ-5 товаров по прибыли</h2>
+{% if top_products %}
+    <table border="1" cellpadding="8" cellspacing="0" width="100%">
+        <tr><th>Товар</th><th>Тип</th><th>Продано (шт)</th><th>Выручка (руб.)</th></tr>
+        {% for product in top_products %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.product_type.name }}</td>
+            <td>{{ product.total_sold|default:0 }}</td>
+            <td>{{ product.total_revenue|default:0|floatformat:2 }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>Нет данных о продажах.</p>
+{% endif %}
+
+<!-- Список товаров в алфавитном порядке -->
+<h2>📦 Список товаров (А-Я)</h2>
+{% if products_alpha %}
+    <table border="1" cellpadding="8" cellspacing="0" width="100%">
+        <tr><th>Название</th><th>Тип</th><th>Цена</th><th>Наличие</th></tr>
+        {% for product in products_alpha %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.product_type.name }}</td>
+            <td>{{ product.price }} руб.</td>
+            <td>{% if product.is_available %}✅{% else %}❌{% endif %}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>Нет товаров.</p>
+{% endif %}
+
+<!-- Список клиентов в алфавитном порядке -->
+<h2>👤 Список клиентов (А-Я)</h2>
+{% if clients_with_data %}
+    <table border="1" cellpadding="8" cellspacing="0" width="100%">
+        <tr><th>ФИО</th><th>Телефон</th><th>Email</th><th>Заказов</th><th>Сумма заказов</th></tr>
+        {% for item in clients_with_data %}
+        <tr>
+            <td>{{ item.client.user.get_full_name|default:item.client.user.username }}</td>
+            <td>{{ item.client.phone|default:"—" }}</td>
+            <td>{{ item.client.user.email|default:"—" }}</td>
+            <td>{{ item.orders_count }}</td>
+            <td>{{ item.orders_sum|floatformat:2 }} руб.</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>Нет клиентов.</p>
+{% endif %}
+
+<!-- Статусы заказов -->
+<h2>📋 Распределение заказов по статусам</h2>
+<table border="1" cellpadding="8" cellspacing="0" width="100%">
+    <tr><th>Статус</th><th>Количество</th></tr>
+    <tr><td>🆕 Новые</td><td>{{ status_stats.new }}</td></tr>
+    <tr><td>⚙️ В обработке</td><td>{{ status_stats.processing }}</td></tr>
+    <tr><td>🚚 Доставляются</td><td>{{ status_stats.delivering }}</td></tr>
+    <tr><td>✅ Выполненные</td><td>{{ status_stats.completed }}</td></tr>
+    <tr><td>❌ Отменённые</td><td>{{ status_stats.cancelled }}</td></tr>
+</table>
+
+<p style="margin-top: 20px;">
+    <small>Данные обновлены: {% now "d/m/Y H:i" %}</small>
+</p>
+{% endblock %}

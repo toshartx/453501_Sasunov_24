@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Корзина{% endblock %}
+
+{% block content %}
+<h1>🛒 Корзина</h1>
+
+{% if cart.items.all %}
+    <table border="1" cellpadding="10" cellspacing="0" width="100%">
+        <thead>
+            <tr bgcolor="#f0f0f0">
+                <th>Товар</th>
+                <th>Цена</th>
+                <th>Количество</th>
+                <th>Сумма</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart.items.all %}
+            <tr>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.product.price }} руб.</td>
+                <td>
+                    <form method="post" action="{% url 'core:cart_update' item.id %}" style="display: inline;">
+                        {% csrf_token %}
+                        <input type="number" name="quantity" value="{{ item.quantity }}" min="1" style="width: 60px;">
+                        <button type="submit">Обновить</button>
+                    </form>
+                </td>
+                <td>{{ item.total }} руб.</td>
+                <td>
+                    <a href="{% url 'core:cart_remove' item.id %}" onclick="return confirm('Удалить?')">🗑️</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr bgcolor="#e0e0e0">
+                <td colspan="3"><strong>Итого:</strong></td>
+                <td colspan="2"><strong>{{ cart.total }} руб.</strong></td>
+            </tr>
+        </tfoot>
+    </table>
+    
+    <p><a href="{% url 'core:checkout' %}">Оформить заказ →</a></p>
+{% else %}
+    <p>Корзина пуста.</p>
+{% endif %}
+
+<p><a href="{% url 'core:catalog' %}">← Продолжить покупки</a></p>
+{% endblock %}

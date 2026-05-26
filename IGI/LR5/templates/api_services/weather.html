@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}Погода{% endblock %}
+
+{% block content %}
+<h1>🌤️ Прогноз погоды</h1>
+
+<form method="post">
+    {% csrf_token %}
+    <table cellpadding="10">
+        <tr>
+            <td><input type="text" name="city" placeholder="Введите город" size="30" required></td>
+            <td><button type="submit">Узнать погоду</button></td>
+        </tr>
+    </table>
+</form>
+
+{% if weather %}
+    {% if weather.is_success %}
+        <div style="margin-top: 30px; padding: 20px; border: 2px solid #4CAF50; border-radius: 10px;">
+            <h2>{{ weather.city }}</h2>
+            <table>
+                <tr>
+                    <td style="padding: 10px;">
+                        <img src="http://openweathermap.org/img/wn/{{ weather.icon }}@2x.png" alt="{{ weather.status }}">
+                    </td>
+                    <td style="padding: 10px;">
+                        <h1>{{ weather.temperature }}°C</h1>
+                        <p>Ощущается как {{ weather.feels_like }}°C</p>
+                        <p>{{ weather.status }}</p>
+                    </td>
+                </tr>
+            </table>
+            <p>📊 Влажность: {{ weather.humidity }}%</p>
+            <p>💨 Ветер: {{ weather.wind_speed }} м/с</p>
+            <p>🌡️ Температура: минимум {{ weather.temp_min }}°C, максимум {{ weather.temp_max }}°C</p>
+        </div>
+    {% else %}
+        <div style="margin-top: 20px; padding: 15px; border: 1px solid red; color: red;">
+            {{ weather.error }}
+        </div>
+    {% endif %}
+{% endif %}
+
+<p style="margin-top: 20px;"><small>Данные предоставлены <a href="https://openweathermap.org/" target="_blank">OpenWeatherMap</a></small></p>
+{% endblock %}

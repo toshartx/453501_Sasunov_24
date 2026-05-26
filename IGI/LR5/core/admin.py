@@ -3,9 +3,10 @@ from .models import Employee, ProductType, Product, Client, Order, OrderItem, Ne
 
 @admin.register(Employee)
 class EmployeeAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'position', 'phone', 'hire_date')
-    list_filter = ('position', 'hire_date')
-    search_fields = ('user__first_name', 'user__last_name', 'phone')
+    list_display = ('id', 'user', 'position', 'hire_date', 'show_on_contacts')
+    list_filter = ('position', 'hire_date', 'show_on_contacts')
+    list_editable = ('show_on_contacts',)
+    search_fields = ('user__first_name', 'user__last_name')
     readonly_fields = ('hire_date',)
 
 @admin.register(ProductType)
@@ -79,12 +80,7 @@ class GlossaryAdmin(admin.ModelAdmin):
     list_editable = ('is_published',)
     readonly_fields = ('added_date',)
 
-from .models import Contact, Vacancy, Review, PromoCode
-
-@admin.register(Contact)
-class ContactAdmin(admin.ModelAdmin):
-    list_display = ('name', 'position', 'phone', 'email', 'order')
-    list_editable = ('order',)
+from .models import Vacancy, Review, PromoCode
 
 @admin.register(Vacancy)
 class VacancyAdmin(admin.ModelAdmin):
@@ -100,3 +96,11 @@ class ReviewAdmin(admin.ModelAdmin):
 class PromoCodeAdmin(admin.ModelAdmin):
     list_display = ('code', 'discount_percent', 'valid_from', 'valid_to', 'is_active')
     list_editable = ('is_active',)
+
+from .models import PickupPoint
+
+@admin.register(PickupPoint)
+class PickupPointAdmin(admin.ModelAdmin):
+    list_display = ('name', 'address', 'working_hours', 'phone', 'is_active', 'order')
+    list_editable = ('is_active', 'order')
+    search_fields = ('name', 'address')

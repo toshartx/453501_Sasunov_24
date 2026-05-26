@@ -6,23 +6,20 @@
 <h1>Наши сотрудники</h1>
 
 {% if employees %}
-    <div class="employees">
+    <div style="display: flex; flex-wrap: wrap;">
         {% for emp in employees %}
-            <div style="border: 1px solid #ccc; margin: 10px; padding: 10px; display: inline-block; width: 250px; vertical-align: top;">
-                {% if emp.photo %}
-                    <img src="{{ emp.photo.url }}" alt="{{ emp.name }}" width="200">
-                {% else %}
-                    <div style="width: 200px; height: 200px; background: #eee; text-align: center; line-height: 200px;">Нет фото</div>
-                {% endif %}
-                <h3>{{ emp.name }}</h3>
-                <p><strong>{{ emp.position }}</strong></p>
+            <div style="border: 1px solid #ccc; margin: 10px; padding: 10px; width: 250px; border-radius: 5px;">
+                <h3>{{ emp.user.get_full_name|default:emp.user.username }}</h3>
+                <p><strong>{{ emp.get_position_display }}</strong></p>
                 <p>📞 {{ emp.phone }}</p>
-                <p>✉️ {{ emp.email }}</p>
-                <p>{{ emp.description }}</p>
+                <p>✉️ {{ emp.user.email }}</p>
+                {% if emp.photo %}
+                    <img src="{{ emp.photo.url }}" alt="{{ emp.user.get_full_name }}" width="200">
+                {% endif %}
             </div>
         {% endfor %}
     </div>
 {% else %}
-    <p>Сотрудники пока не добавлены.</p>
+    <p>Нет сотрудников для отображения.</p>
 {% endif %}
 {% endblock %}
