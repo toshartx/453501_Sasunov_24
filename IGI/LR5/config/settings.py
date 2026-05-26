@@ -133,7 +133,7 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-OPENWEATHER_API_KEY = 'your-openweather-api-key-here'
+OPENWEATHER_API_KEY = os.getenv('OPENWEATHER_API_KEY', '')
 
 # LOGGING CONFIGURATION
 import sys
