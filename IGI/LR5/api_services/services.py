@@ -6,6 +6,7 @@ class WeatherService:
     
     def __init__(self):
         self.api_key = settings.OPENWEATHER_API_KEY
+        print(f"DEBUG: API Key from settings: '{self.api_key}'")  # Временная отладка
         self.base_url = 'https://api.openweathermap.org/data/2.5/weather'
     
     def get_current_weather(self, city_name):
