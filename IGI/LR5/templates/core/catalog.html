@@ -43,24 +43,34 @@
     <table width="100%" border="1" cellpadding="10" cellspacing="0">
         <thead>
             <tr bgcolor="#f0f0f0">
+                <th>Фото</th>
                 <th>Название</th>
                 <th>Вид</th>
                 <th>Цена</th>
                 <th>Ед. изм.</th>
                 <th>Наличие</th>
-                <th>Действия</th>
+                <th>Действие</th>
             </tr>
         </thead>
         <tbody>
             {% for product in products %}
             <tr>
+                <td>
+                    {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" width="60" height="60" style="object-fit: cover; border-radius: 8px;">
+                    {% else %}
+                        <div style="width: 60px; height: 60px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; border-radius: 8px;">
+                            📷
+                        </div>
+                    {% endif %}
+                </td>
                 <td>{{ product.name }}</td>
                 <td>{{ product.product_type.name }}</td>
                 <td>{{ product.price }} руб.</td>
                 <td>{{ product.get_unit_display }}</td>
                 <td>{% if product.is_available %}✅{% else %}❌{% endif %}</td>
                 <td>
-                    <a href="{% url 'core:cart_add' product.id %}">{% if product.is_available %}🛒 В корзину{% endif %}</a>
+                    <a href="{% url 'core:cart_add' product.id %}">🛒 В корзину</a>
                 </td>
             </tr>
             {% endfor %}

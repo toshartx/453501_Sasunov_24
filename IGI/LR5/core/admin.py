@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.html import mark_safe
 from .models import Employee, ProductType, Product, Client, Order, OrderItem, News
 
 @admin.register(Employee)
@@ -17,11 +18,18 @@ class ProductTypeAdmin(admin.ModelAdmin):
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'product_type', 'price', 'unit', 'is_available')
+    list_display = ('id', 'image_preview', 'name', 'product_type', 'price', 'unit', 'is_available')
     list_filter = ('product_type', 'is_available', 'unit')
     search_fields = ('name', 'description')
     list_editable = ('price', 'is_available')
-    readonly_fields = ('created_at', 'updated_at')
+    readonly_fields = ('created_at', 'updated_at', 'image_preview')
+    fields = ('name', 'product_type', 'description', 'price', 'unit', 'image', 'is_available', 'created_at', 'updated_at', 'image_preview')
+    
+    def image_preview(self, obj):
+        if obj.image:
+            return mark_safe(f'<img src="{obj.image.url}" width="50" height="50" style="object-fit: cover;" />')
+        return "Нет фото"
+    image_preview.short_description = 'Превью'
 
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
@@ -50,11 +58,14 @@ class OrderItemAdmin(admin.ModelAdmin):
 
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
-    list_display = ('title', 'published_date', 'is_published')
-    list_filter = ('is_published', 'published_date')
-    search_fields = ('title', 'summary')
-    list_editable = ('is_published',)
-    readonly_fields = ('published_date',)
+    list_display = ('title', 'image_preview', 'published_date', 'is_published')
+    fields = ('title', 'summary', 'content', 'image', 'is_published')
+    readonly_fields = ('published_date', 'image_preview')
+
+    def image_preview(self, obj):
+        if obj.image:
+            return mark_safe(f'<img src="{obj.image.url}" width="50" height="50" />')
+        return "Нет фото"
 
 from .models import CompanyHistory, CompanyRequisite
 

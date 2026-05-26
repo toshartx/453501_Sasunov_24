@@ -8,8 +8,8 @@
     <p><strong>Дата публикации:</strong> {{ news.published_date|date:"d/m/Y H:i" }}</p>
     
     {% if news.image %}
-        <div style="margin: 20px 0;">
-            <img src="{{ news.image.url }}" alt="{{ news.title }}" style="max-width: 100%;">
+        <div style="text-align: center; margin: 20px 0;">
+            <img src="{{ news.image.url }}" alt="{{ news.title }}" style="max-width: 100%; max-height: 400px; border-radius: 10px;">
         </div>
     {% endif %}
     
