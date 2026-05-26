@@ -11,6 +11,9 @@ from .models import (
 )
 from .forms import RegistrationForm, LoginForm, ReviewForm
 
+import logging
+logger = logging.getLogger('core')
+
 # Функции для проверки прав доступа
 def is_employee(user):
     return user.is_authenticated and hasattr(user, 'employee')
@@ -61,6 +64,7 @@ def profile(request):
 
 def home(request):
     """Главная страница с последней новостью"""
+    logger.info(f"Home page visited by {request.user}")
     latest_news = News.objects.filter(is_published=True).first()
     return render(request, 'core/home.html', {'latest_news': latest_news})
 
@@ -220,6 +224,7 @@ def admin_only_view(request):
 
 def catalog(request):
     """Каталог товаров с поиском и сортировкой"""
+    logger.info(f"Catalog viewed. Search: {request.GET.get('search', '')}")
     products = Product.objects.filter(is_available=True)
     
     # Поиск по названию
@@ -386,6 +391,7 @@ def checkout(request):
         
         # Очищаем корзину
         cart.items.all().delete()
+        logger.info(f"Order #{order.id} created by {request.user} for {order.total_amount} руб.")
         
         return redirect('core:profile')
     
@@ -557,6 +563,7 @@ def update_order_status(request, order_id):
             order.status = new_status
             order.save()
             messages.success(request, f'Статус заказа #{order.id} изменён на "{order.get_status_display()}"')
+            logger.info(f"Order #{order.id} status changed to {order.status} by {request.user}")
     
     if hasattr(request.user, 'employee'):
         return redirect('core:employee_orders_manage')
