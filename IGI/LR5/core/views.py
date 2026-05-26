@@ -529,9 +529,9 @@ def statistics(request):
         
         # Типы товаров
         'most_popular_type': most_popular_type,
-        'most_popular_type_sold': popular_types.first().total_sold if popular_types.first() else 0,
+        'most_popular_type_sold': popular_types.first().total_sold if popular_types.first() and popular_types.first().total_sold else 0,
         'most_profitable_type': most_profitable_type,
-        'most_profitable_type_revenue': round(profitable_types.first().total_revenue, 2) if profitable_types.first() else 0,
+        'most_profitable_type_revenue': 'most_profitable_type_revenue': round(profitable_types.first().total_revenue, 2) if profitable_types.first() and profitable_types.first().total_revenue else 0,
         
         # Топ товаров
         'top_products': top_products,
