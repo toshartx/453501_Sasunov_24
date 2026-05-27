@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}Управление заказами{% endblock %}
+
+{% block content %}
+<h1>📋 Управление заказами</h1>
+
+<!-- Форма поиска и фильтрации -->
+<form method="get" style="margin-bottom: 20px; padding: 10px; border: 1px solid #ccc; border-radius: 8px;">
+    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <input type="text" name="search" placeholder="Поиск по номеру или клиенту" value="{{ search }}" style="padding: 8px; flex: 1; border: 1px solid #ddd; border-radius: 5px;">
+        <select name="status" style="padding: 8px; border-radius: 5px;">
+            <option value="">Все статусы</option>
+            {% for code, name in status_choices %}
+                <option value="{{ code }}" {% if status_filter == code %}selected{% endif %}>{{ name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit" style="padding: 8px 15px; background: #4CAF50; color: white; border: none; border-radius: 5px;">Применить</button>
+        <a href="{% url 'core:manage_all_orders' %}" style="padding: 8px 15px; background: #f44336; color: white; text-decoration: none; border-radius: 5px;">Сбросить</a>
+    </div>
+</form>
+
+<!-- Таблица заказов -->
+{% if orders %}
+    <table border="1" cellpadding="10" cellspacing="0" width="100%">
+        <thead>
+            <tr bgcolor="#f0f0f0">
+                <th>ID</th>
+                <th>Клиент</th>
+                <th>Сотрудник</th>
+                <th>Дата заказа</th>
+                <th>Дата доставки</th>
+                <th>Статус</th>
+                <th>Сумма</th>
+                <th>Действие</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td>{{ order.id }}</p>
+                <td>{{ order.client.user.get_full_name|default:order.client.user.username }}</p>
+                <td>
+                    {% if order.employee %}
+                        {{ order.employee.user.get_full_name }}
+                    {% elif not is_superuser %}
+                        <form method="post" action="{% url 'core:assign_order_to_employee' order.id %}" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" style="background: #2196F3; color: white; border: none; padding: 5px 10px; border-radius: 5px;">
+                                Взять в работу
+                            </button>
+                        </form>
+                    {% else %}
+                        —
+                    {% endif %}
+                </p>
+                <td>{{ order.order_date|date:"d/m/Y H:i" }}</p>
+                <td>{{ order.delivery_date|date:"d/m/Y" }}</p>
+                <td>{{ order.get_status_display }}</p>
+                <td>{{ order.total_amount }} руб.</p>
+                <td>
+                    <form method="post" action="{% url 'core:update_order_status' order.id %}" style="display: inline;">
+                        {% csrf_token %}
+                        <select name="status" onchange="this.form.submit()" style="padding: 5px; border-radius: 5px;">
+                            <option value="new" {% if order.status == 'new' %}selected{% endif %}>Новый</option>
+                            <option value="processing" {% if order.status == 'processing' %}selected{% endif %}>В обработке</option>
+                            <option value="delivering" {% if order.status == 'delivering' %}selected{% endif %}>Доставляется</option>
+                            <option value="completed" {% if order.status == 'completed' %}selected{% endif %}>Выполнен</option>
+                            <option value="cancelled" {% if order.status == 'cancelled' %}selected{% endif %}>Отменён</option>
+                        </select>
+                    </form>
+                </p>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>Нет заказов для отображения.</p>
+{% endif %}
+
+<p style="margin-top: 20px;">
+    <a href="{% url 'core:home' %}">← На главную</a>
+</p>
+{% endblock %}

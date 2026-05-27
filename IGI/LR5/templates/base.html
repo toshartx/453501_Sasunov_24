@@ -38,14 +38,15 @@
 
                 <!-- Только для сотрудников (у которых есть employee) -->
                 {% if user.is_authenticated and user.employee %}
+                    <td align="center"><a href="{% url 'core:manage_all_orders' %}">Заказы</a></td>
                     <td align="center"><a href="{% url 'core:employee_dashboard' %}">Панель сотрудника</a></td>
                 {% endif %}
 
                 <!-- Только для суперпользователя -->
                 {% if user.is_superuser %}
-                    <td align="center"><a href="{% url 'core:admin_products' %}">Управление товарами</a></td>
-                    <td align="center"><a href="{% url 'core:admin_orders' %}">Управление заказами</a></td>
-                    <td align="center"><a href="{% url 'core:admin_clients' %}">Управление клиентами</a></td>
+                    <td align="center"><a href="{% url 'core:manage_all_orders' %}">Заказы</a></td>
+                    <td align="center"><a href="{% url 'core:admin_products' %}">Товары</a></td>
+                    <td align="center"><a href="{% url 'core:admin_clients' %}">Клиенты</a></td>
                     <td align="center"><a href="/admin/">Админка Django</a></td>
                 {% endif %}
 

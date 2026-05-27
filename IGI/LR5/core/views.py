@@ -268,11 +268,11 @@ def admin_clients(request):
     clients = Client.objects.all().order_by('user__last_name', 'user__first_name')
     return render(request, 'core/admin_clients.html', {'clients': clients})
 
-@staff_member_required
-def admin_orders(request):
-    """Список всех заказов для администрирования"""
-    orders = Order.objects.all().order_by('-order_date')
-    return render(request, 'core/admin_orders.html', {'orders': orders})
+# @staff_member_required
+# def admin_orders(request):
+#     """Список всех заказов для администрирования"""
+#     orders = Order.objects.all().order_by('-order_date')
+#     return render(request, 'core/admin_orders.html', {'orders': orders})
 
 @staff_member_required
 def admin_products(request):
@@ -594,19 +594,81 @@ def update_order_status(request, order_id):
             logger.info(f"Order #{order.id} status changed to {order.status} by {request.user}")
     
     if hasattr(request.user, 'employee'):
-        return redirect('core:employee_orders_manage')
+        return redirect('core:manage_all_orders')
     return redirect('core:admin_orders')
 
-@user_passes_test(is_employee_or_admin)
-def employee_orders_manage(request):
-    """Управление заказами для сотрудника (только свои заказы)"""
-    if hasattr(request.user, 'employee'):
-        employee = request.user.employee
-        orders = Order.objects.filter(employee=employee).order_by('-order_date')
-    else:
-        orders = Order.objects.all().order_by('-order_date')
+# @user_passes_test(is_employee_or_admin)
+# def employee_orders_manage(request):
+#     """Управление заказами для сотрудника (только свои заказы)"""
+#     if hasattr(request.user, 'employee'):
+#         employee = request.user.employee
+#         orders = Order.objects.filter(employee=employee).order_by('-order_date')
+#     else:
+#         orders = Order.objects.all().order_by('-order_date')
     
-    return render(request, 'core/employee_orders_manage.html', {'orders': orders})
+#     return render(request, 'core/employee_orders_manage.html', {'orders': orders})
+
+@user_passes_test(is_employee_or_admin)
+def manage_all_orders(request):
+    """Управление заказами (общая страница для сотрудников и админов)"""
+    
+    # Базовый запрос
+    if request.user.is_superuser:
+        # Админ видит все заказы
+        orders = Order.objects.all().order_by('-order_date')
+        show_all_statuses = True
+    else:
+        # Сотрудник видит только активные заказы (не выполненные и не отменённые)
+        orders = Order.objects.exclude(status__in=['completed', 'cancelled']).order_by('-order_date')
+        show_all_statuses = False
+    
+    # Фильтрация по статусу
+    status_filter = request.GET.get('status', '')
+    if status_filter:
+        orders = orders.filter(status=status_filter)
+    
+    # Поиск
+    search = request.GET.get('search', '')
+    if search:
+        orders = orders.filter(
+            Q(id__icontains=search) |
+            Q(client__user__first_name__icontains=search) |
+            Q(client__user__last_name__icontains=search)
+        )
+    
+    # Статусы для фильтра (в зависимости от роли)
+    if show_all_statuses:
+        status_choices = Order.STATUS_CHOICES
+    else:
+        status_choices = [('new', 'Новый'), ('processing', 'В обработке'), ('delivering', 'Доставляется')]
+    
+    return render(request, 'core/manage_all_orders.html', {
+        'orders': orders,
+        'status_filter': status_filter,
+        'search': search,
+        'status_choices': status_choices,
+        'is_superuser': request.user.is_superuser,
+    })
+
+@login_required
+def assign_order_to_employee(request, order_id):
+    """Назначение заказа текущему сотруднику"""
+    # Проверяем, что пользователь является сотрудником
+    if not hasattr(request.user, 'employee'):
+        messages.error(request, 'Только сотрудники могут брать заказы в работу')
+        return redirect('core:manage_all_orders')
+    
+    order = get_object_or_404(Order, id=order_id)
+    
+    # Проверяем, что заказ ещё не назначен
+    if order.employee:
+        messages.warning(request, f'Заказ #{order.id} уже обрабатывает {order.employee.user.get_full_name()}')
+    else:
+        order.employee = request.user.employee
+        order.save()
+        messages.success(request, f'Заказ #{order.id} назначен вам')
+    
+    return redirect('core:manage_all_orders')
 
 from django.conf import settings
 

@@ -32,10 +32,10 @@ urlpatterns = [
     path('admin-panel/orders/', views.admin_orders, name='admin_orders'),
     path('admin-panel/clients/', views.admin_clients, name='admin_clients'),
     # Управление заказами и клиентами
-    path('admin-panel/orders/', views.admin_orders, name='admin_orders'),
-    # Единый маршрут для изменения статуса заказа
-    path('employee/orders/manage/', views.employee_orders_manage, name='employee_orders_manage'),
+    path('employee/dashboard/', views.employee_dashboard, name='employee_dashboard'),
+    path('manage-orders/', views.manage_all_orders, name='manage_all_orders'),
     path('order/<int:order_id>/status/', views.update_order_status, name='update_order_status'),
+    path('assign-order/<int:order_id>/', views.assign_order_to_employee, name='assign_order_to_employee'),
     # Корзина
     path('cart/', views.cart_view, name='cart_view'),
     path('cart/add/<int:product_id>/', views.cart_add, name='cart_add'),
