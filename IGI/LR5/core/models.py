@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator, MaxValueValidator, RegexValidator
 from datetime import date
+import re
 
 # Валидатор для телефона в формате +375 (29) XXX-XX-XX
 phone_validator = RegexValidator(
@@ -34,7 +35,7 @@ class Employee(models.Model):
         if hasattr(self.user, 'client') and self.user.client.phone:
             return self.user.client.phone
         return 'не указан'
-    
+
     @property
     def birth_date(self):
         """Получить дату рождения из связанного клиента"""

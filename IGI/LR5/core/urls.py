@@ -43,4 +43,5 @@ urlpatterns = [
     path('cart/update/<int:item_id>/', views.cart_update, name='cart_update'),
     path('checkout/', views.checkout, name='checkout'),
     path('statistics/', views.statistics, name='statistics'),
+    path('set-timezone/', views.set_timezone, name='set_timezone'),
 ]

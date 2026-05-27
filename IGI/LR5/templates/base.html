@@ -68,7 +68,58 @@
 
     <footer>
         <hr>
-        <p align="center">© 2026 Кондитерская. Все права защищены.</p>
+        <div style="text-align: center; padding: 20px;">
+            <p>© 2026 Кондитерская. Все права защищены.</p>
+            
+            <!-- Информация о времени -->
+            <div style="font-size: 12px; color: gray; margin-top: 10px;">
+                <p>
+                    📅 {{ user_date }} | 🕐 {{ user_datetime }} ({{ user_timezone }})<br>
+                    🌍 UTC: {{ utc_datetime }}
+                </p>
+                
+                <!-- Выбор часового пояса -->
+                <form method="post" action="{% url 'core:set_timezone' %}" style="display: inline;">
+                    {% csrf_token %}
+                    <select name="timezone" onchange="this.form.submit()" style="padding: 5px; border-radius: 5px;">
+                        <option value="Europe/Minsk" {% if user_timezone == 'Europe/Minsk' %}selected{% endif %}>Минск</option>
+                        <option value="Europe/Moscow" {% if user_timezone == 'Europe/Moscow' %}selected{% endif %}>Москва</option>
+                        <option value="Europe/Kiev" {% if user_timezone == 'Europe/Kiev' %}selected{% endif %}>Киев</option>
+                        <option value="Europe/London" {% if user_timezone == 'Europe/London' %}selected{% endif %}>Лондон</option>
+                        <option value="America/New_York" {% if user_timezone == 'America/New_York' %}selected{% endif %}>Нью-Йорк</option>
+                    </select>
+                </form>
+            </div>
+            
+            <!-- Текстовый календарь -->
+            <div style="margin-top: 20px; display: inline-block; text-align: center;">
+                <h4>{{ calendar_month }} {{ calendar_year }}</h4>
+                <table style="margin: 0 auto; border-collapse: collapse;">
+                    <tr>
+                        <th style="padding: 8px; background: #f0f0f0;">Пн</th>
+                        <th style="padding: 8px; background: #f0f0f0;">Вт</th>
+                        <th style="padding: 8px; background: #f0f0f0;">Ср</th>
+                        <th style="padding: 8px; background: #f0f0f0;">Чт</th>
+                        <th style="padding: 8px; background: #f0f0f0;">Пт</th>
+                        <th style="padding: 8px; background: #f0f0f0;">Сб</th>
+                        <th style="padding: 8px; background: #f0f0f0;">Вс</th>
+                    </tr>
+                    {% for week in calendar_weeks %}
+                    <tr>
+                        {% for day in week %}
+                            {% if day == 0 %}
+                                <td style="padding: 8px; text-align: center;">&nbsp;</td>
+                            {% else %}
+                                <td style="padding: 8px; text-align: center; {% if day == user_now.day %}background-color: #4CAF50; color: white; border-radius: 50%; font-weight: bold;{% endif %}">
+                                    {{ day }}
+                                </td>
+                            {% endif %}
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
     </footer>
 </body>
 </html>

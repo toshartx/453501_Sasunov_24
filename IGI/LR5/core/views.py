@@ -607,3 +607,15 @@ def employee_orders_manage(request):
         orders = Order.objects.all().order_by('-order_date')
     
     return render(request, 'core/employee_orders_manage.html', {'orders': orders})
+
+from django.conf import settings
+
+def set_timezone(request):
+    """Установка часового пояса пользователя"""
+    if request.method == 'POST':
+        timezone_str = request.POST.get('timezone')
+        if timezone_str in settings.AVAILABLE_TIMEZONES:
+            request.session['timezone'] = timezone_str
+            # Активируем новый часовой пояс
+            timezone.activate(timezone_str)
+    return redirect(request.META.get('HTTP_REFERER', '/'))
