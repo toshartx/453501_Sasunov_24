@@ -403,7 +403,12 @@ def checkout(request):
         'pickup_points': pickup_points
     })
 
-from django.db.models import Sum, Count, Avg, F
+import matplotlib
+matplotlib.use('Agg')  # Важно для сервера без GUI
+import matplotlib.pyplot as plt
+from io import BytesIO
+import base64
+from django.db.models import Sum, Count, Avg, F, ExpressionWrapper, DecimalField
 from statistics import median, mode
 from datetime import date, timedelta
 from django.utils import timezone
@@ -491,27 +496,50 @@ def statistics(request):
     total_customers = Client.objects.count()
     avg_check = total_sales / total_orders if total_orders > 0 else 0
     
-    today = timezone.now()
-    six_months_ago = today - timedelta(days=180)
+    # ===== КРУГОВАЯ ДИАГРАММА ПО КАТЕГОРИЯМ =====
+    category_revenue = ProductType.objects.annotate(
+        total_revenue=Sum(
+            ExpressionWrapper(
+                F('products__order_items__quantity') * F('products__order_items__price_at_time'),
+                output_field=DecimalField(max_digits=15, decimal_places=2)
+            )
+        )
+    ).filter(total_revenue__gt=0).order_by('-total_revenue')
 
-    monthly_sales = Order.objects.filter(
-        status='completed',
-        order_date__gte=six_months_ago
-    ).annotate(
-        month=TruncMonth('order_date')
-    ).values('month').annotate(
-        total=Sum('total_amount')
-    ).order_by('month')
+    category_names = [cat.name for cat in category_revenue if cat.total_revenue]
+    category_revenues = [float(cat.total_revenue) for cat in category_revenue if cat.total_revenue]
 
-    # Формируем список для шаблона
-    monthly_data = []
-    for item in monthly_sales:
-        if item['month']:
-            monthly_data.append({
-                'month': item['month'].strftime('%b %Y'),
-                'revenue': float(item['total'])
-            })
-
+    if category_revenues:
+        plt.figure(figsize=(10, 8))
+        colors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40', '#66CC66', '#FF6666']
+        
+        wedges, texts, autotexts = plt.pie(
+            category_revenues,
+            labels=category_names,
+            autopct=lambda pct: f'{pct:.1f}%\n({int(pct * sum(category_revenues) / 100):,} ₽)',
+            colors=colors[:len(category_names)],
+            startangle=90,
+            textprops={'fontsize': 11}
+        )
+        
+        for autotext in autotexts:
+            autotext.set_color('white')
+            autotext.set_fontweight('bold')
+            autotext.set_fontsize(10)
+        
+        plt.title('Выручка по категориям товаров', fontsize=16, fontweight='bold', pad=20)
+        plt.axis('equal')
+        
+        buffer = BytesIO()
+        plt.savefig(buffer, format='png', dpi=100, bbox_inches='tight')
+        buffer.seek(0)
+        image_base64 = base64.b64encode(buffer.getvalue()).decode()
+        buffer.close()
+        plt.close()
+        
+        revenue_by_category_chart = f'data:image/png;base64,{image_base64}'
+    else:
+        revenue_by_category_chart = None
     context = {
         # Товары и клиенты
         'products_alpha': products_alpha,
@@ -545,7 +573,7 @@ def statistics(request):
         'avg_check': round(avg_check, 2),
 
         'clients_with_data': clients_with_data,
-        'monthly_data': monthly_data
+        'revenue_by_category_chart': revenue_by_category_chart,
     }
     
     return render(request, 'core/statistics.html', context)
