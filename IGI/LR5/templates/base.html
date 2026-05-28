@@ -17,7 +17,9 @@
                 <td align="center"><a href="{% url 'core:glossary_list' %}">Словарь</a></td>
                 <td align="center"><a href="{% url 'core:contacts' %}">Контакты</a></td>
                 <td align="center"><a href="{% url 'core:vacancies' %}">Вакансии</a></td>
+                {% if user.is_authenticated %}
                 <td align="center"><a href="{% url 'core:reviews' %}">Отзывы</a></td>
+                {% endif %}
                 <td align="center"><a href="{% url 'core:promocodes' %}">Промокоды</a></td>
                 <!-- Только для сотрудников и суперпользователя -->
                 {% if user.is_authenticated and user.employee or user.is_superuser %}

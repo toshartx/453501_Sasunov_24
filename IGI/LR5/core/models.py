@@ -271,6 +271,7 @@ class Review(models.Model):
     """Отзывы"""
     RATING_CHOICES = [(i, str(i)) for i in range(1, 6)]
     
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='Пользователь')
     client_name = models.CharField(max_length=100, verbose_name='Имя')
     rating = models.IntegerField(choices=RATING_CHOICES, verbose_name='Оценка')
     text = models.TextField(verbose_name='Текст отзыва')

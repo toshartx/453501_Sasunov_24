@@ -117,7 +117,7 @@ def reviews(request):
             form.save()
             return redirect('core:reviews')
     else:
-        form = ReviewForm()
+        form = ReviewForm(user=request.user if request.user.is_authenticated else None)
     
     return render(request, 'core/reviews.html', {
         'reviews': reviews_list,
