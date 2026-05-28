@@ -49,7 +49,9 @@
                 <th>Цена</th>
                 <th>Ед. изм.</th>
                 <th>Наличие</th>
+                {% if user.is_authenticated %}
                 <th>Действие</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -69,9 +71,11 @@
                 <td>{{ product.price }} руб.</td>
                 <td>{{ product.get_unit_display }}</td>
                 <td>{% if product.is_available %}✅{% else %}❌{% endif %}</td>
+                {% if user.is_authenticated %}
                 <td>
                     <a href="{% url 'core:cart_add' product.id %}">🛒 В корзину</a>
                 </td>
+                {% endif %}
             </tr>
             {% endfor %}
         </tbody>
